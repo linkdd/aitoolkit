@@ -12,13 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        cxx: [ 20, 23 ]
+        compiler:
+          - package: gcc
+            bin: g++
+          - package: clang
+            bin: clang++
     steps:
       - name: checkout-scm
         uses: actions/checkout@v2
-      - name: setup-cxx
-        uses: actions/setup-cxx@v1
-        with:
-          cxx-version: ${{ matrix.cxx }}
+      - name: setup
+        run: sudo apt install ${{ matrix.compiler.package }} make
       - name: test
-        run: make test
+        run: make test CXX=${{ matrix.compiler.bin }}
