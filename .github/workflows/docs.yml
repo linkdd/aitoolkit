@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: checkout-scm
         uses: actions/checkout@v2
+        with:
+          submodules: true
       - name: setup-doxygen
         run: sudo apt install doxygen
       - name: build
