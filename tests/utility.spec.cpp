@@ -10,7 +10,7 @@ enum class effect {
 
 using namespace aitoolkit::utility;
 struct blackboard_type {
-  effect effect;
+  effect e;
 };
 
 TEST_CASE("utility evaluator") {
@@ -26,7 +26,7 @@ TEST_CASE("utility evaluator") {
       }
 
       virtual void apply(blackboard_type& blackboard) const override {
-        blackboard.effect = effect::a;
+        blackboard.e = effect::a;
       }
   };
 
@@ -41,7 +41,7 @@ TEST_CASE("utility evaluator") {
       }
 
       virtual void apply(blackboard_type& blackboard) const override {
-        blackboard.effect = effect::b;
+        blackboard.e = effect::b;
       }
   };
 
@@ -56,7 +56,7 @@ TEST_CASE("utility evaluator") {
       }
 
       virtual void apply(blackboard_type& blackboard) const override {
-        blackboard.effect = effect::c;
+        blackboard.e = effect::c;
       }
   };
 
@@ -70,6 +70,6 @@ TEST_CASE("utility evaluator") {
 
     machine.run(blackboard);
 
-    CHECK(blackboard.effect == effect::c);
+    CHECK(blackboard.e == effect::c);
   }
 }
