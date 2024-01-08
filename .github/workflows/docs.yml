@@ -14,9 +14,12 @@ jobs:
         with:
           submodules: true
       - name: setup-doxygen
-        run: sudo apt install doxygen
+        run: |
+          set -ex
+          wget https://www.doxygen.nl/files/doxygen-1.10.0.linux.bin.tar.gz
+          tar -xvzf doxygen-1.10.0.linux.bin.tar.gz
       - name: build
-        run: make docs
+        run: make docs DOXYGEN=${PWD}/doxygen-1.10.0/bin/doxygen
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
