@@ -1,0 +1,24 @@
+---
+name: tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        cxx: [ 20, 23 ]
+    steps:
+      - name: checkout-scm
+        uses: actions/checkout@v2
+      - name: setup-cxx
+        uses: actions/setup-cxx@v1
+        with:
+          cxx-version: ${{ matrix.cxx }}
+      - name: test
+        run: make test
