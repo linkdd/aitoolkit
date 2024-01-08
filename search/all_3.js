@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['neg_4',['neg',['../classaitoolkit_1_1bt_1_1neg.html',1,'aitoolkit::bt']]],
-  ['node_5',['node',['../classaitoolkit_1_1bt_1_1node.html',1,'aitoolkit::bt']]]
+  ['evaluator_0',['evaluator',['../classaitoolkit_1_1utility_1_1evaluator.html',1,'aitoolkit::utility']]]
 ];
