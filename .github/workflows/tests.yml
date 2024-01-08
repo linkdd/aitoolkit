@@ -13,9 +13,17 @@ jobs:
     strategy:
       matrix:
         compiler:
-          - package: gcc
+          - package: gcc-13
             bin: g++
-          - package: clang
+          - package: gcc-12
+            bin: g++
+          - package: gcc-11
+            bin: g++
+          - package: clang-15
+            bin: clang++
+          - package: clang-14
+            bin: clang++
+          - package: clang-13
             bin: clang++
     steps:
       - name: checkout-scm
