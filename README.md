@@ -3,6 +3,7 @@
 <center>
 
 ![tests](https://img.shields.io/github/actions/workflow/status/linkdd/aitoolkit/tests?style=flat-square&logo=github)
+![docs](https://img.shields.io/github/actions/workflow/status/linkdd/aitoolkit/docs?style=flat-square&logo=github)
 ![license](https://img.shields.io/github/license/linkdd/aitoolkit?style=flat-square&color=blue)
 ![version](https://img.shields.io/github/v/release/linkdd/aitoolkit?style=flat-square&color=red)
 
