@@ -19,12 +19,6 @@ jobs:
             bin: g++
           - package: gcc-11
             bin: g++
-          - package: clang-15
-            bin: clang++
-          - package: clang-14
-            bin: clang++
-          - package: clang-13
-            bin: clang++
     steps:
       - name: checkout-scm
         uses: actions/checkout@v2
