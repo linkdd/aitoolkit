@@ -1,0 +1,22 @@
+---
+name: docs
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout-scm
+        uses: actions/checkout@v2
+      - name: setup-doxygen
+        run: sudo apt install doxygen
+      - name: build
+        run: make docs
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/docs/html
