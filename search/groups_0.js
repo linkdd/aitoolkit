@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['behavior_20tree_0',['Behavior Tree',['../group__behtree.html',1,'']]]
+  ['action_20planning_0',['Goal Oriented Action Planning',['../group__goap.html',1,'']]]
 ];

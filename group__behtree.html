@@ -104,9 +104,6 @@ $(function(){initNavTree('group__behtree.html',''); initResizable(); });
   <div class="headertitle"><div class="title">Behavior Tree</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>Behavior Tree implementation.  
-<a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
@@ -147,11 +144,10 @@ Enumerations</h2></td></tr>
 <tr class="separator:ga92d27070603784738ccfd4104852a377"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<p>Behavior Tree implementation. </p>
 <h2><a class="anchor" id="autotoc_md0"></a>
 Introduction</h2>
 <p>A behavior tree is a tree structure where each node represents a behavior. The tree is evaluated from the root node to the leaf nodes. The leaf nodes are either tasks or checks. A task is a node that performs an action and returns either success or failure. A check is a node that returns either success or failure based on some condition.</p>
-<pre class="mermaid">
+<center><pre class="mermaid">
 flowchart TD
 
   root{{Selector}} --&gt; seq1
@@ -180,7 +176,7 @@ flowchart TD
   style seq1 fill:darkgreen
   style seq2 fill:darkgreen
   style seq3 fill:darkgreen
-</pre><h2><a class="anchor" id="autotoc_md1"></a>
+</pre></center><h2><a class="anchor" id="autotoc_md1"></a>
 Usage</h2>
 <p>First, include the header file:</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;aitoolkit/behtree.hpp&gt;</span></div>
@@ -230,10 +226,10 @@ Usage</h2>
 <div class="line">    })</div>
 <div class="line">  })</div>
 <div class="line">});</div>
-<div class="ttc" id="aclassaitoolkit_1_1bt_1_1check_html"><div class="ttname"><a href="classaitoolkit_1_1bt_1_1check.html">aitoolkit::bt::check</a></div><div class="ttdoc">Check node, will return success if the callback returns true.</div><div class="ttdef"><b>Definition</b> behtree.hpp:267</div></div>
-<div class="ttc" id="aclassaitoolkit_1_1bt_1_1sel_html"><div class="ttname"><a href="classaitoolkit_1_1bt_1_1sel.html">aitoolkit::bt::sel</a></div><div class="ttdoc">Selector node, will execute all children in order until one succeeds.</div><div class="ttdef"><b>Definition</b> behtree.hpp:203</div></div>
-<div class="ttc" id="aclassaitoolkit_1_1bt_1_1seq_html"><div class="ttname"><a href="classaitoolkit_1_1bt_1_1seq.html">aitoolkit::bt::seq</a></div><div class="ttdoc">Sequence node, will execute all children in order until one fails.</div><div class="ttdef"><b>Definition</b> behtree.hpp:172</div></div>
-<div class="ttc" id="aclassaitoolkit_1_1bt_1_1task_html"><div class="ttname"><a href="classaitoolkit_1_1bt_1_1task.html">aitoolkit::bt::task</a></div><div class="ttdoc">Task node, will execute the callback and return the result.</div><div class="ttdef"><b>Definition</b> behtree.hpp:296</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1bt_1_1check_html"><div class="ttname"><a href="classaitoolkit_1_1bt_1_1check.html">aitoolkit::bt::check</a></div><div class="ttdoc">Check node, will return success if the callback returns true.</div><div class="ttdef"><b>Definition</b> behtree.hpp:266</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1bt_1_1sel_html"><div class="ttname"><a href="classaitoolkit_1_1bt_1_1sel.html">aitoolkit::bt::sel</a></div><div class="ttdoc">Selector node, will execute all children in order until one succeeds.</div><div class="ttdef"><b>Definition</b> behtree.hpp:202</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1bt_1_1seq_html"><div class="ttname"><a href="classaitoolkit_1_1bt_1_1seq.html">aitoolkit::bt::seq</a></div><div class="ttdoc">Sequence node, will execute all children in order until one fails.</div><div class="ttdef"><b>Definition</b> behtree.hpp:171</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1bt_1_1task_html"><div class="ttname"><a href="classaitoolkit_1_1bt_1_1task.html">aitoolkit::bt::task</a></div><div class="ttdoc">Task node, will execute the callback and return the result.</div><div class="ttdef"><b>Definition</b> behtree.hpp:295</div></div>
 </div><!-- fragment --><p>Finally, evaluate the tree:</p>
 <div class="fragment"><div class="line"><span class="keyword">auto</span> bb = blackboard_type{</div>
 <div class="line">  .agent_position = { 0.0f, 0.0f },</div>

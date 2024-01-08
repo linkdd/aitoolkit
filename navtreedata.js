@@ -25,15 +25,15 @@
 var NAVTREE =
 [
   [ "AI Toolkit", "index.html", [
-    [ "Installation", "index.html#autotoc_md3", null ],
-    [ "Usage", "index.html#autotoc_md4", [
-      [ "Finite State Machine", "index.html#autotoc_md5", null ],
-      [ "Behavior Tree", "index.html#autotoc_md6", null ],
-      [ "Utility AI", "index.html#autotoc_md7", null ],
-      [ "Goal Oriented Action Planning", "index.html#autotoc_md8", null ]
+    [ "Installation", "index.html#autotoc_md5", null ],
+    [ "Usage", "index.html#autotoc_md6", [
+      [ "Finite State Machine", "index.html#autotoc_md7", null ],
+      [ "Behavior Tree", "index.html#autotoc_md8", null ],
+      [ "Utility AI", "index.html#autotoc_md9", null ],
+      [ "Goal Oriented Action Planning", "index.html#autotoc_md10", null ]
     ] ],
-    [ "Documentation", "index.html#autotoc_md9", null ],
-    [ "License", "index.html#autotoc_md10", null ],
+    [ "Documentation", "index.html#autotoc_md11", null ],
+    [ "License", "index.html#autotoc_md12", null ],
     [ "Topics", "topics.html", "topics" ],
     [ "Concepts", "concepts.html", "concepts" ],
     [ "Classes", "annotated.html", [
