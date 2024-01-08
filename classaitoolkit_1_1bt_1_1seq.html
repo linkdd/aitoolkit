@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.10.0-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
 <head>
@@ -20,6 +21,10 @@
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<script src="mermaid.js"></script>
+<script defer type="application/javascript">
+  mermaid.initialize({ theme: 'dark' })
+</script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -96,28 +101,33 @@ $(function(){initNavTree('classaitoolkit_1_1bt_1_1seq.html',''); initResizable()
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="classaitoolkit_1_1bt_1_1seq-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">aitoolkit::bt::seq&lt; T &gt; Class Template Reference<span class="mlabels"><span class="mlabel">final</span></span></div></div>
+  <div class="headertitle"><div class="title">aitoolkit::bt::seq&lt; T &gt; Class Template Reference<span class="mlabels"><span class="mlabel">final</span></span><div class="ingroups"><a class="el" href="group__behtree.html">Behavior Tree</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Sequence node, will execute all children in order until one fails.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="behtree_8hpp_source.html">behtree.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for aitoolkit::bt::seq&lt; T &gt;:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classaitoolkit_1_1bt_1_1seq.png" usemap="#aitoolkit::bt::seq_3C_20T_20_3E_map" alt=""/>
   <map id="aitoolkit::bt::seq_3C_20T_20_3E_map" name="aitoolkit::bt::seq_3C_20T_20_3E_map">
-<area href="classaitoolkit_1_1bt_1_1node.html" alt="aitoolkit::bt::node&lt; T &gt;" shape="rect" coords="0,0,135,24"/>
+<area href="classaitoolkit_1_1bt_1_1node.html" title="Base abstract class for all nodes." alt="aitoolkit::bt::node&lt; T &gt;" shape="rect" coords="0,0,135,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a1ba2ebd1f9f29fabaaca3313b8d2ccb3" id="r_a1ba2ebd1f9f29fabaaca3313b8d2ccb3"><td class="memItemLeft" align="right" valign="top">virtual execution_state&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ba2ebd1f9f29fabaaca3313b8d2ccb3">evaluate</a> (T &amp;blackboard) const override</td></tr>
+<tr class="memitem:a1ba2ebd1f9f29fabaaca3313b8d2ccb3" id="r_a1ba2ebd1f9f29fabaaca3313b8d2ccb3"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__behtree.html#ga92d27070603784738ccfd4104852a377">execution_state</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ba2ebd1f9f29fabaaca3313b8d2ccb3">evaluate</a> (T &amp;blackboard) const override</td></tr>
 <tr class="separator:a1ba2ebd1f9f29fabaaca3313b8d2ccb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ad7e3319a3eef8f8fd9e8630499d1262b" id="r_ad7e3319a3eef8f8fd9e8630499d1262b"><td class="memItemLeft" align="right" valign="top"><a id="ad7e3319a3eef8f8fd9e8630499d1262b" name="ad7e3319a3eef8f8fd9e8630499d1262b"></a>
-static node_ptr&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>make</b> (std::initializer_list&lt; node_ptr&lt; T &gt; &gt; children)</td></tr>
+static <a class="el" href="group__behtree.html#gae1a27064841dad4d41e50c3e1a182400">node_ptr</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>make</b> (std::initializer_list&lt; <a class="el" href="group__behtree.html#gae1a27064841dad4d41e50c3e1a182400">node_ptr</a>&lt; T &gt; &gt; children)</td></tr>
 <tr class="separator:ad7e3319a3eef8f8fd9e8630499d1262b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
@@ -127,7 +137,10 @@ Additional Inherited Members</h2></td></tr>
 std::vector&lt; std::shared_ptr&lt; <a class="el" href="classaitoolkit_1_1bt_1_1node.html">node</a>&lt; T &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_children</b></td></tr>
 <tr class="separator:a0e53b829e637870fa8aacedf0f212b20 inherit pro_attribs_classaitoolkit_1_1bt_1_1node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class T&gt;<br />
+class aitoolkit::bt::seq&lt; T &gt;</div><p>Sequence node, will execute all children in order until one fails. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a1ba2ebd1f9f29fabaaca3313b8d2ccb3" name="a1ba2ebd1f9f29fabaaca3313b8d2ccb3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1ba2ebd1f9f29fabaaca3313b8d2ccb3">&#9670;&#160;</a></span>evaluate()</h2>
 
@@ -140,7 +153,7 @@ template&lt;class T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual execution_state <a class="el" href="classaitoolkit_1_1bt_1_1seq.html">aitoolkit::bt::seq</a>&lt; T &gt;::evaluate </td>
+          <td class="memname">virtual <a class="el" href="group__behtree.html#ga92d27070603784738ccfd4104852a377">execution_state</a> <a class="el" href="classaitoolkit_1_1bt_1_1seq.html">aitoolkit::bt::seq</a>&lt; T &gt;::evaluate </td>
           <td>(</td>
           <td class="paramtype">T &amp;</td>          <td class="paramname"><span class="paramname"><em>blackboard</em></span></td><td>)</td>
           <td> const</td>

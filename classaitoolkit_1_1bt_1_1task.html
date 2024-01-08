@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.10.0-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
 <head>
@@ -20,6 +21,10 @@
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<script src="mermaid.js"></script>
+<script defer type="application/javascript">
+  mermaid.initialize({ theme: 'dark' })
+</script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -97,23 +102,28 @@ $(function(){initNavTree('classaitoolkit_1_1bt_1_1task.html',''); initResizable(
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="classaitoolkit_1_1bt_1_1task-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">aitoolkit::bt::task&lt; T &gt; Class Template Reference<span class="mlabels"><span class="mlabel">final</span></span></div></div>
+  <div class="headertitle"><div class="title">aitoolkit::bt::task&lt; T &gt; Class Template Reference<span class="mlabels"><span class="mlabel">final</span></span><div class="ingroups"><a class="el" href="group__behtree.html">Behavior Tree</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Task node, will execute the callback and return the result.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="behtree_8hpp_source.html">behtree.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for aitoolkit::bt::task&lt; T &gt;:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classaitoolkit_1_1bt_1_1task.png" usemap="#aitoolkit::bt::task_3C_20T_20_3E_map" alt=""/>
   <map id="aitoolkit::bt::task_3C_20T_20_3E_map" name="aitoolkit::bt::task_3C_20T_20_3E_map">
-<area href="classaitoolkit_1_1bt_1_1node.html" alt="aitoolkit::bt::node&lt; T &gt;" shape="rect" coords="0,0,135,24"/>
+<area href="classaitoolkit_1_1bt_1_1node.html" title="Base abstract class for all nodes." alt="aitoolkit::bt::node&lt; T &gt;" shape="rect" coords="0,0,135,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:a624ca5a9836ae1296ad489e4bfc8a4b0" id="r_a624ca5a9836ae1296ad489e4bfc8a4b0"><td class="memItemLeft" align="right" valign="top"><a id="a624ca5a9836ae1296ad489e4bfc8a4b0" name="a624ca5a9836ae1296ad489e4bfc8a4b0"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>callback_type</b> = std::function&lt;execution_state(T&amp;)&gt;</td></tr>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>callback_type</b> = std::function&lt;<a class="el" href="group__behtree.html#ga92d27070603784738ccfd4104852a377">execution_state</a>(T&amp;)&gt;</td></tr>
 <tr class="separator:a624ca5a9836ae1296ad489e4bfc8a4b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -121,13 +131,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a284e067a48c40c1ae258ab827b55e2f1" id="r_a284e067a48c40c1ae258ab827b55e2f1"><td class="memItemLeft" align="right" valign="top"><a id="a284e067a48c40c1ae258ab827b55e2f1" name="a284e067a48c40c1ae258ab827b55e2f1"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>task</b> (callback_type fn)</td></tr>
 <tr class="separator:a284e067a48c40c1ae258ab827b55e2f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec5e4995637004889ec40783c83494c8" id="r_aec5e4995637004889ec40783c83494c8"><td class="memItemLeft" align="right" valign="top">virtual execution_state&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec5e4995637004889ec40783c83494c8">evaluate</a> (T &amp;blackboard) const override</td></tr>
+<tr class="memitem:aec5e4995637004889ec40783c83494c8" id="r_aec5e4995637004889ec40783c83494c8"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__behtree.html#ga92d27070603784738ccfd4104852a377">execution_state</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec5e4995637004889ec40783c83494c8">evaluate</a> (T &amp;blackboard) const override</td></tr>
 <tr class="separator:aec5e4995637004889ec40783c83494c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:aa6010ddd5f9a38669d5ff7aeecc43d92" id="r_aa6010ddd5f9a38669d5ff7aeecc43d92"><td class="memItemLeft" align="right" valign="top"><a id="aa6010ddd5f9a38669d5ff7aeecc43d92" name="aa6010ddd5f9a38669d5ff7aeecc43d92"></a>
-static node_ptr&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>make</b> (callback_type fn)</td></tr>
+static <a class="el" href="group__behtree.html#gae1a27064841dad4d41e50c3e1a182400">node_ptr</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>make</b> (callback_type fn)</td></tr>
 <tr class="separator:aa6010ddd5f9a38669d5ff7aeecc43d92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
@@ -137,7 +147,10 @@ Additional Inherited Members</h2></td></tr>
 std::vector&lt; std::shared_ptr&lt; <a class="el" href="classaitoolkit_1_1bt_1_1node.html">node</a>&lt; T &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_children</b></td></tr>
 <tr class="separator:a0e53b829e637870fa8aacedf0f212b20 inherit pro_attribs_classaitoolkit_1_1bt_1_1node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class T&gt;<br />
+class aitoolkit::bt::task&lt; T &gt;</div><p>Task node, will execute the callback and return the result. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="aec5e4995637004889ec40783c83494c8" name="aec5e4995637004889ec40783c83494c8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aec5e4995637004889ec40783c83494c8">&#9670;&#160;</a></span>evaluate()</h2>
 
@@ -150,7 +163,7 @@ template&lt;class T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual execution_state <a class="el" href="classaitoolkit_1_1bt_1_1task.html">aitoolkit::bt::task</a>&lt; T &gt;::evaluate </td>
+          <td class="memname">virtual <a class="el" href="group__behtree.html#ga92d27070603784738ccfd4104852a377">execution_state</a> <a class="el" href="classaitoolkit_1_1bt_1_1task.html">aitoolkit::bt::task</a>&lt; T &gt;::evaluate </td>
           <td>(</td>
           <td class="paramtype">T &amp;</td>          <td class="paramname"><span class="paramname"><em>blackboard</em></span></td><td>)</td>
           <td> const</td>

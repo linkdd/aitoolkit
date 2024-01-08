@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.10.0-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
 <head>
@@ -20,6 +21,10 @@
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<script src="mermaid.js"></script>
+<script defer type="application/javascript">
+  mermaid.initialize({ theme: 'dark' })
+</script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -100,12 +105,12 @@ $(function(){initNavTree('hierarchy.html',''); initResizable(); });
 <tr id="row_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classaitoolkit_1_1goap_1_1action.html" target="_self">aitoolkit::goap::action&lt; T &gt;</a></td><td class="desc"></td></tr>
 <tr id="row_1_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classaitoolkit_1_1utility_1_1action.html" target="_self">aitoolkit::utility::action&lt; T &gt;</a></td><td class="desc"></td></tr>
 <tr id="row_2_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classaitoolkit_1_1utility_1_1evaluator.html" target="_self">aitoolkit::utility::evaluator&lt; T &gt;</a></td><td class="desc"></td></tr>
-<tr id="row_3_" class="odd"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_3_" class="arrow" onclick="dynsection.toggleFolder('3_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classaitoolkit_1_1bt_1_1node.html" target="_self">aitoolkit::bt::node&lt; T &gt;</a></td><td class="desc"></td></tr>
-<tr id="row_3_0_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classaitoolkit_1_1bt_1_1check.html" target="_self">aitoolkit::bt::check&lt; T &gt;</a></td><td class="desc"></td></tr>
-<tr id="row_3_1_" class="odd"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classaitoolkit_1_1bt_1_1neg.html" target="_self">aitoolkit::bt::neg&lt; T &gt;</a></td><td class="desc"></td></tr>
-<tr id="row_3_2_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classaitoolkit_1_1bt_1_1sel.html" target="_self">aitoolkit::bt::sel&lt; T &gt;</a></td><td class="desc"></td></tr>
-<tr id="row_3_3_" class="odd"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classaitoolkit_1_1bt_1_1seq.html" target="_self">aitoolkit::bt::seq&lt; T &gt;</a></td><td class="desc"></td></tr>
-<tr id="row_3_4_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classaitoolkit_1_1bt_1_1task.html" target="_self">aitoolkit::bt::task&lt; T &gt;</a></td><td class="desc"></td></tr>
+<tr id="row_3_" class="odd"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_3_" class="arrow" onclick="dynsection.toggleFolder('3_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classaitoolkit_1_1bt_1_1node.html" target="_self">aitoolkit::bt::node&lt; T &gt;</a></td><td class="desc">Base abstract class for all nodes </td></tr>
+<tr id="row_3_0_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classaitoolkit_1_1bt_1_1check.html" target="_self">aitoolkit::bt::check&lt; T &gt;</a></td><td class="desc">Check node, will return success if the callback returns true </td></tr>
+<tr id="row_3_1_" class="odd"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classaitoolkit_1_1bt_1_1neg.html" target="_self">aitoolkit::bt::neg&lt; T &gt;</a></td><td class="desc">Negate node, will return the opposite of the child node </td></tr>
+<tr id="row_3_2_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classaitoolkit_1_1bt_1_1sel.html" target="_self">aitoolkit::bt::sel&lt; T &gt;</a></td><td class="desc">Selector node, will execute all children in order until one succeeds </td></tr>
+<tr id="row_3_3_" class="odd"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classaitoolkit_1_1bt_1_1seq.html" target="_self">aitoolkit::bt::seq&lt; T &gt;</a></td><td class="desc">Sequence node, will execute all children in order until one fails </td></tr>
+<tr id="row_3_4_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classaitoolkit_1_1bt_1_1task.html" target="_self">aitoolkit::bt::task&lt; T &gt;</a></td><td class="desc">Task node, will execute the callback and return the result </td></tr>
 <tr id="row_4_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classaitoolkit_1_1goap_1_1plan.html" target="_self">aitoolkit::goap::plan&lt; T &gt;</a></td><td class="desc"></td></tr>
 </table>
 </div><!-- directory -->

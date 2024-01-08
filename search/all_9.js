@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['task_0',['task',['../classaitoolkit_1_1bt_1_1task.html',1,'aitoolkit::bt']]],
-  ['toolkit_1',['AI Toolkit',['../index.html',1,'']]]
+  ['machine_0',['Finite State Machine',['../index.html#autotoc_md5',1,'']]]
 ];
