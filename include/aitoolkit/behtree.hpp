@@ -2,7 +2,6 @@
 
 /**
 @defgroup behtree Behavior Tree
-@brief Behavior Tree implementation
 
 ## Introduction
 
@@ -12,7 +11,7 @@ either tasks or checks. A task is a node that performs an action and returns
 either success or failure. A check is a node that returns either success or
 failure based on some condition.
 
-<pre class="mermaid">
+<center><pre class="mermaid">
 flowchart TD
 
   root{{Selector}} --> seq1
@@ -41,7 +40,7 @@ flowchart TD
   style seq1 fill:darkgreen
   style seq2 fill:darkgreen
   style seq3 fill:darkgreen
-</pre>
+</pre></center>
 
 
 ## Usage

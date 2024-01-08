@@ -1,5 +1,160 @@
 #pragma once
 
+/**
+@defgroup goap Goal Oriented Action Planning
+
+## Introduction
+
+Goal Oriented Action Planning (GOAP) is a planning algorithm that can be used
+to find a sequence of actions that will lead to a goal state. The algorithm
+works by searching through a graph of possible actions and their effects. The
+algorithm is guaranteed to find a solution if one exists, but it is not
+guaranteed to find the optimal solution.
+
+<center><pre class="mermaid">
+graph LR
+
+  start[Start] --> action1
+  action1[Get axe] --> action2
+  action2[Chop tree] --> goal
+  goal[Goal]
+
+  action3[Get pickaxe] --> action4
+  action3 --> action5
+
+  action4[Mine gold]
+  action5[Mine stone]
+
+  style start fill:darkred
+  style goal fill:darkgreen
+</pre></center>
+
+
+## Usage
+
+First, include the header file:
+
+```cpp
+#include <aitoolkit/goap.hpp>
+```
+
+Then, create a blackboard class that will hold the state of the planner:
+
+```cpp
+struct blackboard_type {
+  bool has_axe{false};
+  bool has_pickaxe{false};
+  int wood{0};
+  int gold{0};
+  int stone{0};
+};
+```
+
+Next, create a class for each action that you want to be able to perform:
+
+```cpp
+using namespace aitoolkit::goap;
+
+class get_axe final : public action<blackboard_type> {
+  public:
+    virtual float cost(const blackboard_type& blackboard) const override {
+      return 1.0f;
+    }
+
+    virtual bool check_preconditions(const blackboard_type& blackboard) const override {
+      return !blackboard.has_axe;
+    }
+
+    virtual void apply_effects(blackboard_type& blackboard) const override {
+      blackboard.has_axe = true;
+    }
+};
+
+class get_pickaxe final : public action<blackboard_type> {
+  public:
+    virtual float cost(const blackboard_type& blackboard) const override {
+      return 1.0f;
+    }
+
+    virtual bool check_preconditions(const blackboard_type& blackboard) const override {
+      return !blackboard.has_pickaxe;
+    }
+
+    virtual void apply_effects(blackboard_type& blackboard) const override {
+      blackboard.has_pickaxe = true;
+    }
+};
+
+class chop_tree final : public action<blackboard_type> {
+  public:
+    virtual float cost(const blackboard_type& blackboard) const override {
+      return 1.0f;
+    }
+
+    virtual bool check_preconditions(const blackboard_type& blackboard) const override {
+      return blackboard.has_axe;
+    }
+
+    virtual void apply_effects(blackboard_type& blackboard) const override {
+      blackboard.wood += 1;
+    }
+};
+
+class mine_gold final : public action<blackboard_type> {
+  public:
+    virtual float cost(const blackboard_type& blackboard) const override {
+      return 1.0f;
+    }
+
+    virtual bool check_preconditions(const blackboard_type& blackboard) const override {
+      return blackboard.has_pickaxe;
+    }
+
+    virtual void apply_effects(blackboard_type& blackboard) const override {
+      blackboard.gold += 1;
+    }
+};
+
+class mine_stone final : public action<blackboard_type> {
+  public:
+    virtual float cost(const blackboard_type& blackboard) const override {
+      return 1.0f;
+    }
+
+    virtual bool check_preconditions(const blackboard_type& blackboard) const override {
+      return blackboard.has_pickaxe;
+    }
+
+    virtual void apply_effects(blackboard_type& blackboard) const override {
+      blackboard.stone += 1;
+    }
+};
+```
+
+Finally, create a plan and run it:
+
+```cpp
+auto actions = std::vector<action_ptr<blackboard_type>>{
+  std::make_shared<get_axe>(),
+  std::make_shared<get_pickaxe>(),
+  std::make_shared<chop_tree>(),
+  std::make_shared<mine_gold>(),
+  std::make_shared<mine_stone>()
+};
+auto initial = blackboard_type{};
+auto goal = blackboard_type{
+  .has_axe = true,
+  .has_pickaxe = true,
+  .wood = 1,
+  .gold = 1,
+  .stone = 1
+};
+
+auto p = plan<blackboard_type>(actions, initial, goal);
+p.run(initial); // will mutate the blackboard
+```
+*/
+
 #include <unordered_set>
 #include <memory>
 #include <vector>
