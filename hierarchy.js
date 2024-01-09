@@ -10,5 +10,8 @@ var hierarchy =
       [ "aitoolkit::bt::seq< T >", "classaitoolkit_1_1bt_1_1seq.html", null ],
       [ "aitoolkit::bt::task< T >", "classaitoolkit_1_1bt_1_1task.html", null ]
     ] ],
-    [ "aitoolkit::goap::plan< T >", "classaitoolkit_1_1goap_1_1plan.html", null ]
+    [ "aitoolkit::goap::plan< T >", "classaitoolkit_1_1goap_1_1plan.html", null ],
+    [ "aitoolkit::fsm::simple_machine< T >", "classaitoolkit_1_1fsm_1_1simple__machine.html", null ],
+    [ "aitoolkit::fsm::stack_machine< T >", "classaitoolkit_1_1fsm_1_1stack__machine.html", null ],
+    [ "aitoolkit::fsm::state< T >", "classaitoolkit_1_1fsm_1_1state.html", null ]
 ];

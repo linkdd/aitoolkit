@@ -25,21 +25,25 @@
 var NAVTREE =
 [
   [ "AI Toolkit", "index.html", [
-    [ "Installation", "index.html#autotoc_md5", null ],
-    [ "Usage", "index.html#autotoc_md6", [
-      [ "Finite State Machine", "index.html#autotoc_md7", null ],
-      [ "Behavior Tree", "index.html#autotoc_md8", null ],
-      [ "Utility AI", "index.html#autotoc_md9", null ],
-      [ "Goal Oriented Action Planning", "index.html#autotoc_md10", null ]
+    [ "Installation", "index.html#autotoc_md9", null ],
+    [ "Usage", "index.html#autotoc_md10", [
+      [ "Finite State Machine", "index.html#autotoc_md11", null ],
+      [ "Behavior Tree", "index.html#autotoc_md12", null ],
+      [ "Utility AI", "index.html#autotoc_md13", null ],
+      [ "Goal Oriented Action Planning", "index.html#autotoc_md14", null ]
     ] ],
-    [ "Documentation", "index.html#autotoc_md11", null ],
-    [ "License", "index.html#autotoc_md12", null ],
+    [ "Documentation", "index.html#autotoc_md15", null ],
+    [ "License", "index.html#autotoc_md16", null ],
     [ "Topics", "topics.html", "topics" ],
     [ "Concepts", "concepts.html", "concepts" ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
-      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ]
+      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
+      [ "Class Members", "functions.html", [
+        [ "All", "functions.html", null ],
+        [ "Functions", "functions_func.html", null ]
+      ] ]
     ] ]
   ] ]
 ];

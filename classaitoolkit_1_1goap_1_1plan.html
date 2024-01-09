@@ -100,25 +100,91 @@ $(function(){initNavTree('classaitoolkit_1_1goap_1_1plan.html',''); initResizabl
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classaitoolkit_1_1goap_1_1plan-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">aitoolkit::goap::plan&lt; T &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">aitoolkit::goap::plan&lt; T &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__goap.html">Goal Oriented Action Planning</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>A plan is a sequence of actions that will lead to a goal state.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="goap_8hpp_source.html">goap.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5073941d5bd12e3dd441551422a8ef15" id="r_a5073941d5bd12e3dd441551422a8ef15"><td class="memItemLeft" align="right" valign="top"><a id="a5073941d5bd12e3dd441551422a8ef15" name="a5073941d5bd12e3dd441551422a8ef15"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>plan</b> (std::vector&lt; action_ptr&lt; <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">T</a> &gt; &gt; <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">actions</a>, <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">T</a> <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">initital_blackboard</a>, <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">T</a> <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">goal_blackboard</a>, <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">size_t</a> <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">max_iterations</a>=0)</td></tr>
+<tr class="memitem:a5073941d5bd12e3dd441551422a8ef15" id="r_a5073941d5bd12e3dd441551422a8ef15"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5073941d5bd12e3dd441551422a8ef15">plan</a> (std::vector&lt; action_ptr&lt; <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">T</a> &gt; &gt; <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">actions</a>, <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">T</a> <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">initital_blackboard</a>, <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">T</a> <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">goal_blackboard</a>, <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">size_t</a> <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">max_iterations</a>=0)</td></tr>
+<tr class="memdesc:a5073941d5bd12e3dd441551422a8ef15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a plan.  <br /></td></tr>
 <tr class="separator:a5073941d5bd12e3dd441551422a8ef15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27db2be9b0d74099c6d704d9b8cac4e3" id="r_a27db2be9b0d74099c6d704d9b8cac4e3"><td class="memItemLeft" align="right" valign="top"><a id="a27db2be9b0d74099c6d704d9b8cac4e3" name="a27db2be9b0d74099c6d704d9b8cac4e3"></a>
 <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>size</b> () <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">const</a></td></tr>
+<tr class="memdesc:a27db2be9b0d74099c6d704d9b8cac4e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of actions in the plan. <br /></td></tr>
 <tr class="separator:a27db2be9b0d74099c6d704d9b8cac4e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4034dd0edcbcf404517790c8605589f" id="r_ae4034dd0edcbcf404517790c8605589f"><td class="memItemLeft" align="right" valign="top"><a id="ae4034dd0edcbcf404517790c8605589f" name="ae4034dd0edcbcf404517790c8605589f"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>operator bool</b> () <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">const</a></td></tr>
+<tr class="memdesc:ae4034dd0edcbcf404517790c8605589f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the plan is empty. <br /></td></tr>
 <tr class="separator:ae4034dd0edcbcf404517790c8605589f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3aa3a32429080d9ed4e7175d4bc4b793" id="r_a3aa3a32429080d9ed4e7175d4bc4b793"><td class="memItemLeft" align="right" valign="top"><a id="a3aa3a32429080d9ed4e7175d4bc4b793" name="a3aa3a32429080d9ed4e7175d4bc4b793"></a>
 <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> (<a class="el" href="classaitoolkit_1_1goap_1_1plan.html">T</a> &amp;<a class="el" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>)</td></tr>
+<tr class="memdesc:a3aa3a32429080d9ed4e7175d4bc4b793"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the plan on a blackboard. <br /></td></tr>
 <tr class="separator:a3aa3a32429080d9ed4e7175d4bc4b793"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;blackboard_trait T&gt;<br />
+class aitoolkit::goap::plan&lt; T &gt;</div><p>A plan is a sequence of actions that will lead to a goal state. </p>
+<p>The plan is created by providing a list of actions, an initial blackboard state, and a goal blackboard state. The plan will then find a sequence of actions that will lead to the goal state.</p>
+<p>The plan can then be run on a blackboard to mutate it. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a5073941d5bd12e3dd441551422a8ef15" name="a5073941d5bd12e3dd441551422a8ef15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5073941d5bd12e3dd441551422a8ef15">&#9670;&#160;</a></span>plan()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;blackboard_trait T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classaitoolkit_1_1goap_1_1plan.html">aitoolkit::goap::plan</a>&lt; <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">T</a> &gt;::plan </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; action_ptr&lt; <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">T</a> &gt; &gt;</td>          <td class="paramname"><span class="paramname"><em>actions</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classaitoolkit_1_1goap_1_1plan.html">T</a></td>          <td class="paramname"><span class="paramname"><em>initital_blackboard</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classaitoolkit_1_1goap_1_1plan.html">T</a></td>          <td class="paramname"><span class="paramname"><em>goal_blackboard</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classaitoolkit_1_1goap_1_1plan.html">size_t</a></td>          <td class="paramname"><span class="paramname"><em>max_iterations</em><span class="paramdefsep"> = </span><span class="paramdefval">0</span></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create a plan. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actions</td><td>The list of actions that can be performed. </td></tr>
+    <tr><td class="paramname">initital_blackboard</td><td>The initial state of the blackboard. </td></tr>
+    <tr><td class="paramname">goal_blackboard</td><td>The goal state of the blackboard. </td></tr>
+    <tr><td class="paramname">max_iterations</td><td>The maximum number of iterations to perform before giving up. If 0, the plan will run until it finds a solution. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

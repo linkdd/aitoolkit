@@ -100,23 +100,37 @@ $(function(){initNavTree('classaitoolkit_1_1goap_1_1action.html',''); initResiza
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classaitoolkit_1_1goap_1_1action-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">aitoolkit::goap::action&lt; T &gt; Class Template Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
+  <div class="headertitle"><div class="title">aitoolkit::goap::action&lt; T &gt; Class Template Reference<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__goap.html">Goal Oriented Action Planning</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>An action that can be performed on a blackboard.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="goap_8hpp_source.html">goap.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1f76f484ef4fcee53fd1431ea66f9bfd" id="r_a1f76f484ef4fcee53fd1431ea66f9bfd"><td class="memItemLeft" align="right" valign="top"><a id="a1f76f484ef4fcee53fd1431ea66f9bfd" name="a1f76f484ef4fcee53fd1431ea66f9bfd"></a>
 <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">virtual</a> <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">float</a>&#160;</td><td class="memItemRight" valign="bottom"><b>cost</b> (<a class="el" href="classaitoolkit_1_1goap_1_1plan.html">const</a> <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">T</a> &amp;<a class="el" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>) <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">const</a> =0</td></tr>
+<tr class="memdesc:a1f76f484ef4fcee53fd1431ea66f9bfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">The cost of performing this action. <br /></td></tr>
 <tr class="separator:a1f76f484ef4fcee53fd1431ea66f9bfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aafe509e1947d1100221752f3cb11020d" id="r_aafe509e1947d1100221752f3cb11020d"><td class="memItemLeft" align="right" valign="top"><a id="aafe509e1947d1100221752f3cb11020d" name="aafe509e1947d1100221752f3cb11020d"></a>
 <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">virtual</a> <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><b>check_preconditions</b> (<a class="el" href="classaitoolkit_1_1goap_1_1plan.html">const</a> <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">T</a> &amp;<a class="el" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>) <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">const</a> =0</td></tr>
+<tr class="memdesc:aafe509e1947d1100221752f3cb11020d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the preconditions for this action are met. <br /></td></tr>
 <tr class="separator:aafe509e1947d1100221752f3cb11020d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ce9385653c46e068e99677a1d539dea" id="r_a8ce9385653c46e068e99677a1d539dea"><td class="memItemLeft" align="right" valign="top"><a id="a8ce9385653c46e068e99677a1d539dea" name="a8ce9385653c46e068e99677a1d539dea"></a>
 <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">virtual</a> <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>apply_effects</b> (<a class="el" href="classaitoolkit_1_1goap_1_1plan.html">T</a> &amp;<a class="el" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>) <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">const</a> =0</td></tr>
+<tr class="memdesc:a8ce9385653c46e068e99677a1d539dea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply the effects of this action to the blackboard. <br /></td></tr>
 <tr class="separator:a8ce9385653c46e068e99677a1d539dea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;blackboard_trait T&gt;<br />
+class aitoolkit::goap::action&lt; T &gt;</div><p>An action that can be performed on a blackboard. </p>
+<p>An action hae a cost, which is used during planning, if 2 actions have a similar effect, the one with the lowest cost will be chosen.</p>
+<p>An action also has preconditions, which are used to determine if an action can be performed on a blackboard. If the preconditions are not met, the action will not be considered during planning.</p>
+<p>Finally, an action has effects, which are applied to the blackboard when the action is performed. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
