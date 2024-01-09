@@ -19,6 +19,8 @@ It provides:
  - Utility AI
  - Goal Oriented Action Planning
 
+Why this project? Well, I wrote about it [here](https://david-delassus.medium.com/ai-toolkit-give-a-brain-to-your-npcs-a-header-only-c-library-02a50ae9faed?sk=011cd1ed8e61d22f1be6b6430847f430).
+
 ## Installation
 
 Add the `include` folder of this repository to your include paths.
@@ -303,7 +305,7 @@ auto p = planner<blackboard_type>(actions, initial, goal);
 
 auto blackboard = initial;
 while (p) {
-  p.run_next(initial); // will mutate the blackboard
+  p.run_next(blackboard); // will mutate the blackboard
 }
 ```
 
