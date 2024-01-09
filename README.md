@@ -32,6 +32,8 @@ $ git submodule add https://github.com/linkdd/aitoolkit.git
 $ g++ -std=c++23 -Iaiotoolkit/include main.cpp -o mygame
 ```
 
+> **NB:** This library is compatible with C++20.
+
 ## Usage
 
 ### Finite State Machine
