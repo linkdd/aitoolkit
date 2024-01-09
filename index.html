@@ -108,13 +108,17 @@ $(function(){initNavTree('index.html',''); initResizable(); });
 <li>Utility AI</li>
 <li>Goal Oriented Action Planning</li>
 </ul>
+<p>Why this project? Well, I wrote about it <a href="https://david-delassus.medium.com/ai-toolkit-give-a-brain-to-your-npcs-a-header-only-c-library-02a50ae9faed?sk=011cd1ed8e61d22f1be6b6430847f430">here</a>.</p>
 <h1><a class="anchor" id="autotoc_md11"></a>
 Installation</h1>
 <p>Add the <code>include</code> folder of this repository to your include paths.</p>
 <p>Or add it as a submodule:</p>
 <div class="fragment"><div class="line">$ git submodule add https://github.com/linkdd/aitoolkit.git</div>
 <div class="line">$ g++ -std=c++23 -Iaiotoolkit/include main.cpp -o mygame</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md12"></a>
+</div><!-- fragment --><blockquote class="doxtable">
+<p>&zwj;<b>NB:</b> This library is compatible with C++20. </p>
+</blockquote>
+<h1><a class="anchor" id="autotoc_md12"></a>
 Usage</h1>
 <h2><a class="anchor" id="autotoc_md13"></a>
 Finite State Machine</h2>
@@ -331,7 +335,7 @@ Goal Oriented Action Planning</h2>
 <div class="line"> </div>
 <div class="line"><span class="keyword">auto</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a> = <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">initial</a>;</div>
 <div class="line"><span class="keywordflow">while</span> (<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">p</a>) {</div>
-<div class="line">  <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">p</a>.<a class="code hl_function" href="classaitoolkit_1_1goap_1_1plan.html#a290d73dd20bfce9f42920cf3f5d8d1bd">run_next</a>(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">initial</a>); <span class="comment">// will mutate the blackboard</span></div>
+<div class="line">  <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">p</a>.<a class="code hl_function" href="classaitoolkit_1_1goap_1_1plan.html#a290d73dd20bfce9f42920cf3f5d8d1bd">run_next</a>(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>); <span class="comment">// will mutate the blackboard</span></div>
 <div class="line">}</div>
 <div class="ttc" id="aclassaitoolkit_1_1goap_1_1plan_html_a290d73dd20bfce9f42920cf3f5d8d1bd"><div class="ttname"><a href="classaitoolkit_1_1goap_1_1plan.html#a290d73dd20bfce9f42920cf3f5d8d1bd">aitoolkit::goap::plan::run_next</a></div><div class="ttdeci">void run_next(T &amp;blackboard)</div><div class="ttdoc">Execute the next planned action.</div><div class="ttdef"><b>Definition</b> goap.hpp:248</div></div>
 </div><!-- fragment --><p>For more informations, consult the <a href="https://linkdd.github.io/aitoolkit/group__goap.html">documentation</a>.</p>
