@@ -34,19 +34,15 @@ $ g++ -std=c++23 -Iaiotoolkit/include main.cpp -o mygame
 
 ### Finite State Machine
 
-TODO
-
-### Behavior Tree
-
-Include the header:
+First, include the header:
 
 ```cpp
-#include <aitoolkit/behtree.hpp>
+#include <aitoolkit/fsm.hpp>
 
-using namespace aitoolkit::bt;
+using namespace aitoolkit::fsm;
 ```
 
-Create your blackboard type:
+Then, create your blackboard type:
 
 ```cpp
 struct blackboard_type {
@@ -54,7 +50,79 @@ struct blackboard_type {
 };
 ```
 
-Create your tree:
+Then, create a state type for each of your states:
+
+```cpp
+class state_dummy final : public state<blackboard_type> {
+  public:
+    virtual void enter(blackboard_type& blackboard) override {
+      // ...
+    }
+
+    virtual void exit(blackboard_type& blackboard) override {
+      // ...
+    }
+
+    virtual void pause(blackboard_type& blackboard) override {
+      // ...
+    }
+
+    virtual void resume(blackboard_type& blackboard) override {
+      // ...
+    }
+
+    virtual void update(blackboard_type& blackboard) override {
+      // ...
+    }
+};
+```
+
+Create your simple state machine:
+
+```cpp
+auto simple_bb = blackboard_type{};
+auto simple_fsm = simple_machine<blackboard_type>();
+
+simple_fsm.set_state(std::make_shared<state_dummy>(), simple_bb);
+simple_fsm.pause(simple_bb);
+simple_fsm.resume(simple_bb);
+simple_fsm.update(simple_bb);
+```
+
+Or with a stack state machine:
+
+```cpp
+auto stack_bb = blackboard_type{};
+auto stack_fsm = stack_machine<blackboard_type>{};
+
+stack_fsm.push_state(std::make_shared<state_dummy>(), stack_bb);
+stack_fsm.push_state(std::make_shared<state_dummy>(), stack_bb);
+
+stack_fsm.update(stack_bb);
+
+stack_fsm.pop_state(stack_bb);
+stack_fsm.pop_state(stack_bb);
+```
+
+### Behavior Tree
+
+First, include the header:
+
+```cpp
+#include <aitoolkit/behtree.hpp>
+
+using namespace aitoolkit::bt;
+```
+
+Then, create your blackboard type:
+
+```cpp
+struct blackboard_type {
+  // ...
+};
+```
+
+Then, create your tree:
 
 ```cpp
 auto tree = seq<blackboard_type>::make({
@@ -69,7 +137,7 @@ auto tree = seq<blackboard_type>::make({
 });
 ```
 
-Evaluate it:
+Finally, evaluate it:
 
 ```cpp
 auto blackboard = blackboard_type{
