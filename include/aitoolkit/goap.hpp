@@ -252,6 +252,9 @@ namespace aitoolkit::goap {
           action->apply_effects(blackboard);
         }
       }
+
+    private:
+      std::queue<action_ptr<T>> m_actions;
   };
 
   /**
@@ -342,5 +345,7 @@ namespace aitoolkit::goap {
         }
       }
     }
-  };
+
+    return plan<T>(std::queue<action_ptr<T>>{});
+  }
 }
