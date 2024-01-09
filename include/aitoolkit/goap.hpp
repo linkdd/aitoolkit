@@ -170,22 +170,71 @@ namespace aitoolkit::goap {
     { std::hash<T>{}(a) } -> std::convertible_to<size_t>;
   };
 
+  /**
+   * @ingroup goap
+   * @class action
+   * @brief An action that can be performed on a blackboard.
+   *
+   * An action hae a cost, which is used during planning, if 2 actions have a
+   * similar effect, the one with the lowest cost will be chosen.
+   *
+   * An action also has preconditions, which are used to determine if an action
+   * can be performed on a blackboard. If the preconditions are not met, the
+   * action will not be considered during planning.
+   *
+   * Finally, an action has effects, which are applied to the blackboard when
+   * the action is performed.
+   */
   template <blackboard_trait T>
   class action {
     public:
       virtual ~action() = default;
 
+      /**
+       * @brief The cost of performing this action.
+       */
       virtual float cost(const T& blackboard) const = 0;
+
+      /**
+       * @brief Check if the preconditions for this action are met.
+       */
       virtual bool check_preconditions(const T& blackboard) const = 0;
+
+      /**
+       * @brief Apply the effects of this action to the blackboard.
+       */
       virtual void apply_effects(T& blackboard) const = 0;
   };
 
+  /**
+   * @brief Heeap allocated pointer to an action.
+  */
   template <blackboard_trait T>
   using action_ptr = std::shared_ptr<action<T>>;
 
+  /**
+   * @ingroup goap
+   * @class plan
+   * @brief A plan is a sequence of actions that will lead to a goal state.
+   *
+   * The plan is created by providing a list of actions, an initial blackboard
+   * state, and a goal blackboard state. The plan will then find a sequence of
+   * actions that will lead to the goal state.
+   *
+   * The plan can then be run on a blackboard to mutate it.
+   */
   template <blackboard_trait T>
   class plan {
     public:
+      /**
+       * @brief Create a plan.
+       *
+       * @param actions The list of actions that can be performed.
+       * @param initital_blackboard The initial state of the blackboard.
+       * @param goal_blackboard The goal state of the blackboard.
+       * @param max_iterations The maximum number of iterations to perform
+       * before giving up. If 0, the plan will run until it finds a solution.
+       */
       plan(
         std::vector<action_ptr<T>> actions,
         T initital_blackboard,
@@ -258,14 +307,23 @@ namespace aitoolkit::goap {
         }
       }
 
+      /**
+       * @brief Get the number of actions in the plan.
+       */
       size_t size() const {
         return m_actions.size();
       }
 
+      /**
+       * @brief Check if the plan is empty.
+       */
       operator bool() const {
         return !m_actions.empty();
       }
 
+      /**
+       * @brief Run the plan on a blackboard.
+       */
       void run(T& blackboard) {
         auto actions = m_actions;
 
