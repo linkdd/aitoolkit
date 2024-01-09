@@ -299,8 +299,12 @@ auto goal = blackboard_type{
   .wood = 3
 };
 
-auto p = plan<blackboard_type>(actions, initial, goal);
-p.run(initial); // will mutate the blackboard
+auto p = planner<blackboard_type>(actions, initial, goal);
+
+auto blackboard = initial;
+while (p) {
+  p.run_next(initial); // will mutate the blackboard
+}
 ```
 
 For more informations, consult the
