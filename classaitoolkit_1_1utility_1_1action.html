@@ -33,7 +33,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">AI Toolkit<span id="projectnumber">&#160;v0.1.0</span>
+   <div id="projectname">AI Toolkit
    </div>
   </td>
  </tr>
@@ -100,20 +100,30 @@ $(function(){initNavTree('classaitoolkit_1_1utility_1_1action.html',''); initRes
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classaitoolkit_1_1utility_1_1action-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">aitoolkit::utility::action&lt; T &gt; Class Template Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
+  <div class="headertitle"><div class="title">aitoolkit::utility::action&lt; T &gt; Class Template Reference<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__utility.html">Utility AI</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Base abstract class for all actions.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="utility_8hpp_source.html">utility.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a74224bee2ec48b786a7c8f1a4c296371" id="r_a74224bee2ec48b786a7c8f1a4c296371"><td class="memItemLeft" align="right" valign="top"><a id="a74224bee2ec48b786a7c8f1a4c296371" name="a74224bee2ec48b786a7c8f1a4c296371"></a>
 virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>score</b> (const T &amp;blackboard) const =0</td></tr>
+<tr class="memdesc:a74224bee2ec48b786a7c8f1a4c296371"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the score of the action. <br /></td></tr>
 <tr class="separator:a74224bee2ec48b786a7c8f1a4c296371"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4a92659dc02de343496937ee04e1c5d" id="r_ad4a92659dc02de343496937ee04e1c5d"><td class="memItemLeft" align="right" valign="top"><a id="ad4a92659dc02de343496937ee04e1c5d" name="ad4a92659dc02de343496937ee04e1c5d"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>apply</b> (T &amp;blackboard) const =0</td></tr>
+<tr class="memdesc:ad4a92659dc02de343496937ee04e1c5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply the action to the blackboard. <br /></td></tr>
 <tr class="separator:ad4a92659dc02de343496937ee04e1c5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename T&gt;<br />
+class aitoolkit::utility::action&lt; T &gt;</div><p>Base abstract class for all actions. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

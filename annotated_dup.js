@@ -19,8 +19,8 @@ var annotated_dup =
         [ "plan", "classaitoolkit_1_1goap_1_1plan.html", "classaitoolkit_1_1goap_1_1plan" ]
       ] ],
       [ "utility", null, [
-        [ "action", "classaitoolkit_1_1utility_1_1action.html", null ],
-        [ "evaluator", "classaitoolkit_1_1utility_1_1evaluator.html", null ]
+        [ "action", "classaitoolkit_1_1utility_1_1action.html", "classaitoolkit_1_1utility_1_1action" ],
+        [ "evaluator", "classaitoolkit_1_1utility_1_1evaluator.html", "classaitoolkit_1_1utility_1_1evaluator" ]
       ] ]
     ] ]
 ];
