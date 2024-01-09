@@ -141,13 +141,15 @@ TEST_CASE("goap planning") {
       std::make_shared<mine_stone>()
     };
 
-    auto p = plan<blackboard_type>(actions, initial, goal);
+    auto p = planner<blackboard_type>(actions, initial, goal);
     CHECK(p);
 
     // 10 chop wood, 1 build storage, 3 gather food, 2 mine gold, 1 mine stone
     CHECK(p.size() == 17);
 
-    p.run(initial);
+    while (p) {
+      p.run_next(initial);
+    }
     CHECK(initial == goal);
   }
 
@@ -176,7 +178,7 @@ TEST_CASE("goap planning") {
       std::make_shared<mine_stone>()
     };
 
-    auto p = plan<blackboard_type>(actions, initial, goal, 1000);
+    auto p = planner<blackboard_type>(actions, initial, goal, 1000);
     CHECK(!p);
   }
 }
