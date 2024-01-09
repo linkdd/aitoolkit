@@ -152,7 +152,86 @@ For more informations, consult the
 
 ### Utility AI
 
-TODO
+First, include the header file:
+
+```cpp
+#include <aitoolkit/utility.hpp>
+
+using namespace aitoolkit::utility;
+```
+
+Then, create a blackboard type:
+
+```cpp
+struct blackboard_type {
+  int food{0};
+  int wood{0};
+  int stone{0};
+  int gold{0};
+};
+```
+
+Next, create a class for each action that you want to be able to perform:
+
+```cpp
+class collect_food final : public action<blackboard_type> {
+  public:
+    virtual float score(const blackboard_type& blackboard) const override {
+      return 50.0f;
+    }
+
+    virtual void apply(blackboard_type& blackboard) const override {
+      blackboard.food += 1;
+    }
+};
+
+class collect_wood final : public action<blackboard_type> {
+  public:
+    virtual float score(const blackboard_type& blackboard) const override {
+      return 150.0f;
+    }
+
+    virtual void apply(blackboard_type& blackboard) const override {
+      blackboard.wood += 1;
+    }
+};
+
+class collect_stone final : public action<blackboard_type> {
+  public:
+    virtual float score(const blackboard_type& blackboard) const override {
+      return -10.0f;
+    }
+
+    virtual void apply(blackboard_type& blackboard) const override {
+      blackboard.stone += 1;
+    }
+};
+
+class collect_gold final : public action<blackboard_type> {
+  public:
+    virtual float score(const blackboard_type& blackboard) const override {
+      return 75.0f;
+    }
+
+    virtual void apply(blackboard_type& blackboard) const override {
+      blackboard.gold += 1;
+    }
+};
+```
+
+Finally, create an evaluator and run it:
+
+```cpp
+auto evaluator = evaluator<blackboard_type>{
+  std::make_shared<collect_food>(),
+  std::make_shared<collect_wood>(),
+  std::make_shared<collect_stone>(),
+  std::make_shared<collect_gold>()
+};
+
+auto blackboard = blackboard_type{};
+evaluator.run(blackboard);
+```
 
 ### Goal Oriented Action Planning
 
