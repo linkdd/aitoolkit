@@ -107,157 +107,163 @@ $(function(){initNavTree('goap_8hpp_source.html',''); initResizable(); });
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="preprocessor">#include &lt;unordered_set&gt;</span></div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="preprocessor">#include &lt;queue&gt;</span></div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="preprocessor">#include &lt;type_traits&gt;</span></div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="preprocessor">#include &lt;concepts&gt;</span></div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="keyword">namespace </span>aitoolkit::goap {</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00168" data-start="{" data-end="}">
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="conceptaitoolkit_1_1goap_1_1blackboard__trait.html">  168</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="conceptaitoolkit_1_1goap_1_1blackboard__trait.html">blackboard_trait</a> = <span class="keyword">requires</span>(<span class="keyword">const</span> T &amp;a, <span class="keyword">const</span> T &amp;b) {</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    { a == b } -&gt; std::convertible_to&lt;bool&gt;;</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    { std::hash&lt;T&gt;{}(a) } -&gt; std::convertible_to&lt;size_t&gt;;</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>  };</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="preprocessor">#include &lt;unordered_set&gt;</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="preprocessor">#include &lt;coroutine&gt;</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="preprocessor">#include &lt;queue&gt;</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="preprocessor">#include &lt;type_traits&gt;</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="preprocessor">#include &lt;concepts&gt;</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span><span class="keyword">namespace </span>aitoolkit::goap {</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00174" data-start="{" data-end="}">
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="conceptaitoolkit_1_1goap_1_1blackboard__trait.html">  174</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="conceptaitoolkit_1_1goap_1_1blackboard__trait.html">blackboard_trait</a> = <span class="keyword">requires</span>(<span class="keyword">const</span> T &amp;a, <span class="keyword">const</span> T &amp;b) {</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    { a == b } -&gt; std::convertible_to&lt;bool&gt;;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    { std::hash&lt;T&gt;{}(a) } -&gt; std::convertible_to&lt;size_t&gt;;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>  };</div>
 </div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>  <span class="keyword">template</span> &lt;blackboard_trait T&gt;</div>
-<div class="foldopen" id="foldopen00189" data-start="{" data-end="};">
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1goap_1_1action.html">  189</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a> {</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>      <span class="keyword">virtual</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">~action</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1goap_1_1action.html#a1f76f484ef4fcee53fd1431ea66f9bfd">  196</a></span>      <span class="keyword">virtual</span> <span class="keywordtype">float</span> <a class="code hl_function" href="classaitoolkit_1_1goap_1_1action.html#a1f76f484ef4fcee53fd1431ea66f9bfd">cost</a>(<span class="keyword">const</span> T&amp; blackboard) <span class="keyword">const</span> = 0;</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1goap_1_1action.html#aafe509e1947d1100221752f3cb11020d">  201</a></span>      <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classaitoolkit_1_1goap_1_1action.html#aafe509e1947d1100221752f3cb11020d">check_preconditions</a>(<span class="keyword">const</span> T&amp; blackboard) <span class="keyword">const</span> = 0;</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1goap_1_1action.html#a8ce9385653c46e068e99677a1d539dea">  206</a></span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classaitoolkit_1_1goap_1_1action.html#a8ce9385653c46e068e99677a1d539dea">apply_effects</a>(T&amp; blackboard) <span class="keyword">const</span> = 0;</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>  };</div>
-</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>  <span class="keyword">template</span> &lt;blackboard_trait T&gt;</div>
+<div class="foldopen" id="foldopen00195" data-start="{" data-end="};">
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1goap_1_1action.html">  195</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a> {</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>      <span class="keyword">virtual</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">~action</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span> </div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1goap_1_1action.html#a1f76f484ef4fcee53fd1431ea66f9bfd">  202</a></span>      <span class="keyword">virtual</span> <span class="keywordtype">float</span> <a class="code hl_function" href="classaitoolkit_1_1goap_1_1action.html#a1f76f484ef4fcee53fd1431ea66f9bfd">cost</a>(<span class="keyword">const</span> T&amp; blackboard) <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1goap_1_1action.html#aafe509e1947d1100221752f3cb11020d">  207</a></span>      <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classaitoolkit_1_1goap_1_1action.html#aafe509e1947d1100221752f3cb11020d">check_preconditions</a>(<span class="keyword">const</span> T&amp; blackboard) <span class="keyword">const</span> = 0;</div>
 <div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>  <span class="keyword">template</span> &lt;blackboard_trait T&gt;</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>  <span class="keyword">using </span>action_ptr = std::shared_ptr&lt;action&lt;T&gt;&gt;;</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1goap_1_1action.html#a8ce9385653c46e068e99677a1d539dea">  212</a></span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classaitoolkit_1_1goap_1_1action.html#a8ce9385653c46e068e99677a1d539dea">apply_effects</a>(T&amp; blackboard) <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>  };</div>
+</div>
 <div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>  <span class="keyword">template</span> &lt;blackboard_trait T&gt;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>  <span class="keyword">using </span>action_ptr = std::shared_ptr&lt;action&lt;T&gt;&gt;;</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
 <div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>  <span class="keyword">template</span> &lt;blackboard_trait T&gt;</div>
 <div class="foldopen" id="foldopen00227" data-start="{" data-end="};">
 <div class="line"><a id="l00227" name="l00227"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1goap_1_1plan.html">  227</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">plan</a> {</div>
 <div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00238" data-start="{" data-end="}">
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1goap_1_1plan.html#a5073941d5bd12e3dd441551422a8ef15">  238</a></span>      <a class="code hl_function" href="classaitoolkit_1_1goap_1_1plan.html#a5073941d5bd12e3dd441551422a8ef15">plan</a>(</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>        std::vector&lt;action_ptr&lt;T&gt;&gt; actions,</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>        T initital_blackboard,</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>        T goal_blackboard,</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        <span class="keywordtype">size_t</span> max_iterations = 0</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>      ) {</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        <span class="keyword">struct </span>node_type {</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>          T blackboard;</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>          <span class="keywordtype">float</span> cost;</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>          action_ptr&lt;T&gt; action_taken;</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>          std::shared_ptr&lt;node_type&gt; parent;</div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>        };</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>        <span class="keyword">using </span>node_ptr = std::shared_ptr&lt;node_type&gt;;</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>        <span class="keyword">struct </span>node_compare {</div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>          <span class="keywordtype">bool</span> operator()(<span class="keyword">const</span> node_ptr&amp; a, <span class="keyword">const</span> node_ptr&amp; b)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>            <span class="keywordflow">return</span> a-&gt;cost &gt; b-&gt;cost;</div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>          }</div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>        };</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>      <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">plan</a>(std::queue&lt;action_ptr&lt;T&gt;&gt; actions) : m_actions(actions) {}</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
+<div class="foldopen" id="foldopen00234" data-start="{" data-end="}">
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1goap_1_1plan.html#a27db2be9b0d74099c6d704d9b8cac4e3">  234</a></span>      <span class="keywordtype">size_t</span> <a class="code hl_function" href="classaitoolkit_1_1goap_1_1plan.html#a27db2be9b0d74099c6d704d9b8cac4e3">size</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>        <span class="keywordflow">return</span> m_actions.size();</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>      }</div>
+</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="foldopen" id="foldopen00241" data-start="{" data-end="}">
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1goap_1_1plan.html#ae4034dd0edcbcf404517790c8605589f">  241</a></span>      <span class="keyword">operator</span> bool()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        <span class="keywordflow">return</span> !m_actions.empty();</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>      }</div>
+</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span> </div>
+<div class="foldopen" id="foldopen00248" data-start="{" data-end="}">
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1goap_1_1plan.html#a290d73dd20bfce9f42920cf3f5d8d1bd">  248</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="classaitoolkit_1_1goap_1_1plan.html#a290d73dd20bfce9f42920cf3f5d8d1bd">run_next</a>(T&amp; blackboard) {</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>        <span class="keywordflow">if</span> (!m_actions.empty()) {</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>          <span class="keyword">auto</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a> = m_actions.front();</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>          m_actions.pop();</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>          <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a>-&gt;<a class="code hl_function" href="classaitoolkit_1_1goap_1_1action.html#a8ce9385653c46e068e99677a1d539dea">apply_effects</a>(blackboard);</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>        }</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>      }</div>
+</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span> </div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>      std::queue&lt;action_ptr&lt;T&gt;&gt; m_actions;</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>  };</div>
+</div>
 <div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>        std::priority_queue&lt;node_ptr, std::vector&lt;node_ptr&gt;, node_compare&gt; open_set;</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>        std::unordered_set&lt;T&gt; closed_set;</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span> </div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>        open_set.push(std::make_shared&lt;node_type&gt;(node_type{</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>          .blackboard = initital_blackboard,</div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>          .cost = 0.0f,</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>          .action_taken = <span class="keyword">nullptr</span>,</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>          .parent = <span class="keyword">nullptr</span></div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>        }));</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>        <span class="keywordflow">for</span> (</div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>          <span class="keywordtype">size_t</span> iteration = 0;</div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>          !open_set.empty() &amp;&amp; (max_iterations == 0 || iteration &lt; max_iterations);</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>          ++iteration</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>        ) {</div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>          <span class="keyword">auto</span> current_node = open_set.top();</div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>          open_set.pop();</div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span> </div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>          <span class="keywordflow">if</span> (current_node-&gt;blackboard == goal_blackboard) {</div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>            <span class="keywordflow">while</span> (current_node-&gt;parent != <span class="keyword">nullptr</span>) {</div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>              m_actions.push(current_node-&gt;action_taken);</div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>              current_node = current_node-&gt;parent;</div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>            }</div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span> </div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>          }</div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span> </div>
-<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>          <span class="keywordflow">if</span> (!closed_set.contains(current_node-&gt;blackboard)) {</div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>            closed_set.insert(current_node-&gt;blackboard);</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>  <span class="keyword">template</span> &lt;blackboard_trait T&gt;</div>
+<div class="foldopen" id="foldopen00276" data-start="{" data-end="}">
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno"><a class="line" href="group__goap.html#ga35648cbd38e1da9f152a433185f9b32c">  276</a></span>  <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">plan&lt;T&gt;</a> <a class="code hl_function" href="group__goap.html#ga35648cbd38e1da9f152a433185f9b32c">planner</a>(</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    std::vector&lt;action_ptr&lt;T&gt;&gt; actions,</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    T initital_blackboard,</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    T goal_blackboard,</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    <span class="keywordtype">size_t</span> max_iterations = 0</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>  ) {</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    <span class="keyword">struct </span>node_type {</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>      T blackboard;</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>      <span class="keywordtype">float</span> cost;</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>      action_ptr&lt;T&gt; action_taken;</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>      std::shared_ptr&lt;node_type&gt; parent;</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    };</div>
 <div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>            <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a> : actions) {</div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>              <span class="keywordflow">if</span> (<a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a>-&gt;<a class="code hl_function" href="classaitoolkit_1_1goap_1_1action.html#aafe509e1947d1100221752f3cb11020d">check_preconditions</a>(current_node-&gt;blackboard)) {</div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>                <span class="keyword">auto</span> next_blackboard = current_node-&gt;blackboard;</div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>                <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a>-&gt;<a class="code hl_function" href="classaitoolkit_1_1goap_1_1action.html#a8ce9385653c46e068e99677a1d539dea">apply_effects</a>(next_blackboard);</div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>                <span class="keyword">auto</span> next_cost = current_node-&gt;cost + <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a>-&gt;<a class="code hl_function" href="classaitoolkit_1_1goap_1_1action.html#a1f76f484ef4fcee53fd1431ea66f9bfd">cost</a>(current_node-&gt;blackboard);</div>
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span> </div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>                <span class="keywordflow">if</span> (!closed_set.contains(next_blackboard)) {</div>
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>                  open_set.push(std::make_shared&lt;node_type&gt;(node_type{</div>
-<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>                    .blackboard = next_blackboard,</div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>                    .cost = next_cost,</div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>                    .action_taken = <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a>,</div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>                    .parent = current_node</div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>                  }));</div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>                }</div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>              }</div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>            }</div>
-<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>          }</div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>        }</div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>      }</div>
-</div>
-<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span> </div>
-<div class="foldopen" id="foldopen00313" data-start="{" data-end="}">
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1goap_1_1plan.html#a27db2be9b0d74099c6d704d9b8cac4e3">  313</a></span>      <span class="keywordtype">size_t</span> <a class="code hl_function" href="classaitoolkit_1_1goap_1_1plan.html#a27db2be9b0d74099c6d704d9b8cac4e3">size</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>        <span class="keywordflow">return</span> m_actions.size();</div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>      }</div>
-</div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span> </div>
-<div class="foldopen" id="foldopen00320" data-start="{" data-end="}">
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1goap_1_1plan.html#ae4034dd0edcbcf404517790c8605589f">  320</a></span>      <span class="keyword">operator</span> bool()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>        <span class="keywordflow">return</span> !m_actions.empty();</div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>      }</div>
-</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    <span class="keyword">using </span>node_ptr = std::shared_ptr&lt;node_type&gt;;</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span> </div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    <span class="keyword">struct </span>node_compare {</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>      <span class="keywordtype">bool</span> operator()(<span class="keyword">const</span> node_ptr&amp; a, <span class="keyword">const</span> node_ptr&amp; b)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>        <span class="keywordflow">return</span> a-&gt;cost &gt; b-&gt;cost;</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>      }</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    };</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span> </div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    std::priority_queue&lt;node_ptr, std::vector&lt;node_ptr&gt;, node_compare&gt; open_set;</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    std::unordered_set&lt;T&gt; closed_set;</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    open_set.push(std::make_shared&lt;node_type&gt;(node_type{</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>      .blackboard = initital_blackboard,</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>      .cost = 0.0f,</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>      .action_taken = <span class="keyword">nullptr</span>,</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>      .parent = <span class="keyword">nullptr</span></div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    }));</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span> </div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>    <span class="keywordflow">for</span> (</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>      <span class="keywordtype">size_t</span> iteration = 0;</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>      !open_set.empty() &amp;&amp; (max_iterations == 0 || iteration &lt; max_iterations);</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>      ++iteration</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    ) {</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>      <span class="keyword">auto</span> current_node = open_set.top();</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>      open_set.pop();</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span> </div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>      <span class="keywordflow">if</span> (current_node-&gt;blackboard == goal_blackboard) {</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>        <span class="keyword">auto</span> actions = std::queue&lt;action_ptr&lt;T&gt;&gt;{};</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span> </div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>        <span class="keywordflow">while</span> (current_node-&gt;parent != <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>          actions.push(current_node-&gt;action_taken);</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>          current_node = current_node-&gt;parent;</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>        }</div>
 <div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span> </div>
-<div class="foldopen" id="foldopen00327" data-start="{" data-end="}">
-<div class="line"><a id="l00327" name="l00327"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1goap_1_1plan.html#a3aa3a32429080d9ed4e7175d4bc4b793">  327</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="classaitoolkit_1_1goap_1_1plan.html#a3aa3a32429080d9ed4e7175d4bc4b793">run</a>(T&amp; blackboard) {</div>
-<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>        <span class="keyword">auto</span> actions = m_actions;</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>        <span class="keywordflow">return</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">plan&lt;T&gt;</a>(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">actions</a>);</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>      }</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span> </div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>      <span class="keywordflow">if</span> (!<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">closed_set</a>.contains(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">current_node</a>-&gt;blackboard)) {</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>        <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">closed_set</a>.insert(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">current_node</a>-&gt;blackboard);</div>
 <div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span> </div>
-<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>        <span class="keywordflow">while</span> (!actions.empty()) {</div>
-<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>          <span class="keyword">auto</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a> = actions.front();</div>
-<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>          actions.pop();</div>
-<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span> </div>
-<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>          <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a>-&gt;<a class="code hl_function" href="classaitoolkit_1_1goap_1_1action.html#a8ce9385653c46e068e99677a1d539dea">apply_effects</a>(blackboard);</div>
-<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>        }</div>
-<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>      }</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a> : <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">actions</a>) {</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>          <span class="keywordflow">if</span> (<a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a>-&gt;<a class="code hl_function" href="classaitoolkit_1_1goap_1_1action.html#aafe509e1947d1100221752f3cb11020d">check_preconditions</a>(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">current_node</a>-&gt;blackboard)) {</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>            <span class="keyword">auto</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">next_blackboard</a> = <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">current_node</a>-&gt;blackboard;</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>            <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a>-&gt;<a class="code hl_function" href="classaitoolkit_1_1goap_1_1action.html#a8ce9385653c46e068e99677a1d539dea">apply_effects</a>(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">next_blackboard</a>);</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>            <span class="keyword">auto</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">next_cost</a> = <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">current_node</a>-&gt;cost + <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a>-&gt;<a class="code hl_function" href="classaitoolkit_1_1goap_1_1action.html#a1f76f484ef4fcee53fd1431ea66f9bfd">cost</a>(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">current_node</a>-&gt;blackboard);</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span> </div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>            <span class="keywordflow">if</span> (!<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">closed_set</a>.contains(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">next_blackboard</a>)) {</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>              <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">open_set</a>.push(std::make_shared&lt;node_type&gt;(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">node_type</a>{</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>                .blackboard = <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">next_blackboard</a>,</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>                .cost = <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">next_cost</a>,</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>                .action_taken = <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a>,</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>                .parent = <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">current_node</a></div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>              }));</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>            }</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>          }</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>        }</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>      }</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    }</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span> </div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>    <span class="keywordflow">return</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">plan&lt;T&gt;</a>(std::queue&lt;<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">action_ptr&lt;T&gt;</a>&gt;{});</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>  }</div>
 </div>
-<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span> </div>
-<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>      std::queue&lt;action_ptr&lt;T&gt;&gt; m_actions;</div>
-<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>  };</div>
-</div>
-<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>}</div>
-<div class="ttc" id="aclassaitoolkit_1_1goap_1_1action_html"><div class="ttname"><a href="classaitoolkit_1_1goap_1_1action.html">aitoolkit::goap::action</a></div><div class="ttdoc">An action that can be performed on a blackboard.</div><div class="ttdef"><b>Definition</b> goap.hpp:189</div></div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>}</div>
+<div class="ttc" id="aclassaitoolkit_1_1goap_1_1action_html"><div class="ttname"><a href="classaitoolkit_1_1goap_1_1action.html">aitoolkit::goap::action</a></div><div class="ttdoc">An action that can be performed on a blackboard.</div><div class="ttdef"><b>Definition</b> goap.hpp:195</div></div>
 <div class="ttc" id="aclassaitoolkit_1_1goap_1_1action_html_a1f76f484ef4fcee53fd1431ea66f9bfd"><div class="ttname"><a href="classaitoolkit_1_1goap_1_1action.html#a1f76f484ef4fcee53fd1431ea66f9bfd">aitoolkit::goap::action::cost</a></div><div class="ttdeci">virtual float cost(const T &amp;blackboard) const =0</div><div class="ttdoc">The cost of performing this action.</div></div>
 <div class="ttc" id="aclassaitoolkit_1_1goap_1_1action_html_a8ce9385653c46e068e99677a1d539dea"><div class="ttname"><a href="classaitoolkit_1_1goap_1_1action.html#a8ce9385653c46e068e99677a1d539dea">aitoolkit::goap::action::apply_effects</a></div><div class="ttdeci">virtual void apply_effects(T &amp;blackboard) const =0</div><div class="ttdoc">Apply the effects of this action to the blackboard.</div></div>
 <div class="ttc" id="aclassaitoolkit_1_1goap_1_1action_html_aafe509e1947d1100221752f3cb11020d"><div class="ttname"><a href="classaitoolkit_1_1goap_1_1action.html#aafe509e1947d1100221752f3cb11020d">aitoolkit::goap::action::check_preconditions</a></div><div class="ttdeci">virtual bool check_preconditions(const T &amp;blackboard) const =0</div><div class="ttdoc">Check if the preconditions for this action are met.</div></div>
 <div class="ttc" id="aclassaitoolkit_1_1goap_1_1plan_html"><div class="ttname"><a href="classaitoolkit_1_1goap_1_1plan.html">aitoolkit::goap::plan</a></div><div class="ttdoc">A plan is a sequence of actions that will lead to a goal state.</div><div class="ttdef"><b>Definition</b> goap.hpp:227</div></div>
-<div class="ttc" id="aclassaitoolkit_1_1goap_1_1plan_html_a27db2be9b0d74099c6d704d9b8cac4e3"><div class="ttname"><a href="classaitoolkit_1_1goap_1_1plan.html#a27db2be9b0d74099c6d704d9b8cac4e3">aitoolkit::goap::plan::size</a></div><div class="ttdeci">size_t size() const</div><div class="ttdoc">Get the number of actions in the plan.</div><div class="ttdef"><b>Definition</b> goap.hpp:313</div></div>
-<div class="ttc" id="aclassaitoolkit_1_1goap_1_1plan_html_a3aa3a32429080d9ed4e7175d4bc4b793"><div class="ttname"><a href="classaitoolkit_1_1goap_1_1plan.html#a3aa3a32429080d9ed4e7175d4bc4b793">aitoolkit::goap::plan::run</a></div><div class="ttdeci">void run(T &amp;blackboard)</div><div class="ttdoc">Run the plan on a blackboard.</div><div class="ttdef"><b>Definition</b> goap.hpp:327</div></div>
-<div class="ttc" id="aclassaitoolkit_1_1goap_1_1plan_html_a5073941d5bd12e3dd441551422a8ef15"><div class="ttname"><a href="classaitoolkit_1_1goap_1_1plan.html#a5073941d5bd12e3dd441551422a8ef15">aitoolkit::goap::plan::plan</a></div><div class="ttdeci">plan(std::vector&lt; action_ptr&lt; T &gt; &gt; actions, T initital_blackboard, T goal_blackboard, size_t max_iterations=0)</div><div class="ttdoc">Create a plan.</div><div class="ttdef"><b>Definition</b> goap.hpp:238</div></div>
-<div class="ttc" id="aconceptaitoolkit_1_1goap_1_1blackboard__trait_html"><div class="ttname"><a href="conceptaitoolkit_1_1goap_1_1blackboard__trait.html">aitoolkit::goap::blackboard_trait</a></div><div class="ttdef"><b>Definition</b> goap.hpp:168</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1goap_1_1plan_html_a27db2be9b0d74099c6d704d9b8cac4e3"><div class="ttname"><a href="classaitoolkit_1_1goap_1_1plan.html#a27db2be9b0d74099c6d704d9b8cac4e3">aitoolkit::goap::plan::size</a></div><div class="ttdeci">size_t size() const</div><div class="ttdoc">Get the number of actions in the plan.</div><div class="ttdef"><b>Definition</b> goap.hpp:234</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1goap_1_1plan_html_a290d73dd20bfce9f42920cf3f5d8d1bd"><div class="ttname"><a href="classaitoolkit_1_1goap_1_1plan.html#a290d73dd20bfce9f42920cf3f5d8d1bd">aitoolkit::goap::plan::run_next</a></div><div class="ttdeci">void run_next(T &amp;blackboard)</div><div class="ttdoc">Execute the next planned action.</div><div class="ttdef"><b>Definition</b> goap.hpp:248</div></div>
+<div class="ttc" id="aconceptaitoolkit_1_1goap_1_1blackboard__trait_html"><div class="ttname"><a href="conceptaitoolkit_1_1goap_1_1blackboard__trait.html">aitoolkit::goap::blackboard_trait</a></div><div class="ttdef"><b>Definition</b> goap.hpp:174</div></div>
+<div class="ttc" id="agroup__goap_html_ga35648cbd38e1da9f152a433185f9b32c"><div class="ttname"><a href="group__goap.html#ga35648cbd38e1da9f152a433185f9b32c">aitoolkit::goap::planner</a></div><div class="ttdeci">plan&lt; T &gt; planner(std::vector&lt; action_ptr&lt; T &gt; &gt; actions, T initital_blackboard, T goal_blackboard, size_t max_iterations=0)</div><div class="ttdoc">Create a plan.</div><div class="ttdef"><b>Definition</b> goap.hpp:276</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
