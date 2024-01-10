@@ -165,7 +165,7 @@ Usage</h2>
 <div class="line">      <span class="keywordflow">return</span> !<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>.has_axe;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">void</span> apply_effects(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>)<span class="keyword"> const override </span>{</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">void</span> apply_effects(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>, <span class="keywordtype">bool</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">dry_run</a>)<span class="keyword"> const override </span>{</div>
 <div class="line">      <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>.has_axe = <span class="keyword">true</span>;</div>
 <div class="line">    }</div>
 <div class="line">};</div>
@@ -180,7 +180,7 @@ Usage</h2>
 <div class="line">      <span class="keywordflow">return</span> !<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>.has_pickaxe;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">void</span> apply_effects(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>)<span class="keyword"> const override </span>{</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">void</span> apply_effects(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>, <span class="keywordtype">bool</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">dry_run</a>)<span class="keyword"> const override </span>{</div>
 <div class="line">      <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>.has_pickaxe = <span class="keyword">true</span>;</div>
 <div class="line">    }</div>
 <div class="line">};</div>
@@ -195,7 +195,7 @@ Usage</h2>
 <div class="line">      <span class="keywordflow">return</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>.has_axe;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">void</span> apply_effects(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>)<span class="keyword"> const override </span>{</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">void</span> apply_effects(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>, <span class="keywordtype">bool</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">dry_run</a>)<span class="keyword"> const override </span>{</div>
 <div class="line">      <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>.wood += 1;</div>
 <div class="line">    }</div>
 <div class="line">};</div>
@@ -210,7 +210,7 @@ Usage</h2>
 <div class="line">      <span class="keywordflow">return</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>.has_pickaxe;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">void</span> apply_effects(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>)<span class="keyword"> const override </span>{</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">void</span> apply_effects(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>, <span class="keywordtype">bool</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">dry_run</a>)<span class="keyword"> const override </span>{</div>
 <div class="line">      <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>.gold += 1;</div>
 <div class="line">    }</div>
 <div class="line">};</div>
@@ -225,7 +225,7 @@ Usage</h2>
 <div class="line">      <span class="keywordflow">return</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>.has_pickaxe;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">void</span> apply_effects(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>)<span class="keyword"> const override </span>{</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">void</span> apply_effects(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>, <span class="keywordtype">bool</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">dry_run</a>)<span class="keyword"> const override </span>{</div>
 <div class="line">      <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>.stone += 1;</div>
 <div class="line">    }</div>
 <div class="line">};</div>
