@@ -152,7 +152,10 @@ Usage</h2>
 <div class="line">  <span class="keywordtype">int</span> gold{0};</div>
 <div class="line">  <span class="keywordtype">int</span> stone{0};</div>
 <div class="line">};</div>
-</div><!-- fragment --><p>Next, create a class for each action that you want to be able to perform:</p>
+</div><!-- fragment --><blockquote class="doxtable">
+<p>&zwj;<b>NB:</b> The blackboard needs to be comparable (<code>a == b</code>) and hashable. </p>
+</blockquote>
+<p>Next, create a class for each action that you want to be able to perform:</p>
 <div class="fragment"><div class="line"><span class="keyword">using namespace </span>aitoolkit::goap;</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">class </span><a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">get_axe</a> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">final</a> : <span class="keyword">public</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a>&lt;blackboard_type&gt; {</div>
@@ -229,8 +232,8 @@ Usage</h2>
 <div class="line">      <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>.stone += 1;</div>
 <div class="line">    }</div>
 <div class="line">};</div>
-<div class="ttc" id="aclassaitoolkit_1_1goap_1_1action_html"><div class="ttname"><a href="classaitoolkit_1_1goap_1_1action.html">aitoolkit::goap::action</a></div><div class="ttdoc">An action that can be performed on a blackboard.</div><div class="ttdef"><b>Definition</b> goap.hpp:195</div></div>
-<div class="ttc" id="aclassaitoolkit_1_1goap_1_1plan_html"><div class="ttname"><a href="classaitoolkit_1_1goap_1_1plan.html">aitoolkit::goap::plan</a></div><div class="ttdoc">A plan is a sequence of actions that will lead to a goal state.</div><div class="ttdef"><b>Definition</b> goap.hpp:227</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1goap_1_1action_html"><div class="ttname"><a href="classaitoolkit_1_1goap_1_1action.html">aitoolkit::goap::action</a></div><div class="ttdoc">An action that can be performed on a blackboard.</div><div class="ttdef"><b>Definition</b> goap.hpp:197</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1goap_1_1plan_html"><div class="ttname"><a href="classaitoolkit_1_1goap_1_1plan.html">aitoolkit::goap::plan</a></div><div class="ttdoc">A plan is a sequence of actions that will lead to a goal state.</div><div class="ttdef"><b>Definition</b> goap.hpp:229</div></div>
 </div><!-- fragment --><p>Finally, create a plan and run it:</p>
 <div class="fragment"><div class="line"><span class="keyword">auto</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">actions</a> = std::vector&lt;action_ptr&lt;blackboard_type&gt;&gt;{</div>
 <div class="line">  std::make_shared&lt;get_axe&gt;(),</div>
@@ -254,7 +257,7 @@ Usage</h2>
 <div class="line"><span class="keywordflow">while</span> (<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">p</a>) {</div>
 <div class="line">  <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">p</a>.<a class="code hl_function" href="classaitoolkit_1_1goap_1_1plan.html#a290d73dd20bfce9f42920cf3f5d8d1bd">run_next</a>(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>); <span class="comment">// will mutate the blackboard</span></div>
 <div class="line">}</div>
-<div class="ttc" id="aclassaitoolkit_1_1goap_1_1plan_html_a290d73dd20bfce9f42920cf3f5d8d1bd"><div class="ttname"><a href="classaitoolkit_1_1goap_1_1plan.html#a290d73dd20bfce9f42920cf3f5d8d1bd">aitoolkit::goap::plan::run_next</a></div><div class="ttdeci">void run_next(T &amp;blackboard)</div><div class="ttdoc">Execute the next planned action.</div><div class="ttdef"><b>Definition</b> goap.hpp:248</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1goap_1_1plan_html_a290d73dd20bfce9f42920cf3f5d8d1bd"><div class="ttname"><a href="classaitoolkit_1_1goap_1_1plan.html#a290d73dd20bfce9f42920cf3f5d8d1bd">aitoolkit::goap::plan::run_next</a></div><div class="ttdeci">void run_next(T &amp;blackboard)</div><div class="ttdoc">Execute the next planned action.</div><div class="ttdef"><b>Definition</b> goap.hpp:250</div></div>
 </div><!-- fragment --> <h2 class="groupheader">Function Documentation</h2>
 <a id="ga35648cbd38e1da9f152a433185f9b32c" name="ga35648cbd38e1da9f152a433185f9b32c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga35648cbd38e1da9f152a433185f9b32c">&#9670;&#160;</a></span>planner()</h2>
