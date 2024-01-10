@@ -50,6 +50,8 @@ struct blackboard_type {
 };
 ```
 
+> **NB:** The blackboard needs to be comparable (`a == b`) and hashable.
+
 Next, create a class for each action that you want to be able to perform:
 
 ```cpp
