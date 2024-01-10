@@ -65,7 +65,7 @@ class get_axe final : public action<blackboard_type> {
       return !blackboard.has_axe;
     }
 
-    virtual void apply_effects(blackboard_type& blackboard) const override {
+    virtual void apply_effects(blackboard_type& blackboard, bool dry_run) const override {
       blackboard.has_axe = true;
     }
 };
@@ -80,7 +80,7 @@ class get_pickaxe final : public action<blackboard_type> {
       return !blackboard.has_pickaxe;
     }
 
-    virtual void apply_effects(blackboard_type& blackboard) const override {
+    virtual void apply_effects(blackboard_type& blackboard, bool dry_run) const override {
       blackboard.has_pickaxe = true;
     }
 };
@@ -95,7 +95,7 @@ class chop_tree final : public action<blackboard_type> {
       return blackboard.has_axe;
     }
 
-    virtual void apply_effects(blackboard_type& blackboard) const override {
+    virtual void apply_effects(blackboard_type& blackboard, bool dry_run) const override {
       blackboard.wood += 1;
     }
 };
@@ -110,7 +110,7 @@ class mine_gold final : public action<blackboard_type> {
       return blackboard.has_pickaxe;
     }
 
-    virtual void apply_effects(blackboard_type& blackboard) const override {
+    virtual void apply_effects(blackboard_type& blackboard, bool dry_run) const override {
       blackboard.gold += 1;
     }
 };
@@ -125,7 +125,7 @@ class mine_stone final : public action<blackboard_type> {
       return blackboard.has_pickaxe;
     }
 
-    virtual void apply_effects(blackboard_type& blackboard) const override {
+    virtual void apply_effects(blackboard_type& blackboard, bool dry_run) const override {
       blackboard.stone += 1;
     }
 };
@@ -209,7 +209,7 @@ namespace aitoolkit::goap {
       /**
        * @brief Apply the effects of this action to the blackboard.
        */
-      virtual void apply_effects(T& blackboard) const = 0;
+      virtual void apply_effects(T& blackboard, bool dry_run) const = 0;
   };
 
   /**
@@ -249,7 +249,7 @@ namespace aitoolkit::goap {
         if (!m_actions.empty()) {
           auto action = m_actions.front();
           m_actions.pop();
-          action->apply_effects(blackboard);
+          action->apply_effects(blackboard, false);
         }
       }
 
@@ -330,7 +330,7 @@ namespace aitoolkit::goap {
         for (auto& action : actions) {
           if (action->check_preconditions(current_node->blackboard)) {
             auto next_blackboard = current_node->blackboard;
-            action->apply_effects(next_blackboard);
+            action->apply_effects(next_blackboard, true);
             auto next_cost = current_node->cost + action->cost(current_node->blackboard);
 
             if (!closed_set.contains(next_blackboard)) {

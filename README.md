@@ -269,7 +269,7 @@ class get_axe final : public action<blackboard_type> {
       return !blackboard.has_axe;
     }
 
-    virtual void apply_effects(blackboard_type& blackboard) const override {
+    virtual void apply_effects(blackboard_type& blackboard, bool dry_run) const override {
       blackboard.has_axe = true;
     }
 };
@@ -284,7 +284,7 @@ class chop_tree final : public action<blackboard_type> {
       return blackboard.has_axe;
     }
 
-    virtual void apply_effects(blackboard_type& blackboard) const override {
+    virtual void apply_effects(blackboard_type& blackboard, bool dry_run) const override {
       blackboard.wood += 1;
     }
 };

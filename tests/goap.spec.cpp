@@ -46,7 +46,7 @@ class chop_wood final : public action<blackboard_type> {
       return true;
     }
 
-    virtual void apply_effects(blackboard_type& blackboard) const override {
+    virtual void apply_effects(blackboard_type& blackboard, bool dry_run) const override {
       blackboard.wood += 1;
     }
 };
@@ -64,7 +64,7 @@ class build_storage final : public action<blackboard_type> {
       );
     }
 
-    virtual void apply_effects(blackboard_type& blackboard) const override {
+    virtual void apply_effects(blackboard_type& blackboard, bool dry_run) const override {
       blackboard.have_storage = true;
       blackboard.wood -= 10;
     }
@@ -80,7 +80,7 @@ class gather_food final : public action<blackboard_type> {
       return blackboard.have_storage;
     }
 
-    virtual void apply_effects(blackboard_type& blackboard) const override {
+    virtual void apply_effects(blackboard_type& blackboard, bool dry_run) const override {
       blackboard.food += 1;
     }
 };
@@ -95,7 +95,7 @@ class mine_gold final : public action<blackboard_type> {
       return blackboard.have_storage;
     }
 
-    virtual void apply_effects(blackboard_type& blackboard) const override {
+    virtual void apply_effects(blackboard_type& blackboard, bool dry_run) const override {
       blackboard.gold += 1;
     }
 };
@@ -110,7 +110,7 @@ class mine_stone final : public action<blackboard_type> {
       return blackboard.have_storage;
     }
 
-    virtual void apply_effects(blackboard_type& blackboard) const override {
+    virtual void apply_effects(blackboard_type& blackboard, bool dry_run) const override {
       blackboard.stone += 1;
     }
 };
