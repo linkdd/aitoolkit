@@ -136,13 +136,6 @@ class mine_stone final : public action<blackboard_type> {
 Finally, create a plan and run it:
 
 ```cpp
-auto actions = std::vector<action_ptr<blackboard_type>>{
-  std::make_shared<get_axe>(),
-  std::make_shared<get_pickaxe>(),
-  std::make_shared<chop_tree>(),
-  std::make_shared<mine_gold>(),
-  std::make_shared<mine_stone>()
-};
 auto initial = blackboard_type{};
 auto goal = blackboard_type{
   .has_axe = true,
@@ -152,7 +145,17 @@ auto goal = blackboard_type{
   .stone = 1
 };
 
-auto p = planner<blackboard_type>(actions, initial, goal);
+auto p = planner<blackboard_type>(
+  action_list<blackboard_type>(
+    get_axe{},
+    get_pickaxe{},
+    chop_tree{},
+    mine_gold{},
+    mine_stone{}
+  )
+  initial,
+  goal
+);
 
 auto blackboard = initial;
 while (p) {
@@ -164,6 +167,7 @@ while (p) {
 #include <unordered_set>
 #include <functional>
 #include <coroutine>
+#include <optional>
 #include <memory>
 #include <vector>
 #include <queue>
@@ -218,7 +222,18 @@ namespace aitoolkit::goap {
    * @brief Heeap allocated pointer to an action.
   */
   template <blackboard_trait T>
-  using action_ptr = std::shared_ptr<action<T>>;
+  using action_ptr = std::unique_ptr<action<T>>;
+
+  template <typename A, typename T>
+  concept action_trait = std::derived_from<A, action<T>>;
+
+  template <blackboard_trait T, action_trait<T>... Actions>
+  std::vector<action_ptr<T>> action_list(Actions... actions) {
+    auto action_list = std::vector<action_ptr<T>>{};
+    action_list.reserve(sizeof...(Actions));
+    (action_list.push_back(std::make_unique<Actions>(std::move(actions))), ...);
+    return action_list;
+  }
 
   /**
    * @ingroup goap
@@ -228,35 +243,45 @@ namespace aitoolkit::goap {
   template <blackboard_trait T>
   class plan {
     public:
-      plan(std::queue<action_ptr<T>> actions) : m_actions(actions) {}
+      plan() = default;
 
       /**
        * @brief Get the number of actions in the plan.
        */
       size_t size() const {
-        return m_actions.size();
+        return m_plan.size();
       }
 
       /**
        * @brief Check if the plan is empty.
        */
       operator bool() const {
-        return !m_actions.empty();
+        return !m_plan.empty();
       }
 
       /**
        * @brief Execute the next planned action.
        */
       void run_next(T& blackboard) {
-        if (!m_actions.empty()) {
-          auto action = m_actions.front();
-          m_actions.pop();
+        if (!m_plan.empty()) {
+          auto action_idx = m_plan.front();
+          m_plan.pop();
+
+          auto& action = m_actions[action_idx];
           action->apply_effects(blackboard, false);
         }
       }
 
     private:
-      std::queue<action_ptr<T>> m_actions;
+      std::queue<size_t> m_plan;
+      std::vector<action_ptr<T>> m_actions;
+
+      friend plan<T> planner<T>(
+        std::vector<action_ptr<T>> actions,
+        T initital_blackboard,
+        T goal_blackboard,
+        size_t max_iterations
+      );
   };
 
   /**
@@ -285,7 +310,7 @@ namespace aitoolkit::goap {
       T blackboard;
       float cost;
 
-      action_ptr<T> action_taken;
+      std::optional<size_t> action_taken_idx;
       std::shared_ptr<node_type> parent;
     };
 
@@ -303,7 +328,7 @@ namespace aitoolkit::goap {
     open_set.push(std::make_shared<node_type>(node_type{
       .blackboard = initital_blackboard,
       .cost = 0.0f,
-      .action_taken = nullptr,
+      .action_taken_idx = std::nullopt,
       .parent = nullptr
     }));
 
@@ -316,20 +341,24 @@ namespace aitoolkit::goap {
       open_set.pop();
 
       if (current_node->blackboard == goal_blackboard) {
-        auto actions = std::queue<action_ptr<T>>{};
+        auto p = plan<T>();
+        p.m_actions = std::move(actions);
 
         while (current_node->parent != nullptr) {
-          actions.push(current_node->action_taken);
+          auto action_idx = current_node->action_taken_idx.value();
+          p.m_plan.push(action_idx);
           current_node = current_node->parent;
         }
 
-        return plan<T>(actions);
+        return p;
       }
 
       if (!closed_set.contains(current_node->blackboard)) {
         closed_set.insert(current_node->blackboard);
 
-        for (auto& action : actions) {
+        for (size_t action_idx = 0; action_idx < actions.size(); action_idx++) {
+          auto& action = actions[action_idx];
+
           if (action->check_preconditions(current_node->blackboard)) {
             auto next_blackboard = current_node->blackboard;
             action->apply_effects(next_blackboard, true);
@@ -339,7 +368,7 @@ namespace aitoolkit::goap {
               open_set.push(std::make_shared<node_type>(node_type{
                 .blackboard = next_blackboard,
                 .cost = next_cost,
-                .action_taken = action,
+                .action_taken_idx = action_idx,
                 .parent = current_node
               }));
             }
@@ -348,6 +377,6 @@ namespace aitoolkit::goap {
       }
     }
 
-    return plan<T>(std::queue<action_ptr<T>>{});
+    return plan<T>();
   }
 }
