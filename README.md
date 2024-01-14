@@ -87,7 +87,7 @@ Create your simple state machine:
 auto simple_bb = blackboard_type{};
 auto simple_fsm = simple_machine<blackboard_type>();
 
-simple_fsm.set_state(std::make_shared<state_dummy>(), simple_bb);
+simple_fsm.set_state(state_dummy{}, simple_bb);
 simple_fsm.pause(simple_bb);
 simple_fsm.resume(simple_bb);
 simple_fsm.update(simple_bb);
@@ -99,8 +99,8 @@ Or with a stack state machine:
 auto stack_bb = blackboard_type{};
 auto stack_fsm = stack_machine<blackboard_type>{};
 
-stack_fsm.push_state(std::make_shared<state_dummy>(), stack_bb);
-stack_fsm.push_state(std::make_shared<state_dummy>(), stack_bb);
+stack_fsm.push_state(state_dummy{}, stack_bb);
+stack_fsm.push_state(state_dummy{}, stack_bb);
 
 stack_fsm.update(stack_bb);
 
@@ -129,16 +129,18 @@ struct blackboard_type {
 Then, create your tree:
 
 ```cpp
-auto tree = seq<blackboard_type>::make({
-  check<blackboard_type>::make([](const blackboard_type& bb) {
-    // check some condition
-    return true;
-  }),
-  task<blackboard_type>::make([](blackboard_type& bb) {
-    // perform some action
-    return execution_state::success;
-  })
-});
+auto tree = seq<blackboard_type>(
+  node_list<blackboard_type>(
+    check<blackboard_type>([](const blackboard_type& bb) {
+      // check some condition
+      return true;
+    }),
+    task<blackboard_type>([](blackboard_type& bb) {
+      // perform some action
+      return execution_state::success;
+    })
+  )
+);
 ```
 
 Finally, evaluate it:
@@ -148,7 +150,7 @@ auto blackboard = blackboard_type{
   // ...
 };
 
-auto state = tree->evaluate(blackboard);
+auto state = tree.evaluate(blackboard);
 ```
 
 For more informations, consult the
@@ -226,12 +228,14 @@ class collect_gold final : public action<blackboard_type> {
 Finally, create an evaluator and run it:
 
 ```cpp
-auto evaluator = evaluator<blackboard_type>{
-  std::make_shared<collect_food>(),
-  std::make_shared<collect_wood>(),
-  std::make_shared<collect_stone>(),
-  std::make_shared<collect_gold>()
-};
+auto evaluator = evaluator<blackboard_type>(
+  action_list<blackboard_type>(
+    collect_food{},
+    collect_wood{},
+    collect_stone{},
+    collect_gold{}
+  )
+);
 
 auto blackboard = blackboard_type{};
 evaluator.run(blackboard);
@@ -295,17 +299,20 @@ class chop_tree final : public action<blackboard_type> {
 Finally, create a plan and run it:
 
 ```cpp
-auto actions = std::vector<action_ptr<blackboard_type>>{
-  std::make_shared<get_axe>(),
-  std::make_shared<chop_tree>()
-};
 auto initial = blackboard_type{};
 auto goal = blackboard_type{
   .has_axe = true,
   .wood = 3
 };
 
-auto p = planner<blackboard_type>(actions, initial, goal);
+auto p = planner<blackboard_type>(
+  action_list<blackboard_type>(
+    get_axe{},
+    chop_tree{}
+  ),
+  initial,
+  goal
+);
 
 auto blackboard = initial;
 while (p) {

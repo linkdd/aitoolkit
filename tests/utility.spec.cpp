@@ -14,13 +14,8 @@ struct blackboard_type {
 };
 
 TEST_CASE("utility evaluator") {
-
   class action_a final : public action<blackboard_type> {
     public:
-      static action_ptr<blackboard_type> make() {
-        return std::make_shared<action_a>();
-      }
-
       virtual float score(const blackboard_type& blackboard) const override {
         return 1.0f;
       }
@@ -32,10 +27,6 @@ TEST_CASE("utility evaluator") {
 
   class action_b final : public action<blackboard_type> {
     public:
-      static action_ptr<blackboard_type> make() {
-        return std::make_shared<action_b>();
-      }
-
       virtual float score(const blackboard_type& blackboard) const override {
         return 2.0f;
       }
@@ -47,10 +38,6 @@ TEST_CASE("utility evaluator") {
 
   class action_c final : public action<blackboard_type> {
     public:
-      static action_ptr<blackboard_type> make() {
-        return std::make_shared<action_c>();
-      }
-
       virtual float score(const blackboard_type& blackboard) const override {
         return 3.0f;
       }
@@ -62,11 +49,13 @@ TEST_CASE("utility evaluator") {
 
   SUBCASE("evaluator runs action with highest score") {
     blackboard_type blackboard;
-    auto machine = evaluator<blackboard_type>{
-      action_a::make(),
-      action_b::make(),
-      action_c::make(),
-    };
+    auto machine = evaluator<blackboard_type>(
+      action_list<blackboard_type>(
+        action_a{},
+        action_b{},
+        action_c{}
+      )
+    );
 
     machine.run(blackboard);
 
