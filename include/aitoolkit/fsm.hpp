@@ -71,7 +71,7 @@ auto machine = simple_machine<blackboard_type>{};
 To transition to a new state, call `set_state()`:
 
 ```cpp
-machine.set_state(std::make_shared<state_dummy>(), blackboard);
+machine.set_state(state_dummy{}, blackboard);
 ```
 
 > **NB:**
@@ -108,10 +108,10 @@ machine.update(blackboard);
 >  - this will call the `update` method of the current state (if any)
 >  - if the machine is paused, calling `update()` will do nothing
 
-To clear any state, call `set_state()` with a `nullptr`:
+To clear any state, call `clear_state()`:
 
 ```cpp
-machine.set_state(nullptr, blackboard);
+machine.clear_state(blackboard);
 ```
 
 > **NB:** This will call the `exit` method of the current state (if any).
@@ -129,7 +129,7 @@ auto machine = stack_machine<blackboard_type>{};
 To push a new state onto the stack, call `push_state()`:
 
 ```cpp
-machine.push_state(std::make_shared<state_dummy>(), blackboard);
+machine.push_state(state_dummy{}, blackboard);
 ```
 
 > **NB:** This will call the `pause` method of the current state (if any) and
@@ -156,6 +156,9 @@ machine.update(blackboard);
 #include <memory>
 #include <vector>
 
+#include <type_traits>
+#include <concepts>
+
 namespace aitoolkit::fsm {
   /**
    * @ingroup fsm
@@ -181,7 +184,10 @@ namespace aitoolkit::fsm {
    * @brief Heap-allocated pointer to a state.
    */
   template <typename T>
-  using state_ptr = std::shared_ptr<state<T>>;
+  using state_ptr = std::unique_ptr<state<T>>;
+
+  template <typename S, typename T>
+  concept state_trait = std::derived_from<S, state<T>>;
 
   /**
    * @ingroup fsm
@@ -194,19 +200,27 @@ namespace aitoolkit::fsm {
       /**
        * @brief Enters in a new state, exiting the previous one (if any).
        */
-      void set_state(state_ptr<T> state, T& blackboard) {
+      template <state_trait<T> S>
+      void set_state(S state, T& blackboard) {
         if (m_current_state) {
           m_current_state->exit(blackboard);
         }
 
-        m_current_state = state;
+        m_current_state = std::make_unique<S>(state);
+        m_current_state->enter(blackboard);
 
+        if (m_paused) {
+          m_current_state->pause(blackboard);
+        }
+      }
+
+      /**
+       * @brief Clear the current state.
+       */
+      void clear_state(T& blackboard) {
         if (m_current_state) {
-          m_current_state->enter(blackboard);
-
-          if (m_paused) {
-            m_current_state->pause(blackboard);
-          }
+          m_current_state->exit(blackboard);
+          m_current_state = nullptr;
         }
       }
 
@@ -261,16 +275,15 @@ namespace aitoolkit::fsm {
       /**
        * @brief Enters in a new state, pausing the previous one (if any).
       */
-      void push_state(state_ptr<T> state, T& blackboard) {
+      template <state_trait<T> S>
+      void push_state(S state, T& blackboard) {
         if (!m_state_stack.empty()) {
-          auto current_state = m_state_stack.back();
+          auto& current_state = m_state_stack.back();
           current_state->pause(blackboard);
         }
 
-        if (state) {
-          state->enter(blackboard);
-          m_state_stack.push_back(state);
-        }
+        state.enter(blackboard);
+        m_state_stack.push_back(std::make_unique<S>(state));
       }
 
       /**
@@ -278,13 +291,13 @@ namespace aitoolkit::fsm {
        */
       void pop_state(T& blackboard) {
         if (!m_state_stack.empty()) {
-          auto current_state = m_state_stack.back();
+          auto& current_state = m_state_stack.back();
           current_state->exit(blackboard);
           m_state_stack.pop_back();
         }
 
         if (!m_state_stack.empty()) {
-          auto current_state = m_state_stack.back();
+          auto& current_state = m_state_stack.back();
           current_state->resume(blackboard);
         }
       }
@@ -294,7 +307,7 @@ namespace aitoolkit::fsm {
        */
       void update(T& blackboard) {
         if (!m_state_stack.empty()) {
-          auto current_state = m_state_stack.back();
+          auto& current_state = m_state_stack.back();
           current_state->update(blackboard);
         }
       }
