@@ -97,11 +97,13 @@ class collect_gold final : public action<blackboard_type> {
 Finally, create an evaluator and run it:
 
 ```cpp
-auto evaluator = evaluator<blackboard_type>{
-  std::make_shared<collect_food>(),
-  std::make_shared<collect_wood>(),
-  std::make_shared<collect_stone>(),
-  std::make_shared<collect_gold>()
+auto evaluator = evaluator<blackboard_type>(
+  action_list<blackboard_type>(
+    collect_food{},
+    collect_wood{},
+    collect_stone{},
+    collect_gol{}
+  )
 };
 
 auto blackboard = blackboard_type{};
@@ -109,10 +111,12 @@ evaluator.run(blackboard);
 ```
 */
 
-#include <initializer_list>
 #include <memory>
 #include <vector>
 #include <limits>
+
+#include <type_traits>
+#include <concepts>
 
 namespace aitoolkit::utility {
   /**
@@ -141,7 +145,22 @@ namespace aitoolkit::utility {
    * @brief Heap allocated pointer to an action.
    */
   template <typename T>
-  using action_ptr = std::shared_ptr<action<T>>;
+  using action_ptr = std::unique_ptr<action<T>>;
+
+  template <typename A, typename T>
+  concept action_trait = std::derived_from<A, action<T>>;
+
+  /**
+   * @ingroup utility
+   * @brief Helper function to create a list of actions
+   */
+  template <typename T, action_trait<T> ...Actions>
+  std::vector<action_ptr<T>> action_list(Actions&&... actions) {
+    auto actions_list = std::vector<action_ptr<T>>{};
+    actions_list.reserve(sizeof...(Actions));
+    (actions_list.push_back(std::make_unique<Actions>(std::move(actions))), ...);
+    return actions_list;
+  }
 
   /**
    * @ingroup utility
@@ -154,12 +173,7 @@ namespace aitoolkit::utility {
       /**
        * @brief Construct an evaluator from a list of actions
        */
-      evaluator(std::initializer_list<action_ptr<T>> actions) {
-        m_actions.reserve(actions.size());
-        for (auto action : actions) {
-          m_actions.push_back(action);
-        }
-      }
+      evaluator(std::vector<action_ptr<T>> actions) : m_actions(std::move(actions)) {}
 
       /**
        * @brief Find the best action and apply it to the blackboard
@@ -170,13 +184,13 @@ namespace aitoolkit::utility {
         }
 
         auto best_score = std::numeric_limits<float>::min();
-        auto best_action = m_actions.front();
+        auto best_action = m_actions.front().get();
 
         for (auto& action : m_actions) {
           auto score = action->score(blackboard);
           if (score > best_score) {
             best_score = score;
-            best_action = action;
+            best_action = action.get();
           }
         }
 
