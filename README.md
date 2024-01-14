@@ -87,7 +87,7 @@ Create your simple state machine:
 auto simple_bb = blackboard_type{};
 auto simple_fsm = simple_machine<blackboard_type>();
 
-simple_fsm.set_state(std::make_shared<state_dummy>(), simple_bb);
+simple_fsm.set_state(state_dummy{}, simple_bb);
 simple_fsm.pause(simple_bb);
 simple_fsm.resume(simple_bb);
 simple_fsm.update(simple_bb);
@@ -99,8 +99,8 @@ Or with a stack state machine:
 auto stack_bb = blackboard_type{};
 auto stack_fsm = stack_machine<blackboard_type>{};
 
-stack_fsm.push_state(std::make_shared<state_dummy>(), stack_bb);
-stack_fsm.push_state(std::make_shared<state_dummy>(), stack_bb);
+stack_fsm.push_state(state_dummy{}, stack_bb);
+stack_fsm.push_state(state_dummy{}, stack_bb);
 
 stack_fsm.update(stack_bb);
 

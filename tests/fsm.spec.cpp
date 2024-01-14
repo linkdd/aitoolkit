@@ -44,7 +44,7 @@ TEST_CASE("fsm simple machine") {
   auto blackboard = blackboard_type{};
   auto fsm = simple_machine<blackboard_type>{};
 
-  fsm.set_state(std::make_shared<state_dummy>(1), blackboard);
+  fsm.set_state(state_dummy{1}, blackboard);
   CHECK(blackboard.enter == 1);
 
   fsm.pause(blackboard);
@@ -56,15 +56,15 @@ TEST_CASE("fsm simple machine") {
   fsm.update(blackboard);
   CHECK(blackboard.update == 1);
 
-  fsm.set_state(std::make_shared<state_dummy>(2), blackboard);
+  fsm.set_state(state_dummy{2}, blackboard);
   CHECK(blackboard.exit == 1);
   CHECK(blackboard.enter == 2);
 
-  fsm.set_state(nullptr, blackboard);
+  fsm.clear_state(blackboard);
   CHECK(blackboard.exit == 2);
 
   fsm.pause(blackboard);
-  fsm.set_state(std::make_shared<state_dummy>(3), blackboard);
+  fsm.set_state(state_dummy{3}, blackboard);
   CHECK(blackboard.enter == 3);
   CHECK(blackboard.pause == 3);
 }
@@ -73,10 +73,10 @@ TEST_CASE("fsm stack machine") {
   auto blackboard = blackboard_type{};
   auto fsm = stack_machine<blackboard_type>{};
 
-  fsm.push_state(std::make_shared<state_dummy>(1), blackboard);
+  fsm.push_state(state_dummy{1}, blackboard);
   CHECK(blackboard.enter == 1);
 
-  fsm.push_state(std::make_shared<state_dummy>(2), blackboard);
+  fsm.push_state(state_dummy{2}, blackboard);
   CHECK(blackboard.enter == 2);
   CHECK(blackboard.pause == 1);
 
