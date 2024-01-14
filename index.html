@@ -153,29 +153,29 @@ Finite State Machine</h2>
 <div class="line">      <span class="comment">// ...</span></div>
 <div class="line">    }</div>
 <div class="line">};</div>
-<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1state_html"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1state.html">aitoolkit::fsm::state</a></div><div class="ttdoc">A state of the FSM.</div><div class="ttdef"><b>Definition</b> fsm.hpp:166</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1state_html"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1state.html">aitoolkit::fsm::state</a></div><div class="ttdoc">A state of the FSM.</div><div class="ttdef"><b>Definition</b> fsm.hpp:169</div></div>
 </div><!-- fragment --><p>Create your simple state machine:</p>
 <div class="fragment"><div class="line"><span class="keyword">auto</span> simple_bb = blackboard_type{};</div>
 <div class="line"><span class="keyword">auto</span> simple_fsm = <a class="code hl_class" href="classaitoolkit_1_1fsm_1_1simple__machine.html">simple_machine&lt;blackboard_type&gt;</a>();</div>
 <div class="line"> </div>
-<div class="line">simple_fsm.set_state(std::make_shared&lt;state_dummy&gt;(), simple_bb);</div>
+<div class="line">simple_fsm.set_state(state_dummy{}, simple_bb);</div>
 <div class="line">simple_fsm.pause(simple_bb);</div>
 <div class="line">simple_fsm.resume(simple_bb);</div>
 <div class="line">simple_fsm.update(simple_bb);</div>
-<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1simple__machine_html"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1simple__machine.html">aitoolkit::fsm::simple_machine</a></div><div class="ttdoc">A simple FSM.</div><div class="ttdef"><b>Definition</b> fsm.hpp:192</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1simple__machine_html"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1simple__machine.html">aitoolkit::fsm::simple_machine</a></div><div class="ttdoc">A simple FSM.</div><div class="ttdef"><b>Definition</b> fsm.hpp:198</div></div>
 </div><!-- fragment --><p>Or with a stack state machine:</p>
 <div class="fragment"><div class="line"><span class="keyword">auto</span> stack_bb = blackboard_type{};</div>
 <div class="line"><span class="keyword">auto</span> stack_fsm = <a class="code hl_class" href="classaitoolkit_1_1fsm_1_1stack__machine.html">stack_machine&lt;blackboard_type&gt;</a>{};</div>
 <div class="line"> </div>
-<div class="line">stack_fsm.<a class="code hl_function" href="classaitoolkit_1_1fsm_1_1stack__machine.html#a34a6b18d339bb8a07e20882f3f572050">push_state</a>(std::make_shared&lt;state_dummy&gt;(), stack_bb);</div>
-<div class="line">stack_fsm.push_state(std::make_shared&lt;state_dummy&gt;(), stack_bb);</div>
+<div class="line">stack_fsm.<a class="code hl_function" href="classaitoolkit_1_1fsm_1_1stack__machine.html#a1f66ddc658747a603e8676158208fc90">push_state</a>(state_dummy{}, stack_bb);</div>
+<div class="line">stack_fsm.push_state(state_dummy{}, stack_bb);</div>
 <div class="line"> </div>
 <div class="line">stack_fsm.update(stack_bb);</div>
 <div class="line"> </div>
 <div class="line">stack_fsm.pop_state(stack_bb);</div>
 <div class="line">stack_fsm.pop_state(stack_bb);</div>
-<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1stack__machine_html"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1stack__machine.html">aitoolkit::fsm::stack_machine</a></div><div class="ttdoc">A stack FSM.</div><div class="ttdef"><b>Definition</b> fsm.hpp:259</div></div>
-<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1stack__machine_html_a34a6b18d339bb8a07e20882f3f572050"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1stack__machine.html#a34a6b18d339bb8a07e20882f3f572050">aitoolkit::fsm::stack_machine::push_state</a></div><div class="ttdeci">void push_state(state_ptr&lt; T &gt; state, T &amp;blackboard)</div><div class="ttdoc">Enters in a new state, pausing the previous one (if any).</div><div class="ttdef"><b>Definition</b> fsm.hpp:264</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1stack__machine_html"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1stack__machine.html">aitoolkit::fsm::stack_machine</a></div><div class="ttdoc">A stack FSM.</div><div class="ttdef"><b>Definition</b> fsm.hpp:273</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1stack__machine_html_a1f66ddc658747a603e8676158208fc90"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1stack__machine.html#a1f66ddc658747a603e8676158208fc90">aitoolkit::fsm::stack_machine::push_state</a></div><div class="ttdeci">void push_state(S state, T &amp;blackboard)</div><div class="ttdoc">Enters in a new state, pausing the previous one (if any).</div><div class="ttdef"><b>Definition</b> fsm.hpp:279</div></div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md14"></a>
 Behavior Tree</h2>
 <p>First, include the header:</p>
@@ -187,25 +187,27 @@ Behavior Tree</h2>
 <div class="line">  <span class="comment">// ...</span></div>
 <div class="line">};</div>
 </div><!-- fragment --><p>Then, create your tree:</p>
-<div class="fragment"><div class="line"><span class="keyword">auto</span> tree = <a class="code hl_class" href="classaitoolkit_1_1bt_1_1seq.html">seq&lt;blackboard_type&gt;::make</a>({</div>
-<div class="line">  <a class="code hl_class" href="classaitoolkit_1_1bt_1_1check.html">check&lt;blackboard_type&gt;::make</a>([](<span class="keyword">const</span> blackboard_type&amp; bb) {</div>
-<div class="line">    <span class="comment">// check some condition</span></div>
-<div class="line">    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line">  }),</div>
-<div class="line">  <a class="code hl_class" href="classaitoolkit_1_1bt_1_1task.html">task&lt;blackboard_type&gt;::make</a>([](blackboard_type&amp; bb) {</div>
-<div class="line">    <span class="comment">// perform some action</span></div>
-<div class="line">    <span class="keywordflow">return</span> execution_state::success;</div>
-<div class="line">  })</div>
-<div class="line">});</div>
-<div class="ttc" id="aclassaitoolkit_1_1bt_1_1check_html"><div class="ttname"><a href="classaitoolkit_1_1bt_1_1check.html">aitoolkit::bt::check</a></div><div class="ttdoc">Check node, will return success if the callback returns true.</div><div class="ttdef"><b>Definition</b> behtree.hpp:266</div></div>
-<div class="ttc" id="aclassaitoolkit_1_1bt_1_1seq_html"><div class="ttname"><a href="classaitoolkit_1_1bt_1_1seq.html">aitoolkit::bt::seq</a></div><div class="ttdoc">Sequence node, will execute all children in order until one fails.</div><div class="ttdef"><b>Definition</b> behtree.hpp:171</div></div>
-<div class="ttc" id="aclassaitoolkit_1_1bt_1_1task_html"><div class="ttname"><a href="classaitoolkit_1_1bt_1_1task.html">aitoolkit::bt::task</a></div><div class="ttdoc">Task node, will execute the callback and return the result.</div><div class="ttdef"><b>Definition</b> behtree.hpp:295</div></div>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> tree = <a class="code hl_class" href="classaitoolkit_1_1bt_1_1seq.html">seq&lt;blackboard_type&gt;</a>(</div>
+<div class="line">  node_list&lt;blackboard_type&gt;(</div>
+<div class="line">    <a class="code hl_class" href="classaitoolkit_1_1bt_1_1check.html">check&lt;blackboard_type&gt;</a>([](<span class="keyword">const</span> blackboard_type&amp; bb) {</div>
+<div class="line">      <span class="comment">// check some condition</span></div>
+<div class="line">      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line">    }),</div>
+<div class="line">    <a class="code hl_class" href="classaitoolkit_1_1bt_1_1task.html">task&lt;blackboard_type&gt;</a>([](blackboard_type&amp; bb) {</div>
+<div class="line">      <span class="comment">// perform some action</span></div>
+<div class="line">      <span class="keywordflow">return</span> execution_state::success;</div>
+<div class="line">    })</div>
+<div class="line">  )</div>
+<div class="line">);</div>
+<div class="ttc" id="aclassaitoolkit_1_1bt_1_1check_html"><div class="ttname"><a href="classaitoolkit_1_1bt_1_1check.html">aitoolkit::bt::check</a></div><div class="ttdoc">Check node, will return success if the callback returns true.</div><div class="ttdef"><b>Definition</b> behtree.hpp:281</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1bt_1_1seq_html"><div class="ttname"><a href="classaitoolkit_1_1bt_1_1seq.html">aitoolkit::bt::seq</a></div><div class="ttdoc">Sequence node, will execute all children in order until one fails.</div><div class="ttdef"><b>Definition</b> behtree.hpp:202</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1bt_1_1task_html"><div class="ttname"><a href="classaitoolkit_1_1bt_1_1task.html">aitoolkit::bt::task</a></div><div class="ttdoc">Task node, will execute the callback and return the result.</div><div class="ttdef"><b>Definition</b> behtree.hpp:306</div></div>
 </div><!-- fragment --><p>Finally, evaluate it:</p>
 <div class="fragment"><div class="line"><span class="keyword">auto</span> blackboard = blackboard_type{</div>
 <div class="line">  <span class="comment">// ...</span></div>
 <div class="line">};</div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">auto</span> <a class="code hl_class" href="classaitoolkit_1_1fsm_1_1state.html">state</a> = tree-&gt;evaluate(blackboard);</div>
+<div class="line"><span class="keyword">auto</span> <a class="code hl_class" href="classaitoolkit_1_1fsm_1_1state.html">state</a> = tree.evaluate(blackboard);</div>
 </div><!-- fragment --><p>For more informations, consult the <a href="https://linkdd.github.io/aitoolkit/group__behtree.html">documentation</a>.</p>
 <h2><a class="anchor" id="autotoc_md15"></a>
 Utility AI</h2>
@@ -264,19 +266,21 @@ Utility AI</h2>
 <div class="line">      blackboard.gold += 1;</div>
 <div class="line">    }</div>
 <div class="line">};</div>
-<div class="ttc" id="aclassaitoolkit_1_1utility_1_1action_html"><div class="ttname"><a href="classaitoolkit_1_1utility_1_1action.html">aitoolkit::utility::action</a></div><div class="ttdoc">Base abstract class for all actions.</div><div class="ttdef"><b>Definition</b> utility.hpp:124</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1utility_1_1action_html"><div class="ttname"><a href="classaitoolkit_1_1utility_1_1action.html">aitoolkit::utility::action</a></div><div class="ttdoc">Base abstract class for all actions.</div><div class="ttdef"><b>Definition</b> utility.hpp:128</div></div>
 </div><!-- fragment --><p>Finally, create an evaluator and run it:</p>
-<div class="fragment"><div class="line"><span class="keyword">auto</span> <a class="code hl_class" href="classaitoolkit_1_1utility_1_1evaluator.html">evaluator</a> = <a class="code hl_class" href="classaitoolkit_1_1utility_1_1evaluator.html">evaluator&lt;blackboard_type&gt;</a>{</div>
-<div class="line">  std::make_shared&lt;collect_food&gt;(),</div>
-<div class="line">  std::make_shared&lt;collect_wood&gt;(),</div>
-<div class="line">  std::make_shared&lt;collect_stone&gt;(),</div>
-<div class="line">  std::make_shared&lt;collect_gold&gt;()</div>
-<div class="line">};</div>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> <a class="code hl_class" href="classaitoolkit_1_1utility_1_1evaluator.html">evaluator</a> = <a class="code hl_class" href="classaitoolkit_1_1utility_1_1evaluator.html">evaluator&lt;blackboard_type&gt;</a>(</div>
+<div class="line">  action_list&lt;blackboard_type&gt;(</div>
+<div class="line">    collect_food{},</div>
+<div class="line">    collect_wood{},</div>
+<div class="line">    collect_stone{},</div>
+<div class="line">    collect_gold{}</div>
+<div class="line">  )</div>
+<div class="line">);</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">auto</span> blackboard = blackboard_type{};</div>
 <div class="line"><a class="code hl_class" href="classaitoolkit_1_1utility_1_1evaluator.html">evaluator</a>.<a class="code hl_function" href="classaitoolkit_1_1utility_1_1evaluator.html#a9e557c9072e90670bbf71e8693f41628">run</a>(blackboard);</div>
-<div class="ttc" id="aclassaitoolkit_1_1utility_1_1evaluator_html"><div class="ttname"><a href="classaitoolkit_1_1utility_1_1evaluator.html">aitoolkit::utility::evaluator</a></div><div class="ttdoc">Evaluate a set of actions and apply the best one.</div><div class="ttdef"><b>Definition</b> utility.hpp:152</div></div>
-<div class="ttc" id="aclassaitoolkit_1_1utility_1_1evaluator_html_a9e557c9072e90670bbf71e8693f41628"><div class="ttname"><a href="classaitoolkit_1_1utility_1_1evaluator.html#a9e557c9072e90670bbf71e8693f41628">aitoolkit::utility::evaluator::run</a></div><div class="ttdeci">void run(T &amp;blackboard) const</div><div class="ttdoc">Find the best action and apply it to the blackboard.</div><div class="ttdef"><b>Definition</b> utility.hpp:167</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1utility_1_1evaluator_html"><div class="ttname"><a href="classaitoolkit_1_1utility_1_1evaluator.html">aitoolkit::utility::evaluator</a></div><div class="ttdoc">Evaluate a set of actions and apply the best one.</div><div class="ttdef"><b>Definition</b> utility.hpp:171</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1utility_1_1evaluator_html_a9e557c9072e90670bbf71e8693f41628"><div class="ttname"><a href="classaitoolkit_1_1utility_1_1evaluator.html#a9e557c9072e90670bbf71e8693f41628">aitoolkit::utility::evaluator::run</a></div><div class="ttdeci">void run(T &amp;blackboard) const</div><div class="ttdoc">Find the best action and apply it to the blackboard.</div><div class="ttdef"><b>Definition</b> utility.hpp:181</div></div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md16"></a>
 Goal Oriented Action Planning</h2>
 <p>First, include the header file:</p>
@@ -284,63 +288,64 @@ Goal Oriented Action Planning</h2>
 <div class="line"> </div>
 <div class="line"><span class="keyword">using namespace </span>aitoolkit::goap;</div>
 </div><!-- fragment --><p>Then, create a blackboard class that will hold the state of the planner:</p>
-<div class="fragment"><div class="line"><span class="keyword">struct </span><a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a> {</div>
-<div class="line">  <span class="keywordtype">bool</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">has_axe</a>{<span class="keyword">false</span>};</div>
-<div class="line">  <span class="keywordtype">int</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">wood</a>{0};</div>
+<div class="fragment"><div class="line"><span class="keyword">struct </span>blackboard_type {</div>
+<div class="line">  <span class="keywordtype">bool</span> has_axe{<span class="keyword">false</span>};</div>
+<div class="line">  <span class="keywordtype">int</span> wood{0};</div>
 <div class="line">};</div>
-<div class="ttc" id="aclassaitoolkit_1_1goap_1_1plan_html"><div class="ttname"><a href="classaitoolkit_1_1goap_1_1plan.html">aitoolkit::goap::plan</a></div><div class="ttdoc">A plan is a sequence of actions that will lead to a goal state.</div><div class="ttdef"><b>Definition</b> goap.hpp:229</div></div>
 </div><!-- fragment --><blockquote class="doxtable">
 <p>&zwj;<b>NB:</b> The blackboard needs to be comparable (<code>a == b</code>) and hashable. </p>
 </blockquote>
 <p>Next, create a class for each action that you want to be able to perform:</p>
-<div class="fragment"><div class="line"><span class="keyword">class </span><a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">get_axe</a> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">final</a> : <span class="keyword">public</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a>&lt;blackboard_type&gt; {</div>
+<div class="fragment"><div class="line"><span class="keyword">class </span>get_axe final : <span class="keyword">public</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a>&lt;blackboard_type&gt; {</div>
 <div class="line">  <span class="keyword">public</span>:</div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">float</span> cost(<span class="keyword">const</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>)<span class="keyword"> const override </span>{</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">float</span> cost(<span class="keyword">const</span> blackboard_type&amp; blackboard)<span class="keyword"> const override </span>{</div>
 <div class="line">      <span class="keywordflow">return</span> 1.0f;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> check_preconditions(<span class="keyword">const</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>)<span class="keyword"> const override </span>{</div>
-<div class="line">      <span class="keywordflow">return</span> !<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>.has_axe;</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> check_preconditions(<span class="keyword">const</span> blackboard_type&amp; blackboard)<span class="keyword"> const override </span>{</div>
+<div class="line">      <span class="keywordflow">return</span> !blackboard.has_axe;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">void</span> apply_effects(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>, <span class="keywordtype">bool</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">dry_run</a>)<span class="keyword"> const override </span>{</div>
-<div class="line">      <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>.has_axe = <span class="keyword">true</span>;</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">void</span> apply_effects(blackboard_type&amp; blackboard, <span class="keywordtype">bool</span> dry_run)<span class="keyword"> const override </span>{</div>
+<div class="line">      blackboard.has_axe = <span class="keyword">true</span>;</div>
 <div class="line">    }</div>
 <div class="line">};</div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">class </span><a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">chop_tree</a> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">final</a> : <span class="keyword">public</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a>&lt;blackboard_type&gt; {</div>
+<div class="line"><span class="keyword">class </span>chop_tree final : <span class="keyword">public</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a>&lt;blackboard_type&gt; {</div>
 <div class="line">  <span class="keyword">public</span>:</div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">float</span> cost(<span class="keyword">const</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>)<span class="keyword"> const override </span>{</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">float</span> cost(<span class="keyword">const</span> blackboard_type&amp; blackboard)<span class="keyword"> const override </span>{</div>
 <div class="line">      <span class="keywordflow">return</span> 1.0f;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> check_preconditions(<span class="keyword">const</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>)<span class="keyword"> const override </span>{</div>
-<div class="line">      <span class="keywordflow">return</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>.has_axe;</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> check_preconditions(<span class="keyword">const</span> blackboard_type&amp; blackboard)<span class="keyword"> const override </span>{</div>
+<div class="line">      <span class="keywordflow">return</span> blackboard.has_axe;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">void</span> apply_effects(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>, <span class="keywordtype">bool</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">dry_run</a>)<span class="keyword"> const override </span>{</div>
-<div class="line">      <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>.wood += 1;</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">void</span> apply_effects(blackboard_type&amp; blackboard, <span class="keywordtype">bool</span> dry_run)<span class="keyword"> const override </span>{</div>
+<div class="line">      blackboard.wood += 1;</div>
 <div class="line">    }</div>
 <div class="line">};</div>
-<div class="ttc" id="aclassaitoolkit_1_1goap_1_1action_html"><div class="ttname"><a href="classaitoolkit_1_1goap_1_1action.html">aitoolkit::goap::action</a></div><div class="ttdoc">An action that can be performed on a blackboard.</div><div class="ttdef"><b>Definition</b> goap.hpp:197</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1goap_1_1action_html"><div class="ttname"><a href="classaitoolkit_1_1goap_1_1action.html">aitoolkit::goap::action</a></div><div class="ttdoc">An action that can be performed on a blackboard.</div><div class="ttdef"><b>Definition</b> goap.hpp:201</div></div>
 </div><!-- fragment --><p>Finally, create a plan and run it:</p>
-<div class="fragment"><div class="line"><span class="keyword">auto</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">actions</a> = std::vector&lt;action_ptr&lt;blackboard_type&gt;&gt;{</div>
-<div class="line">  std::make_shared&lt;get_axe&gt;(),</div>
-<div class="line">  std::make_shared&lt;chop_tree&gt;()</div>
-<div class="line">};</div>
-<div class="line"><span class="keyword">auto</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">initial</a> = <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>{};</div>
-<div class="line"><span class="keyword">auto</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">goal</a> = <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>{</div>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> initial = blackboard_type{};</div>
+<div class="line"><span class="keyword">auto</span> goal = blackboard_type{</div>
 <div class="line">  .has_axe = <span class="keyword">true</span>,</div>
 <div class="line">  .wood = 3</div>
 <div class="line">};</div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">auto</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">p</a> = <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">planner&lt;blackboard_type&gt;</a>(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">actions</a>, <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">initial</a>, <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">goal</a>);</div>
+<div class="line"><span class="keyword">auto</span> p = planner&lt;blackboard_type&gt;(</div>
+<div class="line">  action_list&lt;blackboard_type&gt;(</div>
+<div class="line">    get_axe{},</div>
+<div class="line">    chop_tree{}</div>
+<div class="line">  ),</div>
+<div class="line">  initial,</div>
+<div class="line">  goal</div>
+<div class="line">);</div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">auto</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a> = <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">initial</a>;</div>
-<div class="line"><span class="keywordflow">while</span> (<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">p</a>) {</div>
-<div class="line">  <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">p</a>.<a class="code hl_function" href="classaitoolkit_1_1goap_1_1plan.html#a290d73dd20bfce9f42920cf3f5d8d1bd">run_next</a>(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>); <span class="comment">// will mutate the blackboard</span></div>
+<div class="line"><span class="keyword">auto</span> blackboard = initial;</div>
+<div class="line"><span class="keywordflow">while</span> (p) {</div>
+<div class="line">  p.run_next(blackboard); <span class="comment">// will mutate the blackboard</span></div>
 <div class="line">}</div>
-<div class="ttc" id="aclassaitoolkit_1_1goap_1_1plan_html_a290d73dd20bfce9f42920cf3f5d8d1bd"><div class="ttname"><a href="classaitoolkit_1_1goap_1_1plan.html#a290d73dd20bfce9f42920cf3f5d8d1bd">aitoolkit::goap::plan::run_next</a></div><div class="ttdeci">void run_next(T &amp;blackboard)</div><div class="ttdoc">Execute the next planned action.</div><div class="ttdef"><b>Definition</b> goap.hpp:250</div></div>
 </div><!-- fragment --><p>For more informations, consult the <a href="https://linkdd.github.io/aitoolkit/group__goap.html">documentation</a>.</p>
 <h1><a class="anchor" id="autotoc_md17"></a>
 Documentation</h1>

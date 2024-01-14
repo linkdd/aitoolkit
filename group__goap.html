@@ -116,7 +116,7 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ga35648cbd38e1da9f152a433185f9b32c" id="r_ga35648cbd38e1da9f152a433185f9b32c"><td class="memTemplParams" colspan="2">template&lt;blackboard_trait T&gt; </td></tr>
-<tr class="memitem:ga35648cbd38e1da9f152a433185f9b32c"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classaitoolkit_1_1goap_1_1plan.html">plan</a>&lt; <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">T</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ga35648cbd38e1da9f152a433185f9b32c">aitoolkit::goap::planner</a> (std::vector&lt; action_ptr&lt; <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">T</a> &gt; &gt; <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">actions</a>, <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">T</a> <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">initital_blackboard</a>, <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">T</a> <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">goal_blackboard</a>, <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">size_t</a> <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">max_iterations</a>=0)</td></tr>
+<tr class="memitem:ga35648cbd38e1da9f152a433185f9b32c"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classaitoolkit_1_1goap_1_1plan.html">plan</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ga35648cbd38e1da9f152a433185f9b32c">aitoolkit::goap::planner</a> (std::vector&lt; action_ptr&lt; T &gt; &gt; actions, T initital_blackboard, T goal_blackboard, size_t max_iterations=0)</td></tr>
 <tr class="memdesc:ga35648cbd38e1da9f152a433185f9b32c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a plan.  <br /></td></tr>
 <tr class="separator:ga35648cbd38e1da9f152a433185f9b32c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -158,92 +158,84 @@ Usage</h2>
 <p>Next, create a class for each action that you want to be able to perform:</p>
 <div class="fragment"><div class="line"><span class="keyword">using namespace </span>aitoolkit::goap;</div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">class </span><a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">get_axe</a> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">final</a> : <span class="keyword">public</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a>&lt;blackboard_type&gt; {</div>
+<div class="line"><span class="keyword">class </span>get_axe final : <span class="keyword">public</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a>&lt;blackboard_type&gt; {</div>
 <div class="line">  <span class="keyword">public</span>:</div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">float</span> cost(<span class="keyword">const</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>)<span class="keyword"> const override </span>{</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">float</span> cost(<span class="keyword">const</span> blackboard_type&amp; blackboard)<span class="keyword"> const override </span>{</div>
 <div class="line">      <span class="keywordflow">return</span> 1.0f;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> check_preconditions(<span class="keyword">const</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>)<span class="keyword"> const override </span>{</div>
-<div class="line">      <span class="keywordflow">return</span> !<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>.has_axe;</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> check_preconditions(<span class="keyword">const</span> blackboard_type&amp; blackboard)<span class="keyword"> const override </span>{</div>
+<div class="line">      <span class="keywordflow">return</span> !blackboard.has_axe;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">void</span> apply_effects(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>, <span class="keywordtype">bool</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">dry_run</a>)<span class="keyword"> const override </span>{</div>
-<div class="line">      <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>.has_axe = <span class="keyword">true</span>;</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">void</span> apply_effects(blackboard_type&amp; blackboard, <span class="keywordtype">bool</span> dry_run)<span class="keyword"> const override </span>{</div>
+<div class="line">      blackboard.has_axe = <span class="keyword">true</span>;</div>
 <div class="line">    }</div>
 <div class="line">};</div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">class </span><a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">get_pickaxe</a> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">final</a> : <span class="keyword">public</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a>&lt;blackboard_type&gt; {</div>
+<div class="line"><span class="keyword">class </span>get_pickaxe final : <span class="keyword">public</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a>&lt;blackboard_type&gt; {</div>
 <div class="line">  <span class="keyword">public</span>:</div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">float</span> cost(<span class="keyword">const</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>)<span class="keyword"> const override </span>{</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">float</span> cost(<span class="keyword">const</span> blackboard_type&amp; blackboard)<span class="keyword"> const override </span>{</div>
 <div class="line">      <span class="keywordflow">return</span> 1.0f;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> check_preconditions(<span class="keyword">const</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>)<span class="keyword"> const override </span>{</div>
-<div class="line">      <span class="keywordflow">return</span> !<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>.has_pickaxe;</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> check_preconditions(<span class="keyword">const</span> blackboard_type&amp; blackboard)<span class="keyword"> const override </span>{</div>
+<div class="line">      <span class="keywordflow">return</span> !blackboard.has_pickaxe;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">void</span> apply_effects(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>, <span class="keywordtype">bool</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">dry_run</a>)<span class="keyword"> const override </span>{</div>
-<div class="line">      <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>.has_pickaxe = <span class="keyword">true</span>;</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">void</span> apply_effects(blackboard_type&amp; blackboard, <span class="keywordtype">bool</span> dry_run)<span class="keyword"> const override </span>{</div>
+<div class="line">      blackboard.has_pickaxe = <span class="keyword">true</span>;</div>
 <div class="line">    }</div>
 <div class="line">};</div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">class </span><a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">chop_tree</a> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">final</a> : <span class="keyword">public</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a>&lt;blackboard_type&gt; {</div>
+<div class="line"><span class="keyword">class </span>chop_tree final : <span class="keyword">public</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a>&lt;blackboard_type&gt; {</div>
 <div class="line">  <span class="keyword">public</span>:</div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">float</span> cost(<span class="keyword">const</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>)<span class="keyword"> const override </span>{</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">float</span> cost(<span class="keyword">const</span> blackboard_type&amp; blackboard)<span class="keyword"> const override </span>{</div>
 <div class="line">      <span class="keywordflow">return</span> 1.0f;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> check_preconditions(<span class="keyword">const</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>)<span class="keyword"> const override </span>{</div>
-<div class="line">      <span class="keywordflow">return</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>.has_axe;</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> check_preconditions(<span class="keyword">const</span> blackboard_type&amp; blackboard)<span class="keyword"> const override </span>{</div>
+<div class="line">      <span class="keywordflow">return</span> blackboard.has_axe;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">void</span> apply_effects(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>, <span class="keywordtype">bool</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">dry_run</a>)<span class="keyword"> const override </span>{</div>
-<div class="line">      <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>.wood += 1;</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">void</span> apply_effects(blackboard_type&amp; blackboard, <span class="keywordtype">bool</span> dry_run)<span class="keyword"> const override </span>{</div>
+<div class="line">      blackboard.wood += 1;</div>
 <div class="line">    }</div>
 <div class="line">};</div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">class </span><a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">mine_gold</a> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">final</a> : <span class="keyword">public</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a>&lt;blackboard_type&gt; {</div>
+<div class="line"><span class="keyword">class </span>mine_gold final : <span class="keyword">public</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a>&lt;blackboard_type&gt; {</div>
 <div class="line">  <span class="keyword">public</span>:</div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">float</span> cost(<span class="keyword">const</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>)<span class="keyword"> const override </span>{</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">float</span> cost(<span class="keyword">const</span> blackboard_type&amp; blackboard)<span class="keyword"> const override </span>{</div>
 <div class="line">      <span class="keywordflow">return</span> 1.0f;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> check_preconditions(<span class="keyword">const</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>)<span class="keyword"> const override </span>{</div>
-<div class="line">      <span class="keywordflow">return</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>.has_pickaxe;</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> check_preconditions(<span class="keyword">const</span> blackboard_type&amp; blackboard)<span class="keyword"> const override </span>{</div>
+<div class="line">      <span class="keywordflow">return</span> blackboard.has_pickaxe;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">void</span> apply_effects(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>, <span class="keywordtype">bool</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">dry_run</a>)<span class="keyword"> const override </span>{</div>
-<div class="line">      <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>.gold += 1;</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">void</span> apply_effects(blackboard_type&amp; blackboard, <span class="keywordtype">bool</span> dry_run)<span class="keyword"> const override </span>{</div>
+<div class="line">      blackboard.gold += 1;</div>
 <div class="line">    }</div>
 <div class="line">};</div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">class </span><a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">mine_stone</a> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">final</a> : <span class="keyword">public</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a>&lt;blackboard_type&gt; {</div>
+<div class="line"><span class="keyword">class </span>mine_stone final : <span class="keyword">public</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1action.html">action</a>&lt;blackboard_type&gt; {</div>
 <div class="line">  <span class="keyword">public</span>:</div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">float</span> cost(<span class="keyword">const</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>)<span class="keyword"> const override </span>{</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">float</span> cost(<span class="keyword">const</span> blackboard_type&amp; blackboard)<span class="keyword"> const override </span>{</div>
 <div class="line">      <span class="keywordflow">return</span> 1.0f;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> check_preconditions(<span class="keyword">const</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>)<span class="keyword"> const override </span>{</div>
-<div class="line">      <span class="keywordflow">return</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>.has_pickaxe;</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> check_preconditions(<span class="keyword">const</span> blackboard_type&amp; blackboard)<span class="keyword"> const override </span>{</div>
+<div class="line">      <span class="keywordflow">return</span> blackboard.has_pickaxe;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">void</span> apply_effects(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>&amp; <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>, <span class="keywordtype">bool</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">dry_run</a>)<span class="keyword"> const override </span>{</div>
-<div class="line">      <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>.stone += 1;</div>
+<div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">void</span> apply_effects(blackboard_type&amp; blackboard, <span class="keywordtype">bool</span> dry_run)<span class="keyword"> const override </span>{</div>
+<div class="line">      blackboard.stone += 1;</div>
 <div class="line">    }</div>
 <div class="line">};</div>
-<div class="ttc" id="aclassaitoolkit_1_1goap_1_1action_html"><div class="ttname"><a href="classaitoolkit_1_1goap_1_1action.html">aitoolkit::goap::action</a></div><div class="ttdoc">An action that can be performed on a blackboard.</div><div class="ttdef"><b>Definition</b> goap.hpp:197</div></div>
-<div class="ttc" id="aclassaitoolkit_1_1goap_1_1plan_html"><div class="ttname"><a href="classaitoolkit_1_1goap_1_1plan.html">aitoolkit::goap::plan</a></div><div class="ttdoc">A plan is a sequence of actions that will lead to a goal state.</div><div class="ttdef"><b>Definition</b> goap.hpp:229</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1goap_1_1action_html"><div class="ttname"><a href="classaitoolkit_1_1goap_1_1action.html">aitoolkit::goap::action</a></div><div class="ttdoc">An action that can be performed on a blackboard.</div><div class="ttdef"><b>Definition</b> goap.hpp:201</div></div>
 </div><!-- fragment --><p>Finally, create a plan and run it:</p>
-<div class="fragment"><div class="line"><span class="keyword">auto</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">actions</a> = std::vector&lt;action_ptr&lt;blackboard_type&gt;&gt;{</div>
-<div class="line">  std::make_shared&lt;get_axe&gt;(),</div>
-<div class="line">  std::make_shared&lt;get_pickaxe&gt;(),</div>
-<div class="line">  std::make_shared&lt;chop_tree&gt;(),</div>
-<div class="line">  std::make_shared&lt;mine_gold&gt;(),</div>
-<div class="line">  std::make_shared&lt;mine_stone&gt;()</div>
-<div class="line">};</div>
-<div class="line"><span class="keyword">auto</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">initial</a> = <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>{};</div>
-<div class="line"><span class="keyword">auto</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">goal</a> = <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard_type</a>{</div>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> initial = blackboard_type{};</div>
+<div class="line"><span class="keyword">auto</span> goal = blackboard_type{</div>
 <div class="line">  .has_axe = <span class="keyword">true</span>,</div>
 <div class="line">  .has_pickaxe = <span class="keyword">true</span>,</div>
 <div class="line">  .wood = 1,</div>
@@ -251,13 +243,22 @@ Usage</h2>
 <div class="line">  .stone = 1</div>
 <div class="line">};</div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">auto</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">p</a> = <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">planner&lt;blackboard_type&gt;</a>(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">actions</a>, <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">initial</a>, <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">goal</a>);</div>
+<div class="line"><span class="keyword">auto</span> p = planner&lt;blackboard_type&gt;(</div>
+<div class="line">  action_list&lt;blackboard_type&gt;(</div>
+<div class="line">    get_axe{},</div>
+<div class="line">    get_pickaxe{},</div>
+<div class="line">    chop_tree{},</div>
+<div class="line">    mine_gold{},</div>
+<div class="line">    mine_stone{}</div>
+<div class="line">  )</div>
+<div class="line">  initial,</div>
+<div class="line">  goal</div>
+<div class="line">);</div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">auto</span> <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a> = <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">initial</a>;</div>
-<div class="line"><span class="keywordflow">while</span> (<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">p</a>) {</div>
-<div class="line">  <a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">p</a>.<a class="code hl_function" href="classaitoolkit_1_1goap_1_1plan.html#a290d73dd20bfce9f42920cf3f5d8d1bd">run_next</a>(<a class="code hl_class" href="classaitoolkit_1_1goap_1_1plan.html">blackboard</a>); <span class="comment">// will mutate the blackboard</span></div>
+<div class="line"><span class="keyword">auto</span> blackboard = initial;</div>
+<div class="line"><span class="keywordflow">while</span> (p) {</div>
+<div class="line">  p.run_next(blackboard); <span class="comment">// will mutate the blackboard</span></div>
 <div class="line">}</div>
-<div class="ttc" id="aclassaitoolkit_1_1goap_1_1plan_html_a290d73dd20bfce9f42920cf3f5d8d1bd"><div class="ttname"><a href="classaitoolkit_1_1goap_1_1plan.html#a290d73dd20bfce9f42920cf3f5d8d1bd">aitoolkit::goap::plan::run_next</a></div><div class="ttdeci">void run_next(T &amp;blackboard)</div><div class="ttdoc">Execute the next planned action.</div><div class="ttdef"><b>Definition</b> goap.hpp:250</div></div>
 </div><!-- fragment --> <h2 class="groupheader">Function Documentation</h2>
 <a id="ga35648cbd38e1da9f152a433185f9b32c" name="ga35648cbd38e1da9f152a433185f9b32c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga35648cbd38e1da9f152a433185f9b32c">&#9670;&#160;</a></span>planner()</h2>
@@ -268,24 +269,24 @@ Usage</h2>
 template&lt;blackboard_trait T&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classaitoolkit_1_1goap_1_1plan.html">plan</a>&lt; <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">T</a> &gt; aitoolkit::goap::planner </td>
+          <td class="memname"><a class="el" href="classaitoolkit_1_1goap_1_1plan.html">plan</a>&lt; T &gt; aitoolkit::goap::planner </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; action_ptr&lt; <a class="el" href="classaitoolkit_1_1goap_1_1plan.html">T</a> &gt; &gt;</td>          <td class="paramname"><span class="paramname"><em>actions</em>, </span></td>
+          <td class="paramtype">std::vector&lt; action_ptr&lt; T &gt; &gt;</td>          <td class="paramname"><span class="paramname"><em>actions</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classaitoolkit_1_1goap_1_1plan.html">T</a></td>          <td class="paramname"><span class="paramname"><em>initital_blackboard</em>, </span></td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>initital_blackboard</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classaitoolkit_1_1goap_1_1plan.html">T</a></td>          <td class="paramname"><span class="paramname"><em>goal_blackboard</em>, </span></td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>goal_blackboard</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classaitoolkit_1_1goap_1_1plan.html">size_t</a></td>          <td class="paramname"><span class="paramname"><em>max_iterations</em><span class="paramdefsep"> = </span><span class="paramdefval">0</span></span>&#160;)</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>max_iterations</em><span class="paramdefsep"> = </span><span class="paramdefval">0</span></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">

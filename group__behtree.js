@@ -6,10 +6,11 @@ var group__behtree =
     [ "aitoolkit::bt::neg< T >", "classaitoolkit_1_1bt_1_1neg.html", null ],
     [ "aitoolkit::bt::check< T >", "classaitoolkit_1_1bt_1_1check.html", null ],
     [ "aitoolkit::bt::task< T >", "classaitoolkit_1_1bt_1_1task.html", null ],
-    [ "aitoolkit::bt::node_ptr", "group__behtree.html#gae1a27064841dad4d41e50c3e1a182400", null ],
+    [ "aitoolkit::bt::node_ptr", "group__behtree.html#ga1acc4f0a13134bdb8aec9a624bf05353", null ],
     [ "aitoolkit::bt::execution_state", "group__behtree.html#ga92d27070603784738ccfd4104852a377", [
       [ "aitoolkit::bt::execution_state::success", "group__behtree.html#gga92d27070603784738ccfd4104852a377a260ca9dd8a4577fc00b7bd5810298076", null ],
       [ "aitoolkit::bt::execution_state::failure", "group__behtree.html#gga92d27070603784738ccfd4104852a377a3ee28fe1a60c95b89d29317f122c7021", null ],
       [ "aitoolkit::bt::execution_state::running", "group__behtree.html#gga92d27070603784738ccfd4104852a377a75101dcdfc88455bcafc9e53e0b06689", null ]
-    ] ]
+    ] ],
+    [ "aitoolkit::bt::node_list", "group__behtree.html#gae79e5ec7d1e5df77c1751158fb435a7d", null ]
 ];

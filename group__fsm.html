@@ -118,11 +118,11 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ga337249a3ecdc1c3c74985c6e177b27d9" id="r_ga337249a3ecdc1c3c74985c6e177b27d9"><td class="memTemplParams" colspan="2"><a id="ga337249a3ecdc1c3c74985c6e177b27d9" name="ga337249a3ecdc1c3c74985c6e177b27d9"></a>
+<tr class="memitem:ga76987d0f7972933f75990f23db805758" id="r_ga76987d0f7972933f75990f23db805758"><td class="memTemplParams" colspan="2"><a id="ga76987d0f7972933f75990f23db805758" name="ga76987d0f7972933f75990f23db805758"></a>
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ga337249a3ecdc1c3c74985c6e177b27d9"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>aitoolkit::fsm::state_ptr</b> = std::shared_ptr&lt;<a class="el" href="classaitoolkit_1_1fsm_1_1state.html">state</a>&lt;T&gt;&gt;</td></tr>
-<tr class="memdesc:ga337249a3ecdc1c3c74985c6e177b27d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Heap-allocated pointer to a state. <br /></td></tr>
-<tr class="separator:ga337249a3ecdc1c3c74985c6e177b27d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga76987d0f7972933f75990f23db805758"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>aitoolkit::fsm::state_ptr</b> = std::unique_ptr&lt;<a class="el" href="classaitoolkit_1_1fsm_1_1state.html">state</a>&lt;T&gt;&gt;</td></tr>
+<tr class="memdesc:ga76987d0f7972933f75990f23db805758"><td class="mdescLeft">&#160;</td><td class="mdescRight">Heap-allocated pointer to a state. <br /></td></tr>
+<tr class="separator:ga76987d0f7972933f75990f23db805758"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2><a class="anchor" id="autotoc_md2"></a>
@@ -166,9 +166,9 @@ Simple state machine</h3>
 <div class="fragment"><div class="line"><span class="keyword">using namespace </span>aitoolkit::fsm;</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">auto</span> machine = <a class="code hl_class" href="classaitoolkit_1_1fsm_1_1simple__machine.html">simple_machine&lt;blackboard_type&gt;</a>{};</div>
-<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1simple__machine_html"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1simple__machine.html">aitoolkit::fsm::simple_machine</a></div><div class="ttdoc">A simple FSM.</div><div class="ttdef"><b>Definition</b> fsm.hpp:192</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1simple__machine_html"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1simple__machine.html">aitoolkit::fsm::simple_machine</a></div><div class="ttdoc">A simple FSM.</div><div class="ttdef"><b>Definition</b> fsm.hpp:198</div></div>
 </div><!-- fragment --><p>To transition to a new state, call <code>set_state()</code>:</p>
-<div class="fragment"><div class="line">machine.set_state(std::make_shared&lt;state_dummy&gt;(), blackboard);</div>
+<div class="fragment"><div class="line">machine.set_state(state_dummy{}, blackboard);</div>
 </div><!-- fragment --><blockquote class="doxtable">
 <p>&zwj;<b>NB:</b></p>
 <ul>
@@ -195,8 +195,8 @@ Simple state machine</h3>
 <li>if the machine is paused, calling <code>update()</code> will do nothing </li>
 </ul>
 </blockquote>
-<p>To clear any state, call <code>set_state()</code> with a <code>nullptr</code>:</p>
-<div class="fragment"><div class="line">machine.set_state(<span class="keyword">nullptr</span>, blackboard);</div>
+<p>To clear any state, call <code>clear_state()</code>:</p>
+<div class="fragment"><div class="line">machine.clear_state(blackboard);</div>
 </div><!-- fragment --><blockquote class="doxtable">
 <p>&zwj;<b>NB:</b> This will call the <code>exit</code> method of the current state (if any). </p>
 </blockquote>
@@ -206,9 +206,9 @@ Stack state machine</h3>
 <div class="fragment"><div class="line"><span class="keyword">using namespace </span>aitoolkit::fsm;</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">auto</span> machine = <a class="code hl_class" href="classaitoolkit_1_1fsm_1_1stack__machine.html">stack_machine&lt;blackboard_type&gt;</a>{};</div>
-<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1stack__machine_html"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1stack__machine.html">aitoolkit::fsm::stack_machine</a></div><div class="ttdoc">A stack FSM.</div><div class="ttdef"><b>Definition</b> fsm.hpp:259</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1stack__machine_html"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1stack__machine.html">aitoolkit::fsm::stack_machine</a></div><div class="ttdoc">A stack FSM.</div><div class="ttdef"><b>Definition</b> fsm.hpp:273</div></div>
 </div><!-- fragment --><p>To push a new state onto the stack, call <code>push_state()</code>:</p>
-<div class="fragment"><div class="line">machine.push_state(std::make_shared&lt;state_dummy&gt;(), blackboard);</div>
+<div class="fragment"><div class="line">machine.push_state(state_dummy{}, blackboard);</div>
 </div><!-- fragment --><blockquote class="doxtable">
 <p>&zwj;<b>NB:</b> This will call the <code>pause</code> method of the current state (if any) and the <code>enter</code> method of the new state. </p>
 </blockquote>

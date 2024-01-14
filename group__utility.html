@@ -99,7 +99,8 @@ $(function(){initNavTree('group__utility.html',''); initResizable(); });
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#typedef-members">Typedefs</a>  </div>
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">Utility AI</div></div>
 </div><!--header-->
 <div class="contents">
@@ -115,11 +116,19 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ga84b55ce2f1ef213618f8c4d306f8921f" id="r_ga84b55ce2f1ef213618f8c4d306f8921f"><td class="memTemplParams" colspan="2"><a id="ga84b55ce2f1ef213618f8c4d306f8921f" name="ga84b55ce2f1ef213618f8c4d306f8921f"></a>
+<tr class="memitem:gaad1ebb44b749ae289c48da56e6493a05" id="r_gaad1ebb44b749ae289c48da56e6493a05"><td class="memTemplParams" colspan="2"><a id="gaad1ebb44b749ae289c48da56e6493a05" name="gaad1ebb44b749ae289c48da56e6493a05"></a>
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ga84b55ce2f1ef213618f8c4d306f8921f"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>aitoolkit::utility::action_ptr</b> = std::shared_ptr&lt;<a class="el" href="classaitoolkit_1_1utility_1_1action.html">action</a>&lt;T&gt;&gt;</td></tr>
-<tr class="memdesc:ga84b55ce2f1ef213618f8c4d306f8921f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Heap allocated pointer to an action. <br /></td></tr>
-<tr class="separator:ga84b55ce2f1ef213618f8c4d306f8921f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaad1ebb44b749ae289c48da56e6493a05"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>aitoolkit::utility::action_ptr</b> = std::unique_ptr&lt;<a class="el" href="classaitoolkit_1_1utility_1_1action.html">action</a>&lt;T&gt;&gt;</td></tr>
+<tr class="memdesc:gaad1ebb44b749ae289c48da56e6493a05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Heap allocated pointer to an action. <br /></td></tr>
+<tr class="separator:gaad1ebb44b749ae289c48da56e6493a05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gaf135e25a3457c2645eb00dab0ef7e842" id="r_gaf135e25a3457c2645eb00dab0ef7e842"><td class="memTemplParams" colspan="2"><a id="gaf135e25a3457c2645eb00dab0ef7e842" name="gaf135e25a3457c2645eb00dab0ef7e842"></a>
+template&lt;typename T , action_trait&lt; T &gt; ... Actions&gt; </td></tr>
+<tr class="memitem:gaf135e25a3457c2645eb00dab0ef7e842"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="#gaad1ebb44b749ae289c48da56e6493a05">action_ptr</a>&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>aitoolkit::utility::action_list</b> (Actions &amp;&amp;... actions)</td></tr>
+<tr class="memdesc:gaf135e25a3457c2645eb00dab0ef7e842"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to create a list of actions. <br /></td></tr>
+<tr class="separator:gaf135e25a3457c2645eb00dab0ef7e842"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2><a class="anchor" id="autotoc_md8"></a>
@@ -194,19 +203,21 @@ Usage</h2>
 <div class="line">      blackboard.gold += 1;</div>
 <div class="line">    }</div>
 <div class="line">};</div>
-<div class="ttc" id="aclassaitoolkit_1_1utility_1_1action_html"><div class="ttname"><a href="classaitoolkit_1_1utility_1_1action.html">aitoolkit::utility::action</a></div><div class="ttdoc">Base abstract class for all actions.</div><div class="ttdef"><b>Definition</b> utility.hpp:124</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1utility_1_1action_html"><div class="ttname"><a href="classaitoolkit_1_1utility_1_1action.html">aitoolkit::utility::action</a></div><div class="ttdoc">Base abstract class for all actions.</div><div class="ttdef"><b>Definition</b> utility.hpp:128</div></div>
 </div><!-- fragment --><p>Finally, create an evaluator and run it:</p>
-<div class="fragment"><div class="line"><span class="keyword">auto</span> <a class="code hl_class" href="classaitoolkit_1_1utility_1_1evaluator.html">evaluator</a> = <a class="code hl_class" href="classaitoolkit_1_1utility_1_1evaluator.html">evaluator&lt;blackboard_type&gt;</a>{</div>
-<div class="line">  std::make_shared&lt;collect_food&gt;(),</div>
-<div class="line">  std::make_shared&lt;collect_wood&gt;(),</div>
-<div class="line">  std::make_shared&lt;collect_stone&gt;(),</div>
-<div class="line">  std::make_shared&lt;collect_gold&gt;()</div>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> <a class="code hl_class" href="classaitoolkit_1_1utility_1_1evaluator.html">evaluator</a> = <a class="code hl_class" href="classaitoolkit_1_1utility_1_1evaluator.html">evaluator&lt;blackboard_type&gt;</a>(</div>
+<div class="line">  action_list&lt;blackboard_type&gt;(</div>
+<div class="line">    collect_food{},</div>
+<div class="line">    collect_wood{},</div>
+<div class="line">    collect_stone{},</div>
+<div class="line">    collect_gol{}</div>
+<div class="line">  )</div>
 <div class="line">};</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">auto</span> blackboard = blackboard_type{};</div>
 <div class="line"><a class="code hl_class" href="classaitoolkit_1_1utility_1_1evaluator.html">evaluator</a>.<a class="code hl_function" href="classaitoolkit_1_1utility_1_1evaluator.html#a9e557c9072e90670bbf71e8693f41628">run</a>(blackboard);</div>
-<div class="ttc" id="aclassaitoolkit_1_1utility_1_1evaluator_html"><div class="ttname"><a href="classaitoolkit_1_1utility_1_1evaluator.html">aitoolkit::utility::evaluator</a></div><div class="ttdoc">Evaluate a set of actions and apply the best one.</div><div class="ttdef"><b>Definition</b> utility.hpp:152</div></div>
-<div class="ttc" id="aclassaitoolkit_1_1utility_1_1evaluator_html_a9e557c9072e90670bbf71e8693f41628"><div class="ttname"><a href="classaitoolkit_1_1utility_1_1evaluator.html#a9e557c9072e90670bbf71e8693f41628">aitoolkit::utility::evaluator::run</a></div><div class="ttdeci">void run(T &amp;blackboard) const</div><div class="ttdoc">Find the best action and apply it to the blackboard.</div><div class="ttdef"><b>Definition</b> utility.hpp:167</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1utility_1_1evaluator_html"><div class="ttname"><a href="classaitoolkit_1_1utility_1_1evaluator.html">aitoolkit::utility::evaluator</a></div><div class="ttdoc">Evaluate a set of actions and apply the best one.</div><div class="ttdef"><b>Definition</b> utility.hpp:171</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1utility_1_1evaluator_html_a9e557c9072e90670bbf71e8693f41628"><div class="ttname"><a href="classaitoolkit_1_1utility_1_1evaluator.html#a9e557c9072e90670bbf71e8693f41628">aitoolkit::utility::evaluator::run</a></div><div class="ttdeci">void run(T &amp;blackboard) const</div><div class="ttdoc">Find the best action and apply it to the blackboard.</div><div class="ttdef"><b>Definition</b> utility.hpp:181</div></div>
 </div><!-- fragment --> </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

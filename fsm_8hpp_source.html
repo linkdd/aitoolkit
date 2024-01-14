@@ -110,144 +110,158 @@ $(function(){initNavTree('fsm_8hpp_source.html',''); initResizable(); });
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="keyword">namespace </span>aitoolkit::fsm {</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00166" data-start="{" data-end="};">
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1fsm_1_1state.html">  166</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classaitoolkit_1_1fsm_1_1state.html">state</a> {</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>      <span class="keyword">virtual</span> <a class="code hl_class" href="classaitoolkit_1_1fsm_1_1state.html">~state</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span> enter(T&amp; blackboard) {};</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span> exit(T&amp; blackboard) {};</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="preprocessor">#include &lt;type_traits&gt;</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="preprocessor">#include &lt;concepts&gt;</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="keyword">namespace </span>aitoolkit::fsm {</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00169" data-start="{" data-end="};">
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1fsm_1_1state.html">  169</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classaitoolkit_1_1fsm_1_1state.html">state</a> {</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>      <span class="keyword">virtual</span> <a class="code hl_class" href="classaitoolkit_1_1fsm_1_1state.html">~state</a>() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span> pause(T&amp; blackboard) {};</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span> resume(T&amp; blackboard) {};</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span> enter(T&amp; blackboard) {};</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span> exit(T&amp; blackboard) {};</div>
 <div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span> update(T&amp; blackboard) {};</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>  };</div>
-</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span> pause(T&amp; blackboard) {};</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span> resume(T&amp; blackboard) {};</div>
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="group__fsm.html#ga337249a3ecdc1c3c74985c6e177b27d9">  184</a></span>  <span class="keyword">using </span><a class="code hl_typedef" href="group__fsm.html#ga337249a3ecdc1c3c74985c6e177b27d9">state_ptr</a> = std::shared_ptr&lt;state&lt;T&gt;&gt;;</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00192" data-start="{" data-end="};">
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1fsm_1_1simple__machine.html">  192</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classaitoolkit_1_1fsm_1_1simple__machine.html">simple_machine</a> {</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00197" data-start="{" data-end="}">
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1fsm_1_1simple__machine.html#ac20ac10d51e7c44df2755f713005ad08">  197</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="classaitoolkit_1_1fsm_1_1simple__machine.html#ac20ac10d51e7c44df2755f713005ad08">set_state</a>(<a class="code hl_typedef" href="group__fsm.html#ga337249a3ecdc1c3c74985c6e177b27d9">state_ptr&lt;T&gt;</a> <a class="code hl_class" href="classaitoolkit_1_1fsm_1_1state.html">state</a>, T&amp; blackboard) {</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        <span class="keywordflow">if</span> (m_current_state) {</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>          m_current_state-&gt;exit(blackboard);</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        }</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        m_current_state = <a class="code hl_class" href="classaitoolkit_1_1fsm_1_1state.html">state</a>;</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        <span class="keywordflow">if</span> (m_current_state) {</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>          m_current_state-&gt;enter(blackboard);</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>          <span class="keywordflow">if</span> (m_paused) {</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>            m_current_state-&gt;pause(blackboard);</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>          }</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        }</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>      }</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>      <span class="keyword">virtual</span> <span class="keywordtype">void</span> update(T&amp; blackboard) {};</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>  };</div>
 </div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
-<div class="foldopen" id="foldopen00216" data-start="{" data-end="}">
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1fsm_1_1simple__machine.html#aa600c93059ddf6dce545fc42046d047b">  216</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="classaitoolkit_1_1fsm_1_1simple__machine.html#aa600c93059ddf6dce545fc42046d047b">pause</a>(T&amp; blackboard) {</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        m_paused = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>        <span class="keywordflow">if</span> (m_current_state) {</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>          m_current_state-&gt;pause(blackboard);</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        }</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>      }</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="group__fsm.html#ga76987d0f7972933f75990f23db805758">  187</a></span>  <span class="keyword">using </span><a class="code hl_typedef" href="group__fsm.html#ga76987d0f7972933f75990f23db805758">state_ptr</a> = std::unique_ptr&lt;state&lt;T&gt;&gt;;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> S, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="conceptaitoolkit_1_1fsm_1_1state__trait.html">  190</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="conceptaitoolkit_1_1fsm_1_1state__trait.html">state_trait</a> = std::derived_from&lt;S, state&lt;T&gt;&gt;;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00198" data-start="{" data-end="};">
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1fsm_1_1simple__machine.html">  198</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classaitoolkit_1_1fsm_1_1simple__machine.html">simple_machine</a> {</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>      <span class="keyword">template</span> &lt;state_trait&lt;T&gt; S&gt;</div>
+<div class="foldopen" id="foldopen00204" data-start="{" data-end="}">
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1fsm_1_1simple__machine.html#ad3e020057ada68b62540176d4f1db1ba">  204</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="classaitoolkit_1_1fsm_1_1simple__machine.html#ad3e020057ada68b62540176d4f1db1ba">set_state</a>(S <a class="code hl_class" href="classaitoolkit_1_1fsm_1_1state.html">state</a>, T&amp; blackboard) {</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        <span class="keywordflow">if</span> (m_current_state) {</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>          m_current_state-&gt;exit(blackboard);</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        }</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        m_current_state = std::make_unique&lt;S&gt;(<a class="code hl_class" href="classaitoolkit_1_1fsm_1_1state.html">state</a>);</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        m_current_state-&gt;enter(blackboard);</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>        <span class="keywordflow">if</span> (m_paused) {</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>          m_current_state-&gt;pause(blackboard);</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>        }</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>      }</div>
 </div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
-<div class="foldopen" id="foldopen00227" data-start="{" data-end="}">
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1fsm_1_1simple__machine.html#a531f5909365e82b357cde5540e5fd8f5">  227</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="classaitoolkit_1_1fsm_1_1simple__machine.html#a531f5909365e82b357cde5540e5fd8f5">resume</a>(T&amp; blackboard) {</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        m_paused = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>        <span class="keywordflow">if</span> (m_current_state) {</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>          m_current_state-&gt;resume(blackboard);</div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>        }</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>      }</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
+<div class="foldopen" id="foldopen00220" data-start="{" data-end="}">
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1fsm_1_1simple__machine.html#a5d14db17165c3c5c9fd029b406a12f7d">  220</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="classaitoolkit_1_1fsm_1_1simple__machine.html#a5d14db17165c3c5c9fd029b406a12f7d">clear_state</a>(T&amp; blackboard) {</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        <span class="keywordflow">if</span> (m_current_state) {</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>          m_current_state-&gt;exit(blackboard);</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>          m_current_state = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>        }</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>      }</div>
 </div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
-<div class="foldopen" id="foldopen00238" data-start="{" data-end="}">
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1fsm_1_1simple__machine.html#a4ddaae0f2f3540155c479a9ebf6e7db1">  238</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="classaitoolkit_1_1fsm_1_1simple__machine.html#a4ddaae0f2f3540155c479a9ebf6e7db1">update</a>(T&amp; blackboard) {</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>        <span class="keywordflow">if</span> (m_paused) {</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>          <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>        }</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        <span class="keywordflow">if</span> (m_current_state) {</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>          m_current_state-&gt;update(blackboard);</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>        }</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>      }</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
+<div class="foldopen" id="foldopen00230" data-start="{" data-end="}">
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1fsm_1_1simple__machine.html#aa600c93059ddf6dce545fc42046d047b">  230</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="classaitoolkit_1_1fsm_1_1simple__machine.html#aa600c93059ddf6dce545fc42046d047b">pause</a>(T&amp; blackboard) {</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>        m_paused = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>        <span class="keywordflow">if</span> (m_current_state) {</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>          m_current_state-&gt;pause(blackboard);</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>        }</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>      }</div>
 </div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>      <a class="code hl_typedef" href="group__fsm.html#ga337249a3ecdc1c3c74985c6e177b27d9">state_ptr&lt;T&gt;</a> m_current_state{<span class="keyword">nullptr</span>};</div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>      <span class="keywordtype">bool</span> m_paused{<span class="keyword">false</span>};</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>  };</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="foldopen" id="foldopen00241" data-start="{" data-end="}">
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1fsm_1_1simple__machine.html#a531f5909365e82b357cde5540e5fd8f5">  241</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="classaitoolkit_1_1fsm_1_1simple__machine.html#a531f5909365e82b357cde5540e5fd8f5">resume</a>(T&amp; blackboard) {</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        m_paused = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        <span class="keywordflow">if</span> (m_current_state) {</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>          m_current_state-&gt;resume(blackboard);</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>        }</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>      }</div>
 </div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span> </div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00259" data-start="{" data-end="};">
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1fsm_1_1stack__machine.html">  259</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classaitoolkit_1_1fsm_1_1stack__machine.html">stack_machine</a> {</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00264" data-start="{" data-end="}">
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1fsm_1_1stack__machine.html#a34a6b18d339bb8a07e20882f3f572050">  264</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="classaitoolkit_1_1fsm_1_1stack__machine.html#a34a6b18d339bb8a07e20882f3f572050">push_state</a>(<a class="code hl_typedef" href="group__fsm.html#ga337249a3ecdc1c3c74985c6e177b27d9">state_ptr&lt;T&gt;</a> <a class="code hl_class" href="classaitoolkit_1_1fsm_1_1state.html">state</a>, T&amp; blackboard) {</div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>        <span class="keywordflow">if</span> (!m_state_stack.empty()) {</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>          <span class="keyword">auto</span> current_state = m_state_stack.back();</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>          current_state-&gt;pause(blackboard);</div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>        }</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>        <span class="keywordflow">if</span> (<a class="code hl_class" href="classaitoolkit_1_1fsm_1_1state.html">state</a>) {</div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>          <a class="code hl_class" href="classaitoolkit_1_1fsm_1_1state.html">state</a>-&gt;enter(blackboard);</div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>          m_state_stack.push_back(<a class="code hl_class" href="classaitoolkit_1_1fsm_1_1state.html">state</a>);</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>        }</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>      }</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span> </div>
+<div class="foldopen" id="foldopen00252" data-start="{" data-end="}">
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1fsm_1_1simple__machine.html#a4ddaae0f2f3540155c479a9ebf6e7db1">  252</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="classaitoolkit_1_1fsm_1_1simple__machine.html#a4ddaae0f2f3540155c479a9ebf6e7db1">update</a>(T&amp; blackboard) {</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>        <span class="keywordflow">if</span> (m_paused) {</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>          <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>        }</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>        <span class="keywordflow">if</span> (m_current_state) {</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>          m_current_state-&gt;update(blackboard);</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>        }</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>      }</div>
 </div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span> </div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> </div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>      <a class="code hl_typedef" href="group__fsm.html#ga76987d0f7972933f75990f23db805758">state_ptr&lt;T&gt;</a> m_current_state{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>      <span class="keywordtype">bool</span> m_paused{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>  };</div>
+</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span> </div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00273" data-start="{" data-end="};">
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1fsm_1_1stack__machine.html">  273</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classaitoolkit_1_1fsm_1_1stack__machine.html">stack_machine</a> {</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>      <span class="keyword">template</span> &lt;state_trait&lt;T&gt; S&gt;</div>
 <div class="foldopen" id="foldopen00279" data-start="{" data-end="}">
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1fsm_1_1stack__machine.html#a8195f9885827f9735cd7fbe5855f1f9b">  279</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="classaitoolkit_1_1fsm_1_1stack__machine.html#a8195f9885827f9735cd7fbe5855f1f9b">pop_state</a>(T&amp; blackboard) {</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1fsm_1_1stack__machine.html#a1f66ddc658747a603e8676158208fc90">  279</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="classaitoolkit_1_1fsm_1_1stack__machine.html#a1f66ddc658747a603e8676158208fc90">push_state</a>(S <a class="code hl_class" href="classaitoolkit_1_1fsm_1_1state.html">state</a>, T&amp; blackboard) {</div>
 <div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>        <span class="keywordflow">if</span> (!m_state_stack.empty()) {</div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>          <span class="keyword">auto</span> current_state = m_state_stack.back();</div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>          current_state-&gt;exit(blackboard);</div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>          m_state_stack.pop_back();</div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>        }</div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>        <span class="keywordflow">if</span> (!m_state_stack.empty()) {</div>
-<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>          <span class="keyword">auto</span> current_state = m_state_stack.back();</div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>          current_state-&gt;resume(blackboard);</div>
-<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>        }</div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>      }</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>          <span class="keyword">auto</span>&amp; current_state = m_state_stack.back();</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>          current_state-&gt;pause(blackboard);</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>        }</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span> </div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>        <a class="code hl_class" href="classaitoolkit_1_1fsm_1_1state.html">state</a>.enter(blackboard);</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>        m_state_stack.push_back(std::make_unique&lt;S&gt;(<a class="code hl_class" href="classaitoolkit_1_1fsm_1_1state.html">state</a>));</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>      }</div>
 </div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span> </div>
-<div class="foldopen" id="foldopen00295" data-start="{" data-end="}">
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1fsm_1_1stack__machine.html#ac294e0e771d7111d484aeaa0e21d842d">  295</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="classaitoolkit_1_1fsm_1_1stack__machine.html#ac294e0e771d7111d484aeaa0e21d842d">update</a>(T&amp; blackboard) {</div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>        <span class="keywordflow">if</span> (!m_state_stack.empty()) {</div>
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>          <span class="keyword">auto</span> current_state = m_state_stack.back();</div>
-<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>          current_state-&gt;update(blackboard);</div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>        }</div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>      }</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span> </div>
+<div class="foldopen" id="foldopen00292" data-start="{" data-end="}">
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1fsm_1_1stack__machine.html#a8195f9885827f9735cd7fbe5855f1f9b">  292</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="classaitoolkit_1_1fsm_1_1stack__machine.html#a8195f9885827f9735cd7fbe5855f1f9b">pop_state</a>(T&amp; blackboard) {</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>        <span class="keywordflow">if</span> (!m_state_stack.empty()) {</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>          <span class="keyword">auto</span>&amp; current_state = m_state_stack.back();</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>          current_state-&gt;exit(blackboard);</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>          m_state_stack.pop_back();</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>        }</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span> </div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>        <span class="keywordflow">if</span> (!m_state_stack.empty()) {</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>          <span class="keyword">auto</span>&amp; current_state = m_state_stack.back();</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>          current_state-&gt;resume(blackboard);</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>        }</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>      }</div>
 </div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span> </div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>      std::vector&lt;state_ptr&lt;T&gt;&gt; m_state_stack;</div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>  };</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> </div>
+<div class="foldopen" id="foldopen00308" data-start="{" data-end="}">
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno"><a class="line" href="classaitoolkit_1_1fsm_1_1stack__machine.html#ac294e0e771d7111d484aeaa0e21d842d">  308</a></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="classaitoolkit_1_1fsm_1_1stack__machine.html#ac294e0e771d7111d484aeaa0e21d842d">update</a>(T&amp; blackboard) {</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>        <span class="keywordflow">if</span> (!m_state_stack.empty()) {</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>          <span class="keyword">auto</span>&amp; current_state = m_state_stack.back();</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>          current_state-&gt;update(blackboard);</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>        }</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>      }</div>
 </div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>}</div>
-<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1simple__machine_html"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1simple__machine.html">aitoolkit::fsm::simple_machine</a></div><div class="ttdoc">A simple FSM.</div><div class="ttdef"><b>Definition</b> fsm.hpp:192</div></div>
-<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1simple__machine_html_a4ddaae0f2f3540155c479a9ebf6e7db1"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1simple__machine.html#a4ddaae0f2f3540155c479a9ebf6e7db1">aitoolkit::fsm::simple_machine::update</a></div><div class="ttdeci">void update(T &amp;blackboard)</div><div class="ttdoc">Update the machine.</div><div class="ttdef"><b>Definition</b> fsm.hpp:238</div></div>
-<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1simple__machine_html_a531f5909365e82b357cde5540e5fd8f5"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1simple__machine.html#a531f5909365e82b357cde5540e5fd8f5">aitoolkit::fsm::simple_machine::resume</a></div><div class="ttdeci">void resume(T &amp;blackboard)</div><div class="ttdoc">Resume the machine.</div><div class="ttdef"><b>Definition</b> fsm.hpp:227</div></div>
-<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1simple__machine_html_aa600c93059ddf6dce545fc42046d047b"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1simple__machine.html#aa600c93059ddf6dce545fc42046d047b">aitoolkit::fsm::simple_machine::pause</a></div><div class="ttdeci">void pause(T &amp;blackboard)</div><div class="ttdoc">Pause the machine.</div><div class="ttdef"><b>Definition</b> fsm.hpp:216</div></div>
-<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1simple__machine_html_ac20ac10d51e7c44df2755f713005ad08"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1simple__machine.html#ac20ac10d51e7c44df2755f713005ad08">aitoolkit::fsm::simple_machine::set_state</a></div><div class="ttdeci">void set_state(state_ptr&lt; T &gt; state, T &amp;blackboard)</div><div class="ttdoc">Enters in a new state, exiting the previous one (if any).</div><div class="ttdef"><b>Definition</b> fsm.hpp:197</div></div>
-<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1stack__machine_html"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1stack__machine.html">aitoolkit::fsm::stack_machine</a></div><div class="ttdoc">A stack FSM.</div><div class="ttdef"><b>Definition</b> fsm.hpp:259</div></div>
-<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1stack__machine_html_a34a6b18d339bb8a07e20882f3f572050"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1stack__machine.html#a34a6b18d339bb8a07e20882f3f572050">aitoolkit::fsm::stack_machine::push_state</a></div><div class="ttdeci">void push_state(state_ptr&lt; T &gt; state, T &amp;blackboard)</div><div class="ttdoc">Enters in a new state, pausing the previous one (if any).</div><div class="ttdef"><b>Definition</b> fsm.hpp:264</div></div>
-<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1stack__machine_html_a8195f9885827f9735cd7fbe5855f1f9b"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1stack__machine.html#a8195f9885827f9735cd7fbe5855f1f9b">aitoolkit::fsm::stack_machine::pop_state</a></div><div class="ttdeci">void pop_state(T &amp;blackboard)</div><div class="ttdoc">Exits the current state, resuming the previous one (if any).</div><div class="ttdef"><b>Definition</b> fsm.hpp:279</div></div>
-<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1stack__machine_html_ac294e0e771d7111d484aeaa0e21d842d"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1stack__machine.html#ac294e0e771d7111d484aeaa0e21d842d">aitoolkit::fsm::stack_machine::update</a></div><div class="ttdeci">void update(T &amp;blackboard)</div><div class="ttdoc">Update the machine.</div><div class="ttdef"><b>Definition</b> fsm.hpp:295</div></div>
-<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1state_html"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1state.html">aitoolkit::fsm::state</a></div><div class="ttdoc">A state of the FSM.</div><div class="ttdef"><b>Definition</b> fsm.hpp:166</div></div>
-<div class="ttc" id="agroup__fsm_html_ga337249a3ecdc1c3c74985c6e177b27d9"><div class="ttname"><a href="group__fsm.html#ga337249a3ecdc1c3c74985c6e177b27d9">aitoolkit::fsm::state_ptr</a></div><div class="ttdeci">std::shared_ptr&lt; state&lt; T &gt; &gt; state_ptr</div><div class="ttdoc">Heap-allocated pointer to a state.</div><div class="ttdef"><b>Definition</b> fsm.hpp:184</div></div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span> </div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>      std::vector&lt;state_ptr&lt;T&gt;&gt; m_state_stack;</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>  };</div>
+</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>}</div>
+<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1simple__machine_html"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1simple__machine.html">aitoolkit::fsm::simple_machine</a></div><div class="ttdoc">A simple FSM.</div><div class="ttdef"><b>Definition</b> fsm.hpp:198</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1simple__machine_html_a4ddaae0f2f3540155c479a9ebf6e7db1"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1simple__machine.html#a4ddaae0f2f3540155c479a9ebf6e7db1">aitoolkit::fsm::simple_machine::update</a></div><div class="ttdeci">void update(T &amp;blackboard)</div><div class="ttdoc">Update the machine.</div><div class="ttdef"><b>Definition</b> fsm.hpp:252</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1simple__machine_html_a531f5909365e82b357cde5540e5fd8f5"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1simple__machine.html#a531f5909365e82b357cde5540e5fd8f5">aitoolkit::fsm::simple_machine::resume</a></div><div class="ttdeci">void resume(T &amp;blackboard)</div><div class="ttdoc">Resume the machine.</div><div class="ttdef"><b>Definition</b> fsm.hpp:241</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1simple__machine_html_a5d14db17165c3c5c9fd029b406a12f7d"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1simple__machine.html#a5d14db17165c3c5c9fd029b406a12f7d">aitoolkit::fsm::simple_machine::clear_state</a></div><div class="ttdeci">void clear_state(T &amp;blackboard)</div><div class="ttdoc">Clear the current state.</div><div class="ttdef"><b>Definition</b> fsm.hpp:220</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1simple__machine_html_aa600c93059ddf6dce545fc42046d047b"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1simple__machine.html#aa600c93059ddf6dce545fc42046d047b">aitoolkit::fsm::simple_machine::pause</a></div><div class="ttdeci">void pause(T &amp;blackboard)</div><div class="ttdoc">Pause the machine.</div><div class="ttdef"><b>Definition</b> fsm.hpp:230</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1simple__machine_html_ad3e020057ada68b62540176d4f1db1ba"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1simple__machine.html#ad3e020057ada68b62540176d4f1db1ba">aitoolkit::fsm::simple_machine::set_state</a></div><div class="ttdeci">void set_state(S state, T &amp;blackboard)</div><div class="ttdoc">Enters in a new state, exiting the previous one (if any).</div><div class="ttdef"><b>Definition</b> fsm.hpp:204</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1stack__machine_html"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1stack__machine.html">aitoolkit::fsm::stack_machine</a></div><div class="ttdoc">A stack FSM.</div><div class="ttdef"><b>Definition</b> fsm.hpp:273</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1stack__machine_html_a1f66ddc658747a603e8676158208fc90"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1stack__machine.html#a1f66ddc658747a603e8676158208fc90">aitoolkit::fsm::stack_machine::push_state</a></div><div class="ttdeci">void push_state(S state, T &amp;blackboard)</div><div class="ttdoc">Enters in a new state, pausing the previous one (if any).</div><div class="ttdef"><b>Definition</b> fsm.hpp:279</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1stack__machine_html_a8195f9885827f9735cd7fbe5855f1f9b"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1stack__machine.html#a8195f9885827f9735cd7fbe5855f1f9b">aitoolkit::fsm::stack_machine::pop_state</a></div><div class="ttdeci">void pop_state(T &amp;blackboard)</div><div class="ttdoc">Exits the current state, resuming the previous one (if any).</div><div class="ttdef"><b>Definition</b> fsm.hpp:292</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1stack__machine_html_ac294e0e771d7111d484aeaa0e21d842d"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1stack__machine.html#ac294e0e771d7111d484aeaa0e21d842d">aitoolkit::fsm::stack_machine::update</a></div><div class="ttdeci">void update(T &amp;blackboard)</div><div class="ttdoc">Update the machine.</div><div class="ttdef"><b>Definition</b> fsm.hpp:308</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1fsm_1_1state_html"><div class="ttname"><a href="classaitoolkit_1_1fsm_1_1state.html">aitoolkit::fsm::state</a></div><div class="ttdoc">A state of the FSM.</div><div class="ttdef"><b>Definition</b> fsm.hpp:169</div></div>
+<div class="ttc" id="aconceptaitoolkit_1_1fsm_1_1state__trait_html"><div class="ttname"><a href="conceptaitoolkit_1_1fsm_1_1state__trait.html">aitoolkit::fsm::state_trait</a></div><div class="ttdef"><b>Definition</b> fsm.hpp:190</div></div>
+<div class="ttc" id="agroup__fsm_html_ga76987d0f7972933f75990f23db805758"><div class="ttname"><a href="group__fsm.html#ga76987d0f7972933f75990f23db805758">aitoolkit::fsm::state_ptr</a></div><div class="ttdeci">std::unique_ptr&lt; state&lt; T &gt; &gt; state_ptr</div><div class="ttdoc">Heap-allocated pointer to a state.</div><div class="ttdef"><b>Definition</b> fsm.hpp:187</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -100,7 +100,8 @@ $(function(){initNavTree('group__behtree.html',''); initResizable(); });
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
-<a href="#enum-members">Enumerations</a>  </div>
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">Behavior Tree</div></div>
 </div><!--header-->
 <div class="contents">
@@ -128,11 +129,11 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:gae1a27064841dad4d41e50c3e1a182400" id="r_gae1a27064841dad4d41e50c3e1a182400"><td class="memTemplParams" colspan="2"><a id="gae1a27064841dad4d41e50c3e1a182400" name="gae1a27064841dad4d41e50c3e1a182400"></a>
+<tr class="memitem:ga1acc4f0a13134bdb8aec9a624bf05353" id="r_ga1acc4f0a13134bdb8aec9a624bf05353"><td class="memTemplParams" colspan="2"><a id="ga1acc4f0a13134bdb8aec9a624bf05353" name="ga1acc4f0a13134bdb8aec9a624bf05353"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:gae1a27064841dad4d41e50c3e1a182400"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>aitoolkit::bt::node_ptr</b> = std::shared_ptr&lt;<a class="el" href="classaitoolkit_1_1bt_1_1node.html">node</a>&lt;T&gt;&gt;</td></tr>
-<tr class="memdesc:gae1a27064841dad4d41e50c3e1a182400"><td class="mdescLeft">&#160;</td><td class="mdescRight">Heap-allocated pointer to node. <br /></td></tr>
-<tr class="separator:gae1a27064841dad4d41e50c3e1a182400"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1acc4f0a13134bdb8aec9a624bf05353"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>aitoolkit::bt::node_ptr</b> = std::unique_ptr&lt;<a class="el" href="classaitoolkit_1_1bt_1_1node.html">node</a>&lt;T&gt;&gt;</td></tr>
+<tr class="memdesc:ga1acc4f0a13134bdb8aec9a624bf05353"><td class="mdescLeft">&#160;</td><td class="mdescRight">Heap-allocated pointer to node. <br /></td></tr>
+<tr class="separator:ga1acc4f0a13134bdb8aec9a624bf05353"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -142,6 +143,14 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:ga92d27070603784738ccfd4104852a377"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represent the state of a node.  <a href="#ga92d27070603784738ccfd4104852a377">More...</a><br /></td></tr>
 <tr class="separator:ga92d27070603784738ccfd4104852a377"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gae79e5ec7d1e5df77c1751158fb435a7d" id="r_gae79e5ec7d1e5df77c1751158fb435a7d"><td class="memTemplParams" colspan="2"><a id="gae79e5ec7d1e5df77c1751158fb435a7d" name="gae79e5ec7d1e5df77c1751158fb435a7d"></a>
+template&lt;typename T , node_trait&lt; T &gt; ... Children&gt; </td></tr>
+<tr class="memitem:gae79e5ec7d1e5df77c1751158fb435a7d"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="#ga1acc4f0a13134bdb8aec9a624bf05353">node_ptr</a>&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>aitoolkit::bt::node_list</b> (Children &amp;&amp;... children)</td></tr>
+<tr class="memdesc:gae79e5ec7d1e5df77c1751158fb435a7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to create a list of nodes. <br /></td></tr>
+<tr class="separator:gae79e5ec7d1e5df77c1751158fb435a7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2><a class="anchor" id="autotoc_md0"></a>
@@ -194,42 +203,48 @@ Usage</h2>
 </div><!-- fragment --><p>Next, create the tree:</p>
 <div class="fragment"><div class="line"><span class="keyword">using namespace </span>aitoolkit::bt;</div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">auto</span> tree = <a class="code hl_class" href="classaitoolkit_1_1bt_1_1sel.html">sel&lt;blackboard_type&gt;::make</a>({</div>
-<div class="line">  <a class="code hl_class" href="classaitoolkit_1_1bt_1_1seq.html">seq&lt;blackboard_type&gt;::make</a>({</div>
-<div class="line">    <a class="code hl_class" href="classaitoolkit_1_1bt_1_1check.html">check&lt;blackboard_type&gt;::make</a>([](<span class="keyword">const</span> blackboard_type&amp; bb) {</div>
-<div class="line">      <span class="keyword">auto</span> distance = glm::distance(bb.agent_position, bb.enemy_position);</div>
-<div class="line">      <span class="keywordflow">return</span> distance &lt;= bb.attack_range;</div>
-<div class="line">    }),</div>
-<div class="line">    <a class="code hl_class" href="classaitoolkit_1_1bt_1_1task.html">task&lt;blackboard_type&gt;::make</a>([](blackboard_type&amp; bb) {</div>
-<div class="line">      <span class="comment">// Destroy enemy</span></div>
-<div class="line">      <span class="keywordflow">return</span> execution_state::success;</div>
+<div class="line"><span class="keyword">auto</span> tree = <a class="code hl_class" href="classaitoolkit_1_1bt_1_1sel.html">sel&lt;blackboard_type&gt;</a>(</div>
+<div class="line">  node_list&lt;blackboard_type&gt;(</div>
+<div class="line">    <a class="code hl_class" href="classaitoolkit_1_1bt_1_1seq.html">seq&lt;blackboard_type&gt;</a>(</div>
+<div class="line">      node_list&lt;blackboard_type&gt;(</div>
+<div class="line">        <a class="code hl_class" href="classaitoolkit_1_1bt_1_1check.html">check&lt;blackboard_type&gt;</a>([](<span class="keyword">const</span> blackboard_type&amp; bb) {</div>
+<div class="line">          <span class="keyword">auto</span> distance = glm::distance(bb.agent_position, bb.enemy_position);</div>
+<div class="line">          <span class="keywordflow">return</span> distance &lt;= bb.attack_range;</div>
+<div class="line">        }),</div>
+<div class="line">        <a class="code hl_class" href="classaitoolkit_1_1bt_1_1task.html">task&lt;blackboard_type&gt;</a>([](blackboard_type&amp; bb) {</div>
+<div class="line">          <span class="comment">// Destroy enemy</span></div>
+<div class="line">          <span class="keywordflow">return</span> execution_state::success;</div>
+<div class="line">        })</div>
+<div class="line">      )</div>
+<div class="line">    ),</div>
+<div class="line">    <a class="code hl_class" href="classaitoolkit_1_1bt_1_1seq.html">seq&lt;blackboard_type&gt;</a>(</div>
+<div class="line">      node_list&lt;blackboard_type&gt;(</div>
+<div class="line">        <a class="code hl_class" href="classaitoolkit_1_1bt_1_1check.html">check&lt;blackboard_type&gt;</a>([](<span class="keyword">const</span> blackboard_type&amp; bb) {</div>
+<div class="line">          <span class="keyword">auto</span> distance = glm::distance(bb.agent_position, bb.enemy_position);</div>
+<div class="line">          <span class="keywordflow">return</span> distance &lt;= bb.sight_range;</div>
+<div class="line">        }),</div>
+<div class="line">        <a class="code hl_class" href="classaitoolkit_1_1bt_1_1task.html">task&lt;blackboard_type&gt;</a>([](blackboard_type&amp; bb) {</div>
+<div class="line">          <span class="comment">// Move towards enemy</span></div>
+<div class="line">          <span class="keywordflow">return</span> execution_state::success;</div>
+<div class="line">        })</div>
+<div class="line">      )</div>
+<div class="line">    ),</div>
+<div class="line">    <a class="code hl_class" href="classaitoolkit_1_1bt_1_1seq.html">seq&lt;blackboard_type&gt;::make</a>({</div>
+<div class="line">      <a class="code hl_class" href="classaitoolkit_1_1bt_1_1task.html">task&lt;blackboard_type&gt;</a>([](blackboard_type&amp; bb) {</div>
+<div class="line">        <span class="comment">// Move towards waypoint</span></div>
+<div class="line">        <span class="keywordflow">return</span> execution_state::success;</div>
+<div class="line">      }),</div>
+<div class="line">      <a class="code hl_class" href="classaitoolkit_1_1bt_1_1task.html">task&lt;blackboard_type&gt;</a>([](blackboard_type&amp; bb) {</div>
+<div class="line">        <span class="comment">// Select next waypoint</span></div>
+<div class="line">        <span class="keywordflow">return</span> execution_state::success;</div>
+<div class="line">      })</div>
 <div class="line">    })</div>
-<div class="line">  }),</div>
-<div class="line">  <a class="code hl_class" href="classaitoolkit_1_1bt_1_1seq.html">seq&lt;blackboard_type&gt;::make</a>({</div>
-<div class="line">    <a class="code hl_class" href="classaitoolkit_1_1bt_1_1check.html">check&lt;blackboard_type&gt;::make</a>([](<span class="keyword">const</span> blackboard_type&amp; bb) {</div>
-<div class="line">      <span class="keyword">auto</span> distance = glm::distance(bb.agent_position, bb.enemy_position);</div>
-<div class="line">      <span class="keywordflow">return</span> distance &lt;= bb.sight_range;</div>
-<div class="line">    }),</div>
-<div class="line">    <a class="code hl_class" href="classaitoolkit_1_1bt_1_1task.html">task&lt;blackboard_type&gt;::make</a>([](blackboard_type&amp; bb) {</div>
-<div class="line">      <span class="comment">// Move towards enemy</span></div>
-<div class="line">      <span class="keywordflow">return</span> execution_state::success;</div>
-<div class="line">    })</div>
-<div class="line">  }),</div>
-<div class="line">  <a class="code hl_class" href="classaitoolkit_1_1bt_1_1seq.html">seq&lt;blackboard_type&gt;::make</a>({</div>
-<div class="line">    <a class="code hl_class" href="classaitoolkit_1_1bt_1_1task.html">task&lt;blackboard_type&gt;::make</a>([](blackboard_type&amp; bb) {</div>
-<div class="line">      <span class="comment">// Move towards waypoint</span></div>
-<div class="line">      <span class="keywordflow">return</span> execution_state::success;</div>
-<div class="line">    }),</div>
-<div class="line">    <a class="code hl_class" href="classaitoolkit_1_1bt_1_1task.html">task&lt;blackboard_type&gt;::make</a>([](blackboard_type&amp; bb) {</div>
-<div class="line">      <span class="comment">// Select next waypoint</span></div>
-<div class="line">      <span class="keywordflow">return</span> execution_state::success;</div>
-<div class="line">    })</div>
-<div class="line">  })</div>
-<div class="line">});</div>
-<div class="ttc" id="aclassaitoolkit_1_1bt_1_1check_html"><div class="ttname"><a href="classaitoolkit_1_1bt_1_1check.html">aitoolkit::bt::check</a></div><div class="ttdoc">Check node, will return success if the callback returns true.</div><div class="ttdef"><b>Definition</b> behtree.hpp:266</div></div>
-<div class="ttc" id="aclassaitoolkit_1_1bt_1_1sel_html"><div class="ttname"><a href="classaitoolkit_1_1bt_1_1sel.html">aitoolkit::bt::sel</a></div><div class="ttdoc">Selector node, will execute all children in order until one succeeds.</div><div class="ttdef"><b>Definition</b> behtree.hpp:202</div></div>
-<div class="ttc" id="aclassaitoolkit_1_1bt_1_1seq_html"><div class="ttname"><a href="classaitoolkit_1_1bt_1_1seq.html">aitoolkit::bt::seq</a></div><div class="ttdoc">Sequence node, will execute all children in order until one fails.</div><div class="ttdef"><b>Definition</b> behtree.hpp:171</div></div>
-<div class="ttc" id="aclassaitoolkit_1_1bt_1_1task_html"><div class="ttname"><a href="classaitoolkit_1_1bt_1_1task.html">aitoolkit::bt::task</a></div><div class="ttdoc">Task node, will execute the callback and return the result.</div><div class="ttdef"><b>Definition</b> behtree.hpp:295</div></div>
+<div class="line">  )</div>
+<div class="line">);</div>
+<div class="ttc" id="aclassaitoolkit_1_1bt_1_1check_html"><div class="ttname"><a href="classaitoolkit_1_1bt_1_1check.html">aitoolkit::bt::check</a></div><div class="ttdoc">Check node, will return success if the callback returns true.</div><div class="ttdef"><b>Definition</b> behtree.hpp:281</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1bt_1_1sel_html"><div class="ttname"><a href="classaitoolkit_1_1bt_1_1sel.html">aitoolkit::bt::sel</a></div><div class="ttdoc">Selector node, will execute all children in order until one succeeds.</div><div class="ttdef"><b>Definition</b> behtree.hpp:226</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1bt_1_1seq_html"><div class="ttname"><a href="classaitoolkit_1_1bt_1_1seq.html">aitoolkit::bt::seq</a></div><div class="ttdoc">Sequence node, will execute all children in order until one fails.</div><div class="ttdef"><b>Definition</b> behtree.hpp:202</div></div>
+<div class="ttc" id="aclassaitoolkit_1_1bt_1_1task_html"><div class="ttname"><a href="classaitoolkit_1_1bt_1_1task.html">aitoolkit::bt::task</a></div><div class="ttdoc">Task node, will execute the callback and return the result.</div><div class="ttdef"><b>Definition</b> behtree.hpp:306</div></div>
 </div><!-- fragment --><p>Finally, evaluate the tree:</p>
 <div class="fragment"><div class="line"><span class="keyword">auto</span> bb = blackboard_type{</div>
 <div class="line">  .agent_position = { 0.0f, 0.0f },</div>
@@ -239,7 +254,7 @@ Usage</h2>
 <div class="line">};</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordflow">while</span> (<span class="keyword">true</span>) {</div>
-<div class="line">  <span class="keyword">auto</span> state = tree-&gt;evaluate(bb);</div>
+<div class="line">  <span class="keyword">auto</span> state = tree.evaluate(bb);</div>
 <div class="line">  <span class="keywordflow">if</span> (state == execution_state::success) {</div>
 <div class="line">    <span class="keywordflow">break</span>;</div>
 <div class="line">  }</div>
