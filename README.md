@@ -228,12 +228,14 @@ class collect_gold final : public action<blackboard_type> {
 Finally, create an evaluator and run it:
 
 ```cpp
-auto evaluator = evaluator<blackboard_type>{
-  std::make_shared<collect_food>(),
-  std::make_shared<collect_wood>(),
-  std::make_shared<collect_stone>(),
-  std::make_shared<collect_gold>()
-};
+auto evaluator = evaluator<blackboard_type>(
+  action_list<blackboard_type>(
+    collect_food{},
+    collect_wood{},
+    collect_stone{},
+    collect_gold{}
+  )
+);
 
 auto blackboard = blackboard_type{};
 evaluator.run(blackboard);
