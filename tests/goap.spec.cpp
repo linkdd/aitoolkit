@@ -132,16 +132,17 @@ TEST_CASE("goap planning") {
       .gold = 2,
       .stone = 1
     };
-
-    auto actions = std::vector<action_ptr<blackboard_type>>{
-      std::make_shared<chop_wood>(),
-      std::make_shared<build_storage>(),
-      std::make_shared<gather_food>(),
-      std::make_shared<mine_gold>(),
-      std::make_shared<mine_stone>()
-    };
-
-    auto p = planner<blackboard_type>(actions, initial, goal);
+    auto p = planner<blackboard_type>(
+      action_list<blackboard_type>(
+        chop_wood{},
+        build_storage{},
+        gather_food{},
+        mine_gold{},
+        mine_stone{}
+      ),
+      initial,
+      goal
+    );
     CHECK(p);
 
     // 10 chop wood, 1 build storage, 3 gather food, 2 mine gold, 1 mine stone
@@ -170,15 +171,18 @@ TEST_CASE("goap planning") {
       .stone = 1
     };
 
-    auto actions = std::vector<action_ptr<blackboard_type>>{
-      std::make_shared<chop_wood>(),
-      std::make_shared<build_storage>(),
-      std::make_shared<gather_food>(),
-      std::make_shared<mine_gold>(),
-      std::make_shared<mine_stone>()
-    };
-
-    auto p = planner<blackboard_type>(actions, initial, goal, 1000);
+    auto p = planner<blackboard_type>(
+      action_list<blackboard_type>(
+        chop_wood{},
+        build_storage{},
+        gather_food{},
+        mine_gold{},
+        mine_stone{}
+      ),
+      initial,
+      goal,
+      1000
+    );
     CHECK(!p);
   }
 }

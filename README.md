@@ -299,17 +299,20 @@ class chop_tree final : public action<blackboard_type> {
 Finally, create a plan and run it:
 
 ```cpp
-auto actions = std::vector<action_ptr<blackboard_type>>{
-  std::make_shared<get_axe>(),
-  std::make_shared<chop_tree>()
-};
 auto initial = blackboard_type{};
 auto goal = blackboard_type{
   .has_axe = true,
   .wood = 3
 };
 
-auto p = planner<blackboard_type>(actions, initial, goal);
+auto p = planner<blackboard_type>(
+  action_list<blackboard_type>(
+    get_axe{},
+    chop_tree{}
+  ),
+  initial,
+  goal
+);
 
 auto blackboard = initial;
 while (p) {
