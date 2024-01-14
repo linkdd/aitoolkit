@@ -71,38 +71,44 @@ Next, create the tree:
 ```cpp
 using namespace aitoolkit::bt;
 
-auto tree = sel<blackboard_type>::make({
-  seq<blackboard_type>::make({
-    check<blackboard_type>::make([](const blackboard_type& bb) {
-      auto distance = glm::distance(bb.agent_position, bb.enemy_position);
-      return distance <= bb.attack_range;
-    }),
-    task<blackboard_type>::make([](blackboard_type& bb) {
-      // Destroy enemy
-      return execution_state::success;
+auto tree = sel<blackboard_type>(
+  node_list<blackboard_type>(
+    seq<blackboard_type>(
+      node_list<blackboard_type>(
+        check<blackboard_type>([](const blackboard_type& bb) {
+          auto distance = glm::distance(bb.agent_position, bb.enemy_position);
+          return distance <= bb.attack_range;
+        }),
+        task<blackboard_type>([](blackboard_type& bb) {
+          // Destroy enemy
+          return execution_state::success;
+        })
+      )
+    ),
+    seq<blackboard_type>(
+      node_list<blackboard_type>(
+        check<blackboard_type>([](const blackboard_type& bb) {
+          auto distance = glm::distance(bb.agent_position, bb.enemy_position);
+          return distance <= bb.sight_range;
+        }),
+        task<blackboard_type>([](blackboard_type& bb) {
+          // Move towards enemy
+          return execution_state::success;
+        })
+      )
+    ),
+    seq<blackboard_type>::make({
+      task<blackboard_type>([](blackboard_type& bb) {
+        // Move towards waypoint
+        return execution_state::success;
+      }),
+      task<blackboard_type>([](blackboard_type& bb) {
+        // Select next waypoint
+        return execution_state::success;
+      })
     })
-  }),
-  seq<blackboard_type>::make({
-    check<blackboard_type>::make([](const blackboard_type& bb) {
-      auto distance = glm::distance(bb.agent_position, bb.enemy_position);
-      return distance <= bb.sight_range;
-    }),
-    task<blackboard_type>::make([](blackboard_type& bb) {
-      // Move towards enemy
-      return execution_state::success;
-    })
-  }),
-  seq<blackboard_type>::make({
-    task<blackboard_type>::make([](blackboard_type& bb) {
-      // Move towards waypoint
-      return execution_state::success;
-    }),
-    task<blackboard_type>::make([](blackboard_type& bb) {
-      // Select next waypoint
-      return execution_state::success;
-    })
-  })
-});
+  )
+);
 ```
 
 Finally, evaluate the tree:
@@ -116,7 +122,7 @@ auto bb = blackboard_type{
 };
 
 while (true) {
-  auto state = tree->evaluate(bb);
+  auto state = tree.evaluate(bb);
   if (state == execution_state::success) {
     break;
   }
@@ -124,10 +130,12 @@ while (true) {
 ```
 */
 
-#include <initializer_list>
 #include <functional>
 #include <memory>
 #include <vector>
+
+#include <type_traits>
+#include <concepts>
 
 namespace aitoolkit::bt {
   /**
@@ -149,10 +157,18 @@ namespace aitoolkit::bt {
   template <class T>
   class node {
     public:
+      node() = default;
+      node(const node&) = delete;
+      node(node&& other) {
+        m_children = std::move(other.m_children);
+      }
+
+      virtual ~node() = default;
+
       virtual execution_state evaluate(T& blackboard) const = 0;
 
     protected:
-      std::vector<std::shared_ptr<node<T>>> m_children;
+      std::vector<std::unique_ptr<node<T>>> m_children;
   };
 
   /**
@@ -160,7 +176,22 @@ namespace aitoolkit::bt {
    * @brief Heap-allocated pointer to node
    */
   template <class T>
-  using node_ptr = std::shared_ptr<node<T>>;
+  using node_ptr = std::unique_ptr<node<T>>;
+
+  template <typename N, class T>
+  concept node_trait = std::derived_from<N, node<T>>;
+
+  /**
+   * @ingroup behtree
+   * @brief Helper function to create a list of nodes
+   */
+  template <typename T, node_trait<T> ...Children>
+  std::vector<node_ptr<T>> node_list(Children&&... children) {
+    auto nodes = std::vector<node_ptr<T>>{};
+    nodes.reserve(sizeof...(children));
+    (nodes.push_back(std::make_unique<Children>(std::move(children))), ...);
+    return nodes;
+  }
 
   /**
    * @ingroup behtree
@@ -170,19 +201,12 @@ namespace aitoolkit::bt {
   template <class T>
   class seq final : public node<T> {
     public:
-      static node_ptr<T> make(std::initializer_list<node_ptr<T>> children) {
-        auto seq_node = std::make_shared<seq<T>>();
-        seq_node->m_children.reserve(children.size());
-
-        for (auto& child : children) {
-          seq_node->m_children.push_back(child);
-        }
-
-        return seq_node;
+      seq(std::vector<node_ptr<T>> children) {
+        this->m_children = std::move(children);
       }
 
       virtual execution_state evaluate(T& blackboard) const override {
-        for (auto child : this->m_children) {
+        for (auto& child : this->m_children) {
           auto state = child->evaluate(blackboard);
           if (state != execution_state::success) {
             return state;
@@ -201,19 +225,12 @@ namespace aitoolkit::bt {
   template <class T>
   class sel final : public node<T> {
     public:
-      static node_ptr<T> make(std::initializer_list<node_ptr<T>> children) {
-        auto sel_node = std::make_shared<sel<T>>();
-        sel_node->m_children.reserve(children.size());
-
-        for (auto child : children) {
-          sel_node->m_children.push_back(child);
-        }
-
-        return sel_node;
+      sel(std::vector<node_ptr<T>> children) {
+        this->m_children = std::move(children);
       }
 
       virtual execution_state evaluate(T& blackboard) const override {
-        for (auto child : this->m_children) {
+        for (auto& child : this->m_children) {
           auto state = child->evaluate(blackboard);
           if (state != execution_state::failure) {
             return state;
@@ -232,13 +249,10 @@ namespace aitoolkit::bt {
   template <class T>
   class neg final : public node<T> {
     public:
-      static node_ptr<T> make(node_ptr<T> child) {
-        auto neg_node = std::make_shared<neg<T>>();
-
-        neg_node->m_children.reserve(1);
-        neg_node->m_children.push_back(child);
-
-        return neg_node;
+      template <node_trait<T> N>
+      neg(N&& child) {
+        this->m_children.reserve(1);
+        this->m_children.push_back(std::make_unique<N>(std::move(child)));
       }
 
       virtual execution_state evaluate(T& blackboard) const override {
@@ -246,7 +260,8 @@ namespace aitoolkit::bt {
           return execution_state::failure;
         }
 
-        auto state = this->m_children.front()->evaluate(blackboard);
+        auto& child = this->m_children.front();
+        auto state = child->evaluate(blackboard);
         if (state == execution_state::success) {
           return execution_state::failure;
         } else if (state == execution_state::failure) {
@@ -268,10 +283,6 @@ namespace aitoolkit::bt {
       using callback_type = std::function<bool(const T&)>;
 
     public:
-      static node_ptr<T> make(callback_type fn) {
-        return std::make_shared<check<T>>(fn);
-      }
-
       check(callback_type fn) : m_fn(fn) {}
 
       virtual execution_state evaluate(T& blackboard) const override {
@@ -297,10 +308,6 @@ namespace aitoolkit::bt {
       using callback_type = std::function<execution_state(T&)>;
 
     public:
-      static node_ptr<T> make(callback_type fn) {
-        return std::make_shared<task<T>>(fn);
-      }
-
       task(callback_type fn) : m_fn(fn) {}
 
       virtual execution_state evaluate(T& blackboard) const override {
