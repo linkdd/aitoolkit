@@ -129,16 +129,18 @@ struct blackboard_type {
 Then, create your tree:
 
 ```cpp
-auto tree = seq<blackboard_type>::make({
-  check<blackboard_type>::make([](const blackboard_type& bb) {
-    // check some condition
-    return true;
-  }),
-  task<blackboard_type>::make([](blackboard_type& bb) {
-    // perform some action
-    return execution_state::success;
-  })
-});
+auto tree = seq<blackboard_type>(
+  node_list<blackboard_type>(
+    check<blackboard_type>([](const blackboard_type& bb) {
+      // check some condition
+      return true;
+    }),
+    task<blackboard_type>([](blackboard_type& bb) {
+      // perform some action
+      return execution_state::success;
+    })
+  )
+);
 ```
 
 Finally, evaluate it:
@@ -148,7 +150,7 @@ auto blackboard = blackboard_type{
   // ...
 };
 
-auto state = tree->evaluate(blackboard);
+auto state = tree.evaluate(blackboard);
 ```
 
 For more informations, consult the
