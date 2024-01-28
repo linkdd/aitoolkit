@@ -34,6 +34,22 @@ $ g++ -std=c++23 -Iaitoolkit/include main.cpp -o mygame
 
 > **NB:** This library is compatible with C++20.
 
+Or using [Shipp](https://github.com/linkdd/shipp), add it to your dependencies:
+
+```json
+{
+  "name": "myproject",
+  "version": "0.1.0",
+  "dependencies": [
+    {
+      "name": "aitoolkit",
+      "url": "https://github.com/linkdd/aitoolkit.git",
+      "version": "v0.5.0"
+    }
+  ]
+}
+```
+
 ## Usage
 
 ### Finite State Machine

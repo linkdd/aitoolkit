@@ -1,0 +1,8 @@
+{
+  "name": "aitoolkit",
+  "version": "0.5.0",
+  "scripts": {
+    "build": "true",
+    "install": "make install DESTDIR=$SHIPP_DIST_DIR"
+  }
+}
