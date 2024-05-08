@@ -1,3 +1,5 @@
+#include <string>
+
 #include "doctest.h"
 
 #include "../include/aitoolkit/goap.hpp"
@@ -9,6 +11,7 @@ struct blackboard_type {
   int food;
   int gold;
   int stone;
+  std::string plan_order;
 };
 
 bool operator==(const blackboard_type& a, const blackboard_type& b) {
@@ -48,6 +51,7 @@ class chop_wood final : public action<blackboard_type> {
 
     virtual void apply_effects(blackboard_type& blackboard, bool dry_run) const override {
       blackboard.wood += 1;
+      blackboard.plan_order += "W";
     }
 };
 
@@ -67,6 +71,7 @@ class build_storage final : public action<blackboard_type> {
     virtual void apply_effects(blackboard_type& blackboard, bool dry_run) const override {
       blackboard.have_storage = true;
       blackboard.wood -= 10;
+      blackboard.plan_order += "B";
     }
 };
 
@@ -82,6 +87,7 @@ class gather_food final : public action<blackboard_type> {
 
     virtual void apply_effects(blackboard_type& blackboard, bool dry_run) const override {
       blackboard.food += 1;
+      blackboard.plan_order += "F";
     }
 };
 
@@ -97,6 +103,7 @@ class mine_gold final : public action<blackboard_type> {
 
     virtual void apply_effects(blackboard_type& blackboard, bool dry_run) const override {
       blackboard.gold += 1;
+      blackboard.plan_order += "G";
     }
 };
 
@@ -112,6 +119,7 @@ class mine_stone final : public action<blackboard_type> {
 
     virtual void apply_effects(blackboard_type& blackboard, bool dry_run) const override {
       blackboard.stone += 1;
+      blackboard.plan_order += "S";
     }
 };
 
@@ -152,6 +160,7 @@ TEST_CASE("goap planning") {
       p.run_next(initial);
     }
     CHECK(initial == goal);
+    CHECK(initial.plan_order.starts_with("WWWWWWWWWWB"));
   }
 
   SUBCASE("planner fails to find a plan") {
