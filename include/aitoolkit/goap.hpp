@@ -171,6 +171,7 @@ while (p) {
 #include <memory>
 #include <vector>
 #include <queue>
+#include <stack>
 
 #include <type_traits>
 #include <concepts>
@@ -264,7 +265,7 @@ namespace aitoolkit::goap {
        */
       void run_next(T& blackboard) {
         if (!m_plan.empty()) {
-          auto action_idx = m_plan.front();
+          auto action_idx = m_plan.top();
           m_plan.pop();
 
           auto& action = m_actions[action_idx];
@@ -273,7 +274,7 @@ namespace aitoolkit::goap {
       }
 
     private:
-      std::queue<size_t> m_plan;
+      std::stack<size_t> m_plan;
       std::vector<action_ptr<T>> m_actions;
 
       friend plan<T> planner<T>(
