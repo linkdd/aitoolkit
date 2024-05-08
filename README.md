@@ -44,7 +44,7 @@ Or using [Shipp](https://github.com/linkdd/shipp), add it to your dependencies:
     {
       "name": "aitoolkit",
       "url": "https://github.com/linkdd/aitoolkit.git",
-      "version": "v0.5.0"
+      "version": "v0.5.1"
     }
   ]
 }
